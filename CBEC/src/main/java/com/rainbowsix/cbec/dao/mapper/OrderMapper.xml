@@ -21,9 +21,7 @@ delete from ORDERS where ORDERID=#{orderid}
 select * from ORDERS
 </insert>
 
-<insert id="selectOrderListById" parameterType="com.rainbowsix.cbec.model.OrderModel">
-select * from ORDERS where ORDERID=#{orderid}
-</insert>
+
 
 
 </mapper>
