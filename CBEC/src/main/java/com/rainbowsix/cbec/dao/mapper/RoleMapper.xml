@@ -5,13 +5,18 @@
 <mapper namespace="com.rainbowsix.cbec.dao.IRoleDao">
 
 	<insert id="create" parameterType="com.rainbowsix.cbec.model.RoleModel">
-		insert into user_role (roleName, detial) values (#{name}, #{detial})
+		insert into user_role (roleId, roleName, detial) values 
+		(ROLE_ID_SQ.nextval, #{name}, #{detial})
 	</insert>
 	
-	<update id="update" parameterType="com.rainbowsix.cbec.model.RoleModel"></update>
+	<update id="update" parameterType="com.rainbowsix.cbec.model.RoleModel">
+		update user_role set roleName = #{name}, menuid = #{menuid}, detial = #{detial}
+		where roleid = #{id}
+	</update>
 	<update id="setMenuId" parameterType="com.rainbowsix.cbec.model.RoleModel"></update>
 	<delete id="delete" parameterType="com.rainbowsix.cbec.model.RoleModel"></delete>
 	<select id="selectByRoleName" parameterType="string"></select>
+	<select id="selectByRoleId" parameterType="int"></select>
 	<select id="selectAll"></select>
 	
 </mapper>
