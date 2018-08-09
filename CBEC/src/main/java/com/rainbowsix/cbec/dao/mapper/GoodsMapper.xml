@@ -2,11 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.mybatis.example.BlogMapper">
+<mapper namespace="com.rainbowsix.cbec.dao.IGoodsDao">
 
 <insert id="create" parameterType="com.rainbowsix.cbec.model.GoodsModel">
 insert into GOODS (PROID,COMID,TITLE,PRICE,GOODDATE)
 values (PROID.nextval,#{comid},#{title},#{price},#{gooddate})
 </insert>
+
+<update id="update" parameterType="com.rainbowsix.cbec.model.GoodsModel">
+update GOODS set 
+
+STATE = #{state},
+STOCK = #{stock},
+PHOTO = #{photo},
+PHOTOTYPE = #{phototype},
+PHOTONAME = #{photoname},
+GOODDESC = #{desc},
+TYPE = #{type},
+WEIGHT = #{weight}
+where #{proid}=PROID
+</update>
+
+<delete id="delete" parameterType="int">
+delete from GOODS where PROID = #{proid}
+</delete>
+
+<select id="AllByPage" parameterType="int" resultType="com.rainbowsix.cbec.model.GoodsModel">
+select *
+from GOODS
+where PROID= #{proid}
+</select>
 
 </mapper>
