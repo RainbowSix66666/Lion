@@ -15,7 +15,7 @@
 	</update>
 	<update id="setMenuId" parameterType="com.rainbowsix.cbec.model.RoleModel"></update>
 	<delete id="delete" parameterType="com.rainbowsix.cbec.model.RoleModel"></delete>
-	<select id="selectByRoleName" parameterType="string"></select>
+	<select id="selectByRoleName" parameterType="string" resultType="com.rainbowsix.cbec.model.RoleModel"></select>
 	<select id="selectByRoleId" parameterType="int"></select>
 	<select id="selectAll"></select>
 	
