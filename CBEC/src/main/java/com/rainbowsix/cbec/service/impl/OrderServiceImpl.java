@@ -25,7 +25,7 @@ public class OrderServiceImpl implements IOrderService {
 		IOrderDao orderDao=session.getMapper(IOrderDao.class);
 		orderDao.create(order);
 		session.commit();
-		session.close();
+		//session.close();
 
 	}
 
