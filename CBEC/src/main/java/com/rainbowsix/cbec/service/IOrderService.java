@@ -5,7 +5,7 @@ import java.util.List;
 import com.rainbowsix.cbec.model.OrderModel;
 
 //订单的业务层接口
-public interface OrderService {
+public interface IOrderService {
 	//新增订单
 	public void add(OrderModel order) throws Exception;
 	//修改订单
