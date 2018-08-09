@@ -10,7 +10,20 @@ values (ORDER_SEQUENCE.nextval,#{comid},#{orderstate},#{bsid})
 </insert>
 
 <insert id="update" parameterType="com.rainbowsix.cbec.model.OrderModel">
-
+update ORDERS set COMID=#{comid}, ORDERSTATE=#{orderstate}, BSID=#{bsid} where ORDERID=#{orderid}
 </insert>
+
+<insert id="delete" parameterType="com.rainbowsix.cbec.model.OrderModel">
+delete from ORDERS where ORDERID=#{orderid}
+</insert>
+
+<insert id="selectOrderListByAll" parameterType="com.rainbowsix.cbec.model.OrderModel">
+select * from ORDERS
+</insert>
+
+<insert id="selectOrderListById" parameterType="com.rainbowsix.cbec.model.OrderModel">
+select * from ORDERS where ORDERID=#{orderid}
+</insert>
+
 
 </mapper>
