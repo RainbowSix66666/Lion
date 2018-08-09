@@ -15,6 +15,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="org/mybatis/example/BlogMapper.xml"/>
+		<mapper resource="com.rainbowsix.cbec.dao.mapper.RoleMapper.xml"/>
 	</mappers>
 </configuration>
