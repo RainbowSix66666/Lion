@@ -18,5 +18,5 @@ public interface IGoodsDao {
 	public List<GoodsModel> All() throws Exception;
 	
 	//取得指定的商品信息
-	public GoodsModel byNO() throws Exception;
+	public GoodsModel byNO(int no) throws Exception;
 }
