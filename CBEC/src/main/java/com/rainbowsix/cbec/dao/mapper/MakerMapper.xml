@@ -5,8 +5,29 @@
 <mapper namespace="com.rainbowsix.cbec.dao.IMakerDao">
 
 <insert id="create" parameterType="com.rainbowsix.cbec.model.MakerModel">
-	insert into MAKER 
-	values (PROID.nextval,#{comid},#{title},#{price},#{gooddate})
+	insert into MAKER (MAKER_ID, MAKER_NO, MAKER_NAME, MAKER_PASSWORD, ADDRESS, EMAIL, PHONE_NUMBER)
+	values (MAKERID.nextval,#{makerNO},#{makerName},#{makerPassword},#{address},#{email},#{phoneNumber})
 </insert>
+
+<update id="update" parameterType="com.rainbowsix.cbec.model.MakerModel">
+	update MAKER set 
+	MAKER_NO = #{makerNO},
+	MAKER_NAME = #{makerName},
+	MAKER_PASSWORD = #{makerPassword},
+	ADDRESS = #{address},
+	EMAIL = #{email},
+	PHONE_NUMBER = #{phoneNumber},
+	where #{MAKERID}=MAKER_ID
+</update>
+
+<delete id="delete" parameterType="int">
+	delete from GOODS where MAKER_ID = #{MAKERID}
+</delete>
+
+<select id="AllByPage" parameterType="int" resultType="com.rainbowsix.cbec.model.GoodsModel">
+	select *
+	from MAKER
+	where MAKER_ID= #{MAKERID}
+</select>
 
 </mapper>

@@ -1,13 +1,22 @@
 package com.rainbowsix.cbec.model;
 
 public class MakerModel {
+	private int makerId;
 	private int makerNO;
 	private String makerName;
 	private String makerPassword;
 	private String address;
-	private byte[] photo;
+//	private byte[] photo;
 	private String email;
 	private String phoneNumber;
+	
+	
+	public int getMakerId() {
+		return makerId;
+	}
+	public void setMakerId(int makerId) {
+		this.makerId = makerId;
+	}
 	public int getMakerNO() {
 		return makerNO;
 	}
@@ -32,12 +41,12 @@ public class MakerModel {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public byte[] getPhoto() {
+/*	public byte[] getPhoto() {
 		return photo;
 	}
 	public void setPhoto(byte[] photo) {
 		this.photo = photo;
-	}
+	}*/
 	public String getEmail() {
 		return email;
 	}
