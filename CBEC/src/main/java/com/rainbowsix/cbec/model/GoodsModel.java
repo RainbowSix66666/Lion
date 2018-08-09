@@ -3,6 +3,8 @@ package com.rainbowsix.cbec.model;
 import java.sql.Blob;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class GoodsModel {
 	private static final long serialVersionUID = 1L;
 	//field变量
@@ -14,6 +16,7 @@ public class GoodsModel {
 	private int stock=0;//库存
 	private double price=0;//价格
 	private double weight=0;//重量
+	@DateTimeFormat(pattern = "yyyy-mm-dd")
 	private Date gooddate=null;//生产日期
 	private String desc=null;//简介
 	private Blob  photo=null;//照片

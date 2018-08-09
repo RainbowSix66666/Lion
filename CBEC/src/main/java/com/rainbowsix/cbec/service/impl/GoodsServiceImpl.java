@@ -23,7 +23,7 @@ public class GoodsServiceImpl implements IGoodsService {
 		SqlSessionFactory sqlSessionFactory= new SqlSessionFactoryBuilder().build(reader);
 		SqlSession session = sqlSessionFactory.openSession();
 		IGoodsDao departmentDao = session.getMapper(IGoodsDao.class);
-		goodsdao.create(good);
+		departmentDao.create(good);
 		session.commit();
 		session.close();
 	}
