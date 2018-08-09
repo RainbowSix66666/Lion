@@ -39,7 +39,15 @@ public class MakerServiceImpl implements IMakerService{
 
 	public void modify(MakerModel maker) throws Exception {
 		// TODO Auto-generated method stub
+		String resource = "hmx_config.xml";
+		InputStream inputStream = Resources.getResourceAsStream(resource);
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+		SqlSession session = sqlSessionFactory.openSession();
+		IMakerDao makerDao = session.getMapper(IMakerDao.class);
+		makerDao.update(maker);
 		
+		session.commit();
+		session.close();
 	}
 
 	public void delete(int makerId) throws Exception {
@@ -47,9 +55,35 @@ public class MakerServiceImpl implements IMakerService{
 		
 	}
 
-	public List<MakerModel> selectProductListByMakerId(int makerId) throws Exception {
+	public List<MakerModel> selectListByAll() throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		String resource = "hmx_config.xml";
+		InputStream inputStream = Resources.getResourceAsStream(resource);
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		IMakerDao makerDao = session.getMapper(IMakerDao.class);
+		List<MakerModel> mm = makerDao.selectListByAll();
+		
+		session.commit();
+		session.close();
+		
+		return mm;
+	}
+
+	public MakerModel selectByMakerId(int makerId) throws Exception {
+		// TODO Auto-generated method stub
+		String resource = "hmx_config.xml";
+		InputStream inputStream = Resources.getResourceAsStream(resource);
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+		SqlSession session = sqlSessionFactory.openSession();
+		IMakerDao makerDao = session.getMapper(IMakerDao.class);
+		MakerModel mm = makerDao.selectByMakerId(makerId);
+		
+		session.commit();
+		session.close();
+		
+		return mm;
 	}
 
 }

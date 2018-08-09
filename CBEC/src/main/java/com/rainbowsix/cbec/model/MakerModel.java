@@ -1,5 +1,8 @@
 package com.rainbowsix.cbec.model;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("Maker")
 public class MakerModel {
 	private int makerId;
 	private int makerNO;

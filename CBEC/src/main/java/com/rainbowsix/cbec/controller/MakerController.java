@@ -1,5 +1,7 @@
 package com.rainbowsix.cbec.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,5 +29,31 @@ public class MakerController {
 			
 			return "ok";
 		}
+	
+	@RequestMapping(value="/modify",method={RequestMethod.POST})
+	@ResponseBody
+	public String modify(MakerModel maker) throws Exception{
+		
+		makerService.modify(maker);		
+		
+		return "ok";
+	}
+	
+	@RequestMapping(value="/list/all",method={RequestMethod.GET})
+	@ResponseBody
+	public List<MakerModel> selectListByAll() throws Exception{
+		
+		return makerService.selectListByAll();	
+		
+	}
+	
+	@RequestMapping(value="/bymakerid",method={RequestMethod.GET})
+	@ResponseBody
+	public MakerModel selectByMakerId(int makerId) throws Exception{
+		
+		return makerService.selectByMakerId(makerId);	
+		
+	}
+	
 	
 }

@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="com.rainbowsix.cbec.dao.IMakerDao">
 
-<insert id="create" parameterType="com.rainbowsix.cbec.model.MakerModel">
-	insert into MAKER (MAKER_ID, MAKER_NO, MAKER_NAME, MAKER_PASSWORD, ADDRESS, EMAIL, PHONE_NUMBER)
+<resultMap id="MakerResultMap" type="Maker">
+  <id property="makerId" column="MAKER_ID"/>
+  <result property="makerNO" column="MAKER_NO" />
+  <result property="makerName" column="MAKER_NAME"/>
+  <result property="makerPassword" column="MAKER_PASSWORD"/>
+  <result property="address" column="ADDRESS"/>
+  <result property="email" column="EMAIL"/>
+  <result property="phoneNumber" column="PHONE_NUMBER"/>
+</resultMap>
+
+
+<insert id="create" parameterType="Maker">
+	insert into MAKER (MAKER_ID, MAKER_NO, MAKER_NAME, MAKER_PASSWORD, ADDRESS , EMAIL, PHONE_NUMBER)
 	values (MAKERID.nextval,#{makerNO},#{makerName},#{makerPassword},#{address},#{email},#{phoneNumber})
 </insert>
 
-<update id="update" parameterType="com.rainbowsix.cbec.model.MakerModel">
+<update id="update" parameterType="Maker">
 	update MAKER set 
 	MAKER_NO = #{makerNO},
 	MAKER_NAME = #{makerName},
@@ -17,17 +27,23 @@
 	ADDRESS = #{address},
 	EMAIL = #{email},
 	PHONE_NUMBER = #{phoneNumber},
-	where #{MAKERID}=MAKER_ID
+	where MAKER_ID= #{makerId}
 </update>
 
 <delete id="delete" parameterType="int">
-	delete from MAKER where MAKER_ID = #{MAKERID}
+	delete from MAKER where MAKER_ID= #{makerId}
 </delete>
 
-<select id="selectProductListByMakerId" parameterType="int" resultType="com.rainbowsix.cbec.model.GoodsModel">
+<select id="selectListByAll" resultMap="MakerResultMap">
 	select *
 	from MAKER
-	where MAKER_ID= #{MAKERID}
 </select>
+
+<select id="selectByMakerId" parameterType="int" resultMap="MakerResultMap">
+	select *
+	from MAKER
+	where MAKER_ID= #{makerId}
+</select>
+
 
 </mapper>
