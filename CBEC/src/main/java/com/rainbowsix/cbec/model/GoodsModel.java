@@ -13,7 +13,7 @@ public class GoodsModel {
 	private String type=null;//商品类型
 	private int stock=0;//库存
 	private double price=0;//价格
-	private double weight=0;//价格
+	private double weight=0;//重量
 	private Date gooddate=null;//生产日期
 	private String desc=null;//简介
 	private Blob  photo=null;//照片
