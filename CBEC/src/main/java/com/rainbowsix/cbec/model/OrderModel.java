@@ -1,5 +1,8 @@
 package com.rainbowsix.cbec.model;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("Order")//括号内没指定，默认的是第一个字母小写
 public class OrderModel {
 	private int orderid=0; //订单ID
 	private int comid=0; //公司ID
@@ -30,7 +33,5 @@ public class OrderModel {
 	public void setBsid(int bsid) {
 		this.bsid = bsid;
 	}
-	
-	
 
 }
