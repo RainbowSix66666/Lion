@@ -14,6 +14,6 @@ public interface IMakerDao {
 		//删除订单
 		public void delete(MakerModel maker) throws Exception;
 		//通过品牌商id取得品牌商的所有商品
-		public List<MakerModel> selectProductListByMakerID() throws Exception;
+		public List<MakerModel> selectProductListByMakerId(int makerId) throws Exception;
 		
 }
