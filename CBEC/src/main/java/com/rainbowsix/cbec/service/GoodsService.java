@@ -10,11 +10,14 @@ public interface GoodsService {
 	public void add(GoodsModel good) throws Exception;
 	
 	//修改商品
-	public void modify(GoodsModel good) throws Exception;
+	public void modify(int proid) throws Exception;
 	
 	//删除商品
-	public void del(GoodsModel good) throws Exception;
+	public void del(int proid) throws Exception;
 	
-	//显示商品
+	//显示单个商品
+	public GoodsModel one(int proid) throws Exception;
+	
+	//显示全部商品
 	public List<GoodsModel> listbypage(int rows,int page) throws Exception;
 }

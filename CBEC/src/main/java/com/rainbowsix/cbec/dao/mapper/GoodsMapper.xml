@@ -9,7 +9,7 @@ insert into GOODS (PROID,COMID,TITLE,PRICE,GOODDATE)
 values (PROID.nextval,#{comid},#{title},#{price},#{gooddate})
 </insert>
 
-<update id="update" parameterType="com.rainbowsix.cbec.model.GoodsModel">
+<update id="update" parameterType="int">
 update GOODS set 
 
 STATE = #{state},
@@ -27,10 +27,15 @@ where #{proid}=PROID
 delete from GOODS where PROID = #{proid}
 </delete>
 
-<select id="AllByPage" parameterType="int" resultType="com.rainbowsix.cbec.model.GoodsModel">
+<select id="byone" parameterType="int" resultType="com.rainbowsix.cbec.model.GoodsModel">
 select *
 from GOODS
 where PROID= #{proid}
+</select>
+
+<select id="allbypage" resultType="com.rainbowsix.cbec.model.GoodsModel">
+select *
+from GOODS
 </select>
 
 </mapper>
