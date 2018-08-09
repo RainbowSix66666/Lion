@@ -4,6 +4,15 @@
 
 <mapper namespace="com.rainbowsix.cbec.dao.IRoleDao">
 
+	<resultMap type="Role" id="roleResultMap">
+		<!--  <association property="role" javaType="Role">-->
+			<id property="id" column="roleid"/>
+			<result property="name" column="rolename"/>
+			<result property="detial" column="detial"/>
+			<result property="menuid" column="menuid"/>
+		<!-- </association> -->
+	</resultMap>
+
 	<insert id="create" parameterType="Role">
 		insert into user_role (roleId, roleName, detial) values 
 		(ROLE_ID_SQ.nextval, #{name}, #{detial})
@@ -18,6 +27,9 @@
 	<delete id="delete" parameterType="Role"></delete>
 	<select id="selectByRoleName" parameterType="string" resultType="Role"></select>
 	<select id="selectByRoleId" parameterType="int" resultType="Role"></select>
-	<select id="selectAll" resultType="Role"></select>
+	
+	<select id="selectAll" resultMap="roleResultMap">
+		select * from user_role
+	</select>
 	
 </mapper>

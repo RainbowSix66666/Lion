@@ -1,5 +1,7 @@
 package com.rainbowsix.cbec.dao;
 
+import java.util.List;
+
 import com.rainbowsix.cbec.model.RoleModel;
 
 public interface IRoleDao {
@@ -8,6 +10,6 @@ public interface IRoleDao {
 	public void update(RoleModel role) throws Exception;
 	public void selectByRoleName(String name) throws Exception;
 	public void selectById(int id) throws Exception;
-	public void selectAll() throws Exception;
+	public List<RoleModel> selectAll() throws Exception;
 	public void setMenuId(RoleModel role) throws Exception;
 }

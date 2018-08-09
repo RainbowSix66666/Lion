@@ -1,6 +1,7 @@
 package com.rainbowsix.cbec.service.impl;
 
 import java.io.InputStream;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -41,9 +42,20 @@ public class RoleServiceImpl implements IRoleService {
 
 	}
 
-	public void getAll() throws Exception {
+	public List<RoleModel> getAll() throws Exception {
 		// TODO Auto-generated method stub
-
+		String resource = "mzy_mybaits.xml";
+		InputStream inputStream = Resources.getResourceAsStream(resource);
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		IRoleDao roledao = session.getMapper(IRoleDao.class);
+		List<RoleModel> rs = roledao.selectAll();
+		
+		session.commit();
+		session.close();
+		
+		return rs;
 	}
 
 	public RoleModel getById(int id) throws Exception {
