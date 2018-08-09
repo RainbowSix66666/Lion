@@ -22,6 +22,7 @@ public class RoleServiceImpl implements IRoleService {
 		InputStream inputStream = Resources.getResourceAsStream(resource);
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 		SqlSession session = sqlSessionFactory.openSession();
+		
 		IRoleDao roledao = session.getMapper(IRoleDao.class);
 		roledao.create(role);
 		
