@@ -17,13 +17,13 @@ update ORDERS set COMID=#{comid}, ORDERSTATE=#{orderstate}, BSID=#{bsid} where O
 delete from ORDERS where ORDERID=#{orderid}
 </insert>
 
-<insert id="selectOrderListByAll" parameterType="com.rainbowsix.cbec.model.OrderModel">
+<select id="selectOrderListByAll" resultType="com.rainbowsix.cbec.model.OrderModel">
 select * from ORDERS
-</insert>
+</select>
 
-<insert id="selectOrderListById" parameterType="com.rainbowsix.cbec.model.OrderModel">
+<select id="selectOrderListById" resultType="com.rainbowsix.cbec.model.OrderModel">
 select * from ORDERS where ORDERID=#{orderid}
-</insert>
+</select>
 
 
 </mapper>
