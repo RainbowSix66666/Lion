@@ -1,4 +1,4 @@
-package com.rainbowsix.cbec.Dao;
+package com.rainbowsix.cbec.dao;
 
 public interface IAdminDao {
 

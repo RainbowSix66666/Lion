@@ -1,4 +1,6 @@
-package com.rainbowsix.cbec.Dao;
+package com.rainbowsix.cbec.dao;
+
+import java.util.List;
 
 import com.rainbowsix.cbec.model.GoodsModel;
 
@@ -11,4 +13,10 @@ public interface IGoodsDao {
 	
 	//删除商品
 	public void delete(GoodsModel good) throws Exception;
+	
+	//取得所有商品列表
+	public List<GoodsModel> All() throws Exception;
+	
+	//取得指定的商品信息
+	public GoodsModel byNO() throws Exception;
 }
