@@ -19,11 +19,16 @@ public class GoodsController {
 	}
 	
 	@RequestMapping(value="/add",method={RequestMethod.POST})
-	@ResponseBody
 	public String add(GoodsModel good) throws Exception{
 		
 		goodservice.add(good);		
 		
 		return "nice";
+	}
+	
+	@RequestMapping(value="/select/one",method={RequestMethod.POST})
+	public GoodsModel one(int proid) throws Exception{
+		
+		return goodservice.one(proid);
 	}
 }

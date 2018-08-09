@@ -5,7 +5,7 @@
 --  DDL for Table GOODS
 --------------------------------------------------------
 
-  CREATE TABLE "RAINBOWSIX6"."GOODS" 
+  CREATE TABLE "neusoft_wv"."GOODS" 
    (	"PROID" VARCHAR2(20 BYTE), 
 	"COMID" VARCHAR2(20 BYTE), 
 	"STATE" VARCHAR2(20 BYTE), 

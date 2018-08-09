@@ -25,7 +25,7 @@ http://www.springframework.org/schema/jee/spring-jee.xsd">
   <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/neusoft"/>
    -->
   <!-- c3p0 连接池配置 -->
-  	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+<!--   	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@10.1.53.30:1521:neuedu"/>
 		<property name="user" value="rainbowsix6"/>

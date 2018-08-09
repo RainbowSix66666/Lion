@@ -4,9 +4,18 @@
 
 <mapper namespace="com.rainbowsix.cbec.dao.IGoodsDao">
 
+<resultMap type="Goods" id="GoodsModel">
+			<id property="proid" column="proid"/>
+			<result property="comid" column="comid"/>
+			<result property="title" column="title"/>
+			<result property="price" column="price"/>
+			<result property="date" column="gooddate"/>
+</resultMap>
+
+
 <insert id="create" parameterType="com.rainbowsix.cbec.model.GoodsModel">
 insert into GOODS (PROID,COMID,TITLE,PRICE,GOODDATE)
-values (PROID.nextval,#{comid},#{title},#{price},#{gooddate})
+values (PROID.nextval,#{comid},#{title},#{price},#{date})
 </insert>
 
 <update id="update" parameterType="int">
@@ -27,7 +36,7 @@ where #{proid}=PROID
 delete from GOODS where PROID = #{proid}
 </delete>
 
-<select id="byone" parameterType="int" resultType="com.rainbowsix.cbec.model.GoodsModel">
+<select id="byone" parameterType="int" resultType="GoodsModel">
 select *
 from GOODS
 where PROID= #{proid}

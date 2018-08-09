@@ -1,6 +1,5 @@
 package com.rainbowsix.cbec.service.impl;
 
-import java.io.InputStream;
 import java.io.Reader;
 import java.util.List;
 
@@ -22,8 +21,8 @@ public class GoodsServiceImpl implements IGoodsService {
 		Reader reader = Resources.getResourceAsReader(resource);
 		SqlSessionFactory sqlSessionFactory= new SqlSessionFactoryBuilder().build(reader);
 		SqlSession session = sqlSessionFactory.openSession();
-		IGoodsDao departmentDao = session.getMapper(IGoodsDao.class);
-		departmentDao.create(good);
+		IGoodsDao goodsdao = session.getMapper(IGoodsDao.class);
+		goodsdao.create(good);
 		session.commit();
 		session.close();
 	}
@@ -39,7 +38,18 @@ public class GoodsServiceImpl implements IGoodsService {
 	}
 	
 	public GoodsModel one(int proid) throws Exception {
-		return goodsdao.byone(proid);
+		
+		String resource = "wv_config.xml";
+		Reader reader = Resources.getResourceAsReader(resource);
+		SqlSessionFactory sqlSessionFactory= new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		IGoodsDao goodsdao = session.getMapper(IGoodsDao.class);
+		GoodsModel one=goodsdao.byone(proid);
+		
+		session.commit();
+		session.close();
+		return one;
 	}
 	
 	public List<GoodsModel> listbypage(int rows, int page) throws Exception {
