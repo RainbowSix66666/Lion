@@ -21,10 +21,10 @@
 </update>
 
 <delete id="delete" parameterType="int">
-	delete from GOODS where MAKER_ID = #{MAKERID}
+	delete from MAKER where MAKER_ID = #{MAKERID}
 </delete>
 
-<select id="AllByPage" parameterType="int" resultType="com.rainbowsix.cbec.model.GoodsModel">
+<select id="selectProductListByMakerId" parameterType="int" resultType="com.rainbowsix.cbec.model.GoodsModel">
 	select *
 	from MAKER
 	where MAKER_ID= #{MAKERID}
