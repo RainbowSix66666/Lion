@@ -11,6 +11,4 @@ public interface IGoodsDao {
 	
 	//删除商品
 	public void delete(GoodsModel good) throws Exception;
-
-
 }
