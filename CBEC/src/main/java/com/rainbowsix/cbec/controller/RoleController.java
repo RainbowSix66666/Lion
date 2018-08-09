@@ -19,11 +19,11 @@ public class RoleController {
 		this.roleService = roleService;
 	}
 	
-	@RequestMapping(value="/add",method={RequestMethod.GET})
+	@RequestMapping(value="/add",method={RequestMethod.POST})
 	@ResponseBody
 	public String add(RoleModel role) throws Exception{
 		
-		
+		roleService.add(role);		
 		
 		return "nice";
 	}
