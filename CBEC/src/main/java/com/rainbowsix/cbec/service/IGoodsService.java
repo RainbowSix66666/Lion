@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.rainbowsix.cbec.model.GoodsModel;
 
-public interface GoodsService {
+public interface IGoodsService {
 
 	//增加商品
 	public void add(GoodsModel good) throws Exception;

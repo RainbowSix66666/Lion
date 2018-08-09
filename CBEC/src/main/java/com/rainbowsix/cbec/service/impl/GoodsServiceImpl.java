@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 
 import com.rainbowsix.cbec.dao.IGoodsDao;
 import com.rainbowsix.cbec.model.GoodsModel;
-import com.rainbowsix.cbec.service.GoodsService;
+import com.rainbowsix.cbec.service.IGoodsService;
 @Service
-public class GoodsServiceImpl implements GoodsService {
+public class GoodsServiceImpl implements IGoodsService {
 	private IGoodsDao goodsdao=null;
 	
 	public void add(GoodsModel good) throws Exception {
