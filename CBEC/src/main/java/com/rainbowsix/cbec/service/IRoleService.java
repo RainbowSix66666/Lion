@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.rainbowsix.cbec.model.RoleModel;
 
-public interface RoleService {
+public interface IRoleService {
 	public void add(RoleModel role) throws Exception;
 	public void delete(RoleModel role) throws Exception;
 	public void update(RoleModel role) throws Exception;
