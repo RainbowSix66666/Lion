@@ -19,6 +19,8 @@ public class GoodsModel {
 	private Blob  photo=null;//照片
 	private String photoname=null;//照片文件名
 	private String phototype=null;//照片文件类型
+	
+	
 	public String getProid() {
 		return proid;
 	}
