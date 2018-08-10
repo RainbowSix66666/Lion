@@ -4,7 +4,7 @@
 
 <mapper namespace="com.rainbowsix.cbec.dao.IGoodsDao">
 
-<resultMap type="Goods" id="GoodsModel">
+<resultMap type="GoodsModel" id="GoodsModel">
 			<id property="proid" column="proid"/>
 			<result property="comid" column="comid"/>
 			<result property="title" column="title"/>
@@ -13,7 +13,7 @@
 </resultMap>
 
 
-<insert id="create" parameterType="com.rainbowsix.cbec.model.GoodsModel">
+<insert id="create" parameterType="GoodsModel">
 insert into GOODS (PROID,COMID,TITLE,PRICE,GOODDATE)
 values (PROID.nextval,#{comid},#{title},#{price},#{date})
 </insert>
@@ -42,7 +42,7 @@ from GOODS
 where PROID= #{proid}
 </select>
 
-<select id="byall" resultType="com.rainbowsix.cbec.model.GoodsModel">
+<select id="byall" resultType="GoodsModel">
 select *
 from GOODS
 </select>

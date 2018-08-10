@@ -3,8 +3,9 @@ package com.rainbowsix.cbec.model;
 import java.sql.Blob;
 import java.util.Date;
 
+import org.apache.ibatis.type.Alias;
 import org.springframework.format.annotation.DateTimeFormat;
-
+@Alias("GoodsModel")
 public class GoodsModel {
 	private static final long serialVersionUID = 1L;
 	//field变量
