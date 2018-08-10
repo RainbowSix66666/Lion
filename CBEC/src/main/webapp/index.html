@@ -28,9 +28,7 @@
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <script src="js/jquery.js"></script>
-	<script src="index.js"></script>
+    <![endif]-->    
 </head>
 
 <body>
@@ -68,7 +66,7 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo1"><i class="fa fa-fw fa-bar-chart-o"></i>信息管理<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo1" class="collapse">
                             <li>
-                                <a href="User/main.html">订单管理</a>
+                                <a href="#">订单管理</a>
                             </li>
                             <li>
                                 <a href="maker/main.html">账户管理</a>
@@ -83,6 +81,17 @@
                             </li>
                             <li>
                                 <a href="#下拉式菜单2">余额查看</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--用户管理-->
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#userManage">
+                        	<i class="fa fa-fw fa-bar-chart-o"></i>用户管理<i class="fa fa-fw fa-caret-down"></i>
+                        </a>
+                        <ul id="userManage" class="collapse">
+                            <li>
+                                <a href="User/main.html">所有用户</a>
                             </li>
                         </ul>
                     </li>
@@ -228,8 +237,14 @@
     </div>
     <!-- /#wrapper -->
     <!-- Bootstrap Core JavaScript -->
+    
+    <!-- JQuery -->
+    <script src="js/jquery.js"></script>
+    
+	<script src="index.js"></script>
+    
     <script src="js/bootstrap.min.js"></script>
-
+	
     <!-- Morris Charts JavaScript -->
     <script src="js/plugins/morris/raphael.min.js"></script>
     <script src="js/plugins/morris/morris.min.js"></script>
