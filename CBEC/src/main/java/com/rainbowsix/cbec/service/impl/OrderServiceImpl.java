@@ -18,7 +18,7 @@ import com.rainbowsix.cbec.service.IOrderService;
 public class OrderServiceImpl implements IOrderService {
 	//增加订单
 	public void add(OrderModel order) throws Exception {
-		String resource = "ldj-config.xml";
+		String resource = "ldj_config.xml";
 		InputStream inputStream = Resources.getResourceAsStream(resource);
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 		SqlSession session = sqlSessionFactory.openSession();
@@ -30,7 +30,7 @@ public class OrderServiceImpl implements IOrderService {
 	}
 	//修改订单
 	public void modify(OrderModel order) throws Exception {
-		String resource = "ldj-config.xml";
+		String resource = "ldj_config.xml";
 		InputStream inputStream = Resources.getResourceAsStream(resource);
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 		SqlSession session = sqlSessionFactory.openSession();
@@ -42,7 +42,7 @@ public class OrderServiceImpl implements IOrderService {
 	}
 	//删除订单
 	public void delete(int orderid) throws Exception {
-		String resource = "ldj-config.xml";
+		String resource = "ldj_config.xml";
 		InputStream inputStream = Resources.getResourceAsStream(resource);
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 		SqlSession session = sqlSessionFactory.openSession();
@@ -54,7 +54,7 @@ public class OrderServiceImpl implements IOrderService {
 	}
 	//取得所有订单列表
 	public List<OrderModel> getOrderListByAll() throws Exception {
-		String resource = "ldj-config.xml";
+		String resource = "ldj_config.xml";
 		InputStream inputStream = Resources.getResourceAsStream(resource);
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 		SqlSession session = sqlSessionFactory.openSession();
@@ -67,7 +67,7 @@ public class OrderServiceImpl implements IOrderService {
 	}
 	//取得单个订单
 	public OrderModel getOrderListById(int orderid) throws Exception {
-		String resource = "ldj-config.xml";
+		String resource = "ldj_config.xml";
 		InputStream inputStream = Resources.getResourceAsStream(resource);
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 		SqlSession session = sqlSessionFactory.openSession();
