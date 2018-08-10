@@ -19,5 +19,5 @@ public interface IGoodsService {
 	public GoodsModel one(int proid) throws Exception;
 	
 	//显示全部商品
-	public List<GoodsModel> listbypage(int rows,int page) throws Exception;
+	public List<GoodsModel> all(int rows,int page) throws Exception;
 }

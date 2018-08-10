@@ -52,9 +52,9 @@ public class GoodsServiceImpl implements IGoodsService {
 		return one;
 	}
 	
-	public List<GoodsModel> listbypage(int rows, int page) throws Exception {
+	public List<GoodsModel> all(int rows, int page) throws Exception {
 
-		return goodsdao.allbypage(rows, page);
+		return goodsdao.byall(rows, page);
 	}
 
 	
