@@ -1,27 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:context="http://www.springframework.org/schema/context"
-  xmlns:jee="http://www.springframework.org/schema/jee"
-  xmlns:tx="http://www.springframework.org/schema/tx"
-  xmlns:aop="http://www.springframework.org/schema/aop"
-  xmlns:p="http://www.springframework.org/schema/p"
-  xsi:schemaLocation="http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans.xsd
-http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context.xsd
-http://www.springframework.org/schema/aop 
-http://www.springframework.org/schema/aop/spring-aop.xsd
-http://www.springframework.org/schema/jee
-http://www.springframework.org/schema/tx 
-http://www.springframework.org/schema/tx/spring-tx.xsd
-http://www.springframework.org/schema/jee/spring-jee.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:jms="http://www.springframework.org/schema/jms"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:oxm="http://www.springframework.org/schema/oxm"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+		http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd
+		http://mybatis.org/schema/mybatis-spring 
+		http://mybatis.org/schema/mybatis-spring.xsd">
    
   <context:component-scan base-package="com.rainbowsix.cbec"/>  
   <aop:aspectj-autoproxy/>
   
-  
-  
+  <mybatis:scan base-package="com.rainbowsix.cbec.dao"/>
   <!--
   <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/neusoft"/>
    -->
@@ -60,18 +76,13 @@ http://www.springframework.org/schema/jee/spring-jee.xsd">
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
   		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
-	<!-- 配置DAO接口 -->
-	<bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-  		<property name="mapperInterface" value="org.mybatis.spring.sample.mapper.UserMapper" />
-  		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
-	</bean>
 	<!-- 配置事务管理 -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
   		<property name="dataSource" ref="dataSource" />
 	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
-	
-	<!-- DBCP2连接池噢诶之 
+	<!-- DBCP2连接池 
    	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method=
 		"close">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>

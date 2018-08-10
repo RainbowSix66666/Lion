@@ -7,28 +7,29 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.rainbowsix.cbec.dao.IRoleDao;
 import com.rainbowsix.cbec.model.RoleModel;
 import com.rainbowsix.cbec.service.IRoleService;
 
 @Service
+@Transactional
 public class RoleServiceImpl implements IRoleService {
+	
+	private IRoleDao roledao = null;
+	
+	@Autowired
+	public void setRoledao(IRoleDao roledao) {
+		this.roledao = roledao;
+	}
 
 	public void add(RoleModel role) throws Exception {
 		// TODO Auto-generated method stub
 		
-		String resource = "mzy_mybaits.xml";
-		InputStream inputStream = Resources.getResourceAsStream(resource);
-		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-		SqlSession session = sqlSessionFactory.openSession();
-		
-		IRoleDao roledao = session.getMapper(IRoleDao.class);
 		roledao.create(role);
-		
-		session.commit();
-		session.close();
 		
 	}
 
@@ -44,18 +45,7 @@ public class RoleServiceImpl implements IRoleService {
 
 	public List<RoleModel> getAll() throws Exception {
 		// TODO Auto-generated method stub
-		String resource = "mzy_mybaits.xml";
-		InputStream inputStream = Resources.getResourceAsStream(resource);
-		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-		SqlSession session = sqlSessionFactory.openSession();
-		
-		IRoleDao roledao = session.getMapper(IRoleDao.class);
-		List<RoleModel> rs = roledao.selectAll();
-		
-		session.commit();
-		session.close();
-		
-		return rs;
+		return roledao.selectAll();
 	}
 
 	public RoleModel getById(int id) throws Exception {

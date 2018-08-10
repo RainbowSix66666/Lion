@@ -1,5 +1,8 @@
 package com.rainbowsix.cbec.model;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("Role")
 public class RoleModel {
 	private int id;
 	private String name;
