@@ -39,6 +39,15 @@ public class MakerController {
 		return "ok";
 	}
 	
+	@RequestMapping(value="/delete",method={RequestMethod.POST})
+	@ResponseBody
+	public String delete(int makerId) throws Exception{
+		
+		makerService.delete(makerId);	
+		
+		return "ok";
+	}
+	
 	@RequestMapping(value="/list/all",method={RequestMethod.GET})
 	@ResponseBody
 	public List<MakerModel> selectListByAll() throws Exception{

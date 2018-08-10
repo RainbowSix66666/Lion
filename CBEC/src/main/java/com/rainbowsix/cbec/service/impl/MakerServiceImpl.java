@@ -52,6 +52,15 @@ public class MakerServiceImpl implements IMakerService{
 
 	public void delete(int makerId) throws Exception {
 		// TODO Auto-generated method stub
+		String resource = "hmx_config.xml";
+		InputStream inputStream = Resources.getResourceAsStream(resource);
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+		SqlSession session = sqlSessionFactory.openSession();
+		IMakerDao makerDao = session.getMapper(IMakerDao.class);
+		makerDao.delete(makerId);
+		
+		session.commit();
+		session.close();
 		
 	}
 

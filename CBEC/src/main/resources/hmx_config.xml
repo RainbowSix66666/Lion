@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-			<!--<typeAlias type = "com.rainbowsix.cbec.model.MakerModel" alias = "Maker" />-->		
+			<!-- <typeAlias type = "com.rainbowsix.cbec.model.MakerModel" alias = "Maker" />		 -->
  			<package name="com.rainbowsix.cbec.model"/>
 	</typeAliases>
 
@@ -13,7 +13,7 @@
       <transactionManager type="JDBC"/>
       <dataSource type="POOLED">
         <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-        <property name="url" value="jdbc:oracle:thin:@localhost:1521:neuedu"/>
+        <property name="url" value="jdbc:oracle:thin:@10.1.53.30:1521:neuedu"/>
         <property name="username" value="Rainbowsix6"/>
         <property name="password" value="123456"/>
       </dataSource>
