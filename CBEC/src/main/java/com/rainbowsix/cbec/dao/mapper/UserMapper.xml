@@ -4,10 +4,23 @@
 
 <mapper namespace = "com.rainbowsix.cbec.dao.IUserDao">
 
+	<resultMap type="User" id="userResultMap">
+		<id property="no" column="userid"/>
+		<result property="name" column="username"/>
+		<result property="password" column="userpassword"/>
+		<result property="bvoid" column="bvoid"/>
+		<result property="mvoid" column="mvoid"/>
+		<result property="paypackageid" column="paypackageid"/>
+		<result property="role" column="rolename"/>
+	</resultMap>
+
 	<insert id="create" parameterType="User">
 		insert into sys_user (userid, username, userpassword, rolename) values 
 		(USER_ID_SQ.nextval, #{name}, #{password}, #{role})
 	</insert>
 	
+	<select id="selectAll" resultMap="userResultMap"> 
+		select * from sys_user
+	</select>
 	
 </mapper>

@@ -9,7 +9,10 @@ public interface IUserDao {
 	public void create(UserModel userModel) throws Exception;
 	public void update(UserModel userModel) throws Exception;
 	public void delete(UserModel userModel) throws Exception;
+	
 	public List<UserModel> selectAllWithPage(int rows, int page)
 		throws Exception;
 	public UserModel selectById(int id) throws Exception;
+	public List<UserModel> selectAll()
+			throws Exception;
 }
