@@ -23,7 +23,24 @@ public class GoodsController {
 		
 		goodservice.add(good);		
 		
-		return "nice";
+		return "add complete";
+	}
+	
+	@RequestMapping(value="/del",method={RequestMethod.POST})
+	public String del(int proid) throws Exception{
+	
+		goodservice.del(proid);		
+		
+		return "add complete";
+	}
+	
+	
+	@RequestMapping(value="/modify",method={RequestMethod.POST})
+	public String modify(int proid) throws Exception{
+		
+		goodservice.mod(proid);;		
+		
+		return "modify complete";
 	}
 	
 	@RequestMapping(value="/select/one",method={RequestMethod.POST})

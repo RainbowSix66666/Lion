@@ -27,13 +27,32 @@ public class GoodsServiceImpl implements IGoodsService {
 		session.close();
 	}
 
-	public void modify(int proid) throws Exception {
+	public void mod(int proid) throws Exception {
+		String resource = "wv_config.xml";
+		Reader reader = Resources.getResourceAsReader(resource);
+		SqlSessionFactory sqlSessionFactory= new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		IGoodsDao goodsdao = session.getMapper(IGoodsDao.class);
 		goodsdao.update(proid);
+		
+		session.commit();
+		session.close();
+		
 
 	}
 
 	public void del(int proid) throws Exception {
+		String resource = "wv_config.xml";
+		Reader reader = Resources.getResourceAsReader(resource);
+		SqlSessionFactory sqlSessionFactory= new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		IGoodsDao goodsdao = session.getMapper(IGoodsDao.class);
 		goodsdao.delete(proid);
+		
+		session.commit();
+		session.close();
 
 	}
 	
