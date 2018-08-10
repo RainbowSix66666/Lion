@@ -42,7 +42,7 @@ from GOODS
 where PROID= #{proid}
 </select>
 
-<select id="allbypage" resultType="com.rainbowsix.cbec.model.GoodsModel">
+<select id="byall" resultType="com.rainbowsix.cbec.model.GoodsModel">
 select *
 from GOODS
 </select>
