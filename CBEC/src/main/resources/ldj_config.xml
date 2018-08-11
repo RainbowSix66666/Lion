@@ -13,14 +13,17 @@
     <environment id="development">
       <transactionManager type="JDBC"/>
       <dataSource type="POOLED">
-        <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+          <!--  
+     	<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
         <property name="url" value="jdbc:oracle:thin:@10.1.53.30:1521:neuedu"/>
         <property name="username" value="RainbowSix6"/>
         <property name="password" value="123456"/>
-        <!-- <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+        -->
+        <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
         <property name="url" value="jdbc:oracle:thin:@localhost:1521:product"/>
         <property name="username" value="system"/>
-        <property name="password" value="Admin1234"/> -->
+        <property name="password" value="Admin1234"/> 
+       
       </dataSource>
     </environment>
   </environments>
