@@ -5,27 +5,39 @@
  * 最新修改日期：2018-8-11
  * */
 //显示所有用户数据
-function showAllUserData(){
+	
+
+$(document).ready(function(){
+	var userId;
+//	alert("run bad");
+	//显示所有用户数据
+	function showAllUserData(){
 		$("div#userContent").load("user/allUserTable.html", function(){
 			$.getJSON("user/all.mvc", function(userList){
 				var lines = "";
 				for(var i = 0; i < userList.length; ++i){
-					lines = lines + "<tr><td>" + userList[i].name + 
+					lines = lines + "<tr user-id='"+ userList[i].no + "'><td>" + userList[i].name + 
 					"</td><td>" + userList[i].role + "</td></tr>";
 				}
 //				alert(lines);
-				$("tbody#userListTable").html(lines);
+				$("table#userListTable tbody").html(lines);
+				//点击tr时间处理
+//				alert("va");
+				$("table#userListTable tbody tr").on("click",function(){				
+//					alert($(this).attr("user-id"));
+					userId = $(this).attr("user-id");
+					$("table#userListTable tbody tr").css("background-color","#FFFFFF")
+					$(this).css("background-color","#EEEE");
+				});
 			});
 		});
 	}
-
-$(document).ready(function(){
-//	alert("run bad");
-	//显示所有用户数据
+	
 	showAllUserData();
 	
 	$("a#toAddUser").on("click", function(){
 		$("div#main_content").load("user/addUser.html", function(){
+			//点击添加用户
 			$("button#addUserButton").on("click", function(){
 				var role_type = "undefine";
 				var name = $("input[name='name']").val();
@@ -33,19 +45,21 @@ $(document).ready(function(){
 //				alert(role_type);
 //				alert(name);
 				$.post("user/add.mvc", {name:name, password:password, role:role_type}, function(re){
+					
 					if(re == 'OK'){
-						alert("放回");
-						showAllUserData();
+						alert("添加成功");
+						$("div#main_content").load("user/main.html");
 					}else{
 						alert("添加失败");
 					}
 				});
 			})
+			//点击返回
+			$("button#returnAllUser").on("click", function(){
+				$("div#main_content").load("user/main.html");
+			});
 		});
 	});
-	$("button#returnAllUser").on("click", function(){
-		alert("放回");
-		showAllUserData();
-	});
+	
 	
 })
