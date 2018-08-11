@@ -34,7 +34,7 @@ $(document).ready(function(){
 	}
 	
 	showAllUserData();
-	
+	//添加响应
 	$("a#toAddUser").on("click", function(){
 		$("div#main_content").load("user/addUser.html", function(){
 			//点击添加用户
@@ -60,6 +60,15 @@ $(document).ready(function(){
 			});
 		});
 	});
-	
-	
+	//查看响应
+	$("a#toshowUser").on("click", function(){
+		alert(userId);
+	});
+	//删除响应
+	$("a#todelteUser").on("click", function(){
+		
+	})
+	$("a#todelteUser").on("click", function(){
+		
+	})
 })
