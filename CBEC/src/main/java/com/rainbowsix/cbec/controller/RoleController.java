@@ -21,7 +21,7 @@ public class RoleController {
 		this.roleService = roleService;
 	}
 	
-	@RequestMapping(value="/add",method={RequestMethod.POST})
+	@RequestMapping(value="add",method={RequestMethod.POST})
 	public String add(RoleModel role) throws Exception{
 		
 		roleService.add(role);		
@@ -29,7 +29,7 @@ public class RoleController {
 		return "nice";
 	}
 	
-	@RequestMapping(value="/all",method={RequestMethod.POST})
+	@RequestMapping(value="all")
 	public List<RoleModel> all() throws Exception{
 		
 		return roleService.getAll();

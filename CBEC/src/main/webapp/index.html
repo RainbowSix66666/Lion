@@ -62,6 +62,17 @@
                     <li class="active">
                         <a href="index.html"><i class="fa fa-fw fa-dashboard"></i>主页</a>
                     </li>
+                     <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#goods"><i class="fa fa-fw fa-shopping-cart"></i>商品管理<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="goods" class="collapse">
+                            <li>
+                                <a href="goods/showall.html">商品列表</a>
+                            </li>
+                            <li>
+                                <a href="goods/add.html">增加商品</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo1"><i class="fa fa-fw fa-bar-chart-o"></i>信息管理<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo1" class="collapse">
@@ -131,7 +142,7 @@
 
                 <div class="row">
                     <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-primary">
+                        <div class="panel panel-primary" id="goods">
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">

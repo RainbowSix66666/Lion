@@ -32,12 +32,12 @@ public class UserService implements IUserService {
 
 	public void delete(UserModel user) throws Exception {
 		// TODO Auto-generated method stub
-		
+		userDao.delete(user);
 	}
 
 	public void update(UserModel user) throws Exception {
 		// TODO Auto-generated method stub
-
+		userDao.update(user);
 	}
 
 	public List<UserModel> selectAll() throws Exception {
@@ -45,9 +45,10 @@ public class UserService implements IUserService {
 		return userDao.selectAll();
 	}
 
-	public void selectById(int id) throws Exception {
+	public UserModel selectById(long id) throws Exception {
 		// TODO Auto-generated method stub
-
+//		System.out.println(id);
+		return userDao.selectById(id);
 	}
 
 }

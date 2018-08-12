@@ -57,7 +57,7 @@ public class MakerServiceImpl implements IMakerService{
 		
 	}
 
-	public void delete(int makerId) throws Exception {
+	public void delete(int makerNO) throws Exception {
 		// TODO Auto-generated method stub
 		/*String resource = "hmx_config.xml";
 		InputStream inputStream = Resources.getResourceAsStream(resource);
@@ -68,7 +68,7 @@ public class MakerServiceImpl implements IMakerService{
 		
 		session.commit();
 		session.close();*/
-		makerDao.delete(makerId);
+		makerDao.delete(makerNO);
 		
 	}
 
@@ -88,7 +88,7 @@ public class MakerServiceImpl implements IMakerService{
 		return makerDao.selectListByAll();
 	}
 
-	public MakerModel selectByMakerId(int makerId) throws Exception {
+	public MakerModel selectByMakerNO(int makerNO) throws Exception {
 		// TODO Auto-generated method stub
 		/*String resource = "hmx_config.xml";
 		InputStream inputStream = Resources.getResourceAsStream(resource);
@@ -100,7 +100,7 @@ public class MakerServiceImpl implements IMakerService{
 		session.commit();
 		session.close();*/
 		
-		return makerDao.selectByMakerId(makerId);
+		return makerDao.selectByMakerNO(makerNO);
 	}
 
 }
