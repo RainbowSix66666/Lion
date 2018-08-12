@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rainbowsix.cbec.model.UserModel;
@@ -23,6 +24,14 @@ public class UserController {
 	public String add(UserModel user) throws Exception{
 		
 		userService.add(user);
+		
+		return "OK";
+	}
+	
+	@RequestMapping(value="delete", method={RequestMethod.POST})
+	public String delete(UserModel user) throws Exception{
+		
+		userService.delete(user);
 		
 		return "OK";
 	}

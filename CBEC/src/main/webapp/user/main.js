@@ -70,7 +70,20 @@ $(document).ready(function(){
 	});
 	//删除响应
 	$("a#todelteUser").on("click", function(){
-		
+		if(userId == "0"){
+			alert("未选择用户");
+		}else{
+			if(confirm("是否确定删除用户")){
+				$.post("user/delete.mvc", {no:userId},function(result){
+					if(result == "OK"){
+						alert("删除成功");
+					}else{
+						alert("删除失败");
+					}
+				});
+			}
+			$("div#main_content").load("user/main.html");			
+		}	
 	})
 	$("a#todelteUser").on("click", function(){
 		

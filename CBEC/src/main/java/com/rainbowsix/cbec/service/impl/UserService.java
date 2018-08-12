@@ -32,7 +32,7 @@ public class UserService implements IUserService {
 
 	public void delete(UserModel user) throws Exception {
 		// TODO Auto-generated method stub
-		
+		userDao.delete(user);
 	}
 
 	public void update(UserModel user) throws Exception {
