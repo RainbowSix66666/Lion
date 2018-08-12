@@ -1,6 +1,7 @@
 /**
  * 我的订单主js
  */
+
 $(document).ready(function(){
 	//请求取得订单列表的Rest API
 	$.getJSON("order/list/all.mvc",function(orderList){
