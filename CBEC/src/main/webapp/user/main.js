@@ -8,7 +8,7 @@
 	
 
 $(document).ready(function(){
-	var userId;
+	var userId = "0";
 //	alert("run bad");
 	//显示所有用户数据
 	function showAllUserData(){
@@ -62,7 +62,11 @@ $(document).ready(function(){
 	});
 	//查看响应
 	$("a#toshowUser").on("click", function(){
-		alert(userId);
+		if(userId == "0"){
+			alert("未选择用户");
+		}else{
+			alert(userId);
+		}		
 	});
 	//删除响应
 	$("a#todelteUser").on("click", function(){
