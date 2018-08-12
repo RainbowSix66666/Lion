@@ -32,8 +32,8 @@
 	</select>
 	
 	<update id="update" parameterType="User">
-		update sys_user set Username = #{name}, userpassword = #{password}, rolename = #{role}, 
-		where userid = #{no};
+		update sys_user set username = #{name}, userpassword = #{password}, rolename = #{role} 
+		where userid = #{no}
 	</update>
 	
 </mapper>

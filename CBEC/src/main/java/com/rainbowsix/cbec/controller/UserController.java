@@ -49,7 +49,7 @@ public class UserController {
 	
 	@RequestMapping(value="modify", method={RequestMethod.POST})
 	public boolean modify(UserModel user) throws Exception{
-		
+//		System.out.println(user.getName());
 		userService.update(user);
 		
 		return true;

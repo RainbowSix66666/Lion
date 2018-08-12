@@ -101,10 +101,12 @@ $(document).ready(function(){
 //			alert(userId);
 			$("div#main_content").load("user/userModify.html", function(){
 				$.post("user/getbyno.mvc", {no:userId}, function(userData){
-					var userName = "" + userData.name;
-					var userRole = "</option>" + userData.role + "</option>";
+					var userName = userData.name;
+					var userPassword = userData.password;
+					var userRole = "<option value='" + userData.role + "'>" + userData.role + "</option>";
 					$("div#modifyName input").attr("value", userName);
-					$("div#modifyRoles select option").html(userRole);
+					$("div#modifyPassword input").attr("value", userPassword);
+					$("div#modifyRoles select").html(userRole);
 				});
 				//点击返回
 				$("button#returnAllUser").on("click", function(){
@@ -112,7 +114,13 @@ $(document).ready(function(){
 				});
 				//点击丢该
 				$("button#modifyUserButton").on("click", function(){
-					alert("click modify");
+					var name = $("div#modifyName input").val();
+					var role = $("div#modifyRoles select option").val();
+					var password = $("div#modifyPassword input").val();
+//					alert(role);
+					$.post("user/modify.mvc", {no:userId, name:name, role:role, password:password}, function(re){
+						alert(re);
+					});
 				});
 			});
 			
