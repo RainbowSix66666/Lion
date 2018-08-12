@@ -24,8 +24,8 @@ public class MakerController {
 	@RequestMapping(value="/add",method={RequestMethod.POST})
 	@ResponseBody
 	public String add(MakerModel maker) throws Exception{
-			
-			makerService.add(maker);		
+			makerService.add(maker);
+					
 			
 			return "ok";
 		}
