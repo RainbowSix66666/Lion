@@ -1,21 +1,23 @@
 <script src="order/ordermanager.js"></script>
 
-	 <div>
-	    <button type="button" class="btn btn-default">Default</button>
-	    <button type="button" class="btn btn-primary">Primary</button>
-	    <button type="button" class="btn btn-success">Success</button>
-	    <button type="button" class="btn btn-info">Info</button>
-	    <button type="button" class="btn btn-warning">Warning</button>
-	    <button type="button" class="btn btn-danger">Danger</button>
-	    <button type="button" class="btn btn-link">Link</button>
-	</div>
-
 	<div class="col-lg-offset-1 col-lg-10">
-		<div class="panel panel-green">
+
+	 		<div class="panel panel-green">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> 我的订单</h3>
-            </div>
-            <div class="panel-body">
+	            <div class="row">
+	            	<div class="col-lg-6"><h4>我的订单 </h4></div>
+	           		<div class="col-lg-6 text-right">	
+	           			<div class="btn-group">
+	           			<a href="order/orderadd.html" id="OrderAddLink" class="btn btn-primary">增加</a>
+					    <a href="order/ordermodify.html" id="OrderModifyLink" class="btn btn-warning">修改</a>
+					    <a href="order/orderlist.html" id="OrderSelectLink" class="btn btn-info">查看</a>
+					    <a id="OrderDeleteLink" class="btn btn-danger">删除</a>    
+	           			</div>	
+					</div>
+	            </div>
+           <!--  <div class="panel-title"><i class="fa fa-long-arrow-right"></i> 我的订单</div> -->
+        	</div>
+            <div class="panel-body" id="OrderMainContent">
                 <!--<div class="flot-chart">
                     <div class="flot-chart-content" id="flot-pie-chart"></div>
                 </div>-->
@@ -36,3 +38,6 @@
             </div>
         </div>
 	</div>
+	 		
+	
+		

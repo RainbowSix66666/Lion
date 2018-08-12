@@ -11,3 +11,29 @@ $(document).ready(function(){
 		$("table#orderListTable tbody").html(lines);
 	}); 
 });
+
+//跳转到增加订单页面
+$("a#OrderAddLink").on("click", function(event){
+	var href = $(this).attr("href");
+	$("div#main_body").load(href);		
+	event.preventDefault();
+});
+
+//跳转到修改订单页面
+$("a#OrderModifyLink").on("click", function(event){
+	var href = $(this).attr("href");
+	$("div#main_body").load(href);		
+	event.preventDefault();
+});
+
+//跳转到查看订单页面
+$("a#OrderSelectLink").on("click", function(event){
+	var href = $(this).attr("href");
+	$("div#main_body").load(href);		
+	event.preventDefault();
+});
+
+//删除订单
+$("a#OrderDeleteLink").on("click", function(event){
+	alert("删除成功");
+});
