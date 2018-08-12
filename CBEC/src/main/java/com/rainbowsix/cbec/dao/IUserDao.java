@@ -12,7 +12,7 @@ public interface IUserDao {
 	
 	public List<UserModel> selectAllWithPage(int rows, int page)
 		throws Exception;
-	public UserModel selectById(int id) throws Exception;
+	public UserModel selectById(long no) throws Exception;
 	public List<UserModel> selectAll()
 			throws Exception;
 }

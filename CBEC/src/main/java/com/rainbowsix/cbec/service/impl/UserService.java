@@ -45,9 +45,10 @@ public class UserService implements IUserService {
 		return userDao.selectAll();
 	}
 
-	public void selectById(int id) throws Exception {
+	public UserModel selectById(long id) throws Exception {
 		// TODO Auto-generated method stub
-
+//		System.out.println(id);
+		return userDao.selectById(id);
 	}
 
 }

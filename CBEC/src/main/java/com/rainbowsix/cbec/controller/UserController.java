@@ -40,5 +40,11 @@ public class UserController {
 	public List<UserModel> all() throws Exception{
 		return userService.selectAll();
 	}
+	@RequestMapping("getbyno")
+	public UserModel getByNo(long no) throws Exception{
+//		System.out.print(no);
+//		return null;
+		return userService.selectById(no);
+	}
 	
 }

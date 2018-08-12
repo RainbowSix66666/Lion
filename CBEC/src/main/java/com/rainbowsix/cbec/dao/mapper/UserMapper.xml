@@ -27,4 +27,8 @@
 		delete from sys_user where userid = #{no}
 	</delete>
 	
+	<select id="selectById" parameterType="long" resultMap="userResultMap">
+		select * from sys_user where userid = #{no}
+	</select>
+	
 </mapper>
