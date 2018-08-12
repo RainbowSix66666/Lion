@@ -31,4 +31,9 @@
 		select * from sys_user where userid = #{no}
 	</select>
 	
+	<update id="update" parameterType="User">
+		update sys_user set Username = #{name}, userpassword = #{password}, rolename = #{role}, 
+		where userid = #{no};
+	</update>
+	
 </mapper>

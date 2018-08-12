@@ -47,4 +47,12 @@ public class UserController {
 		return userService.selectById(no);
 	}
 	
+	@RequestMapping(value="modify", method={RequestMethod.POST})
+	public boolean modify(UserModel user) throws Exception{
+		
+		userService.update(user);
+		
+		return true;
+	}
+	
 }

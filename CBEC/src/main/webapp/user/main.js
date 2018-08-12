@@ -65,7 +65,16 @@ $(document).ready(function(){
 		if(userId == "0"){
 			alert("未选择用户");
 		}else{
-			alert(userId);
+//			alert(userId);
+			$("div#main_content").load("user/userInfo.html", function(){
+				$.post("user/getbyno.mvc", {no:userId}, function(userData){
+					var userName = "<h2><small>用户名: </small>" + userData.name + "</h2>";
+					var userRole = "<h2><small>用户角色: </small>" + userData.role + "</h2>";
+					var userId = "<h2><small>用户ID: </small>" + userData.no + "</h2>";
+					var data = userName + userRole + userId;
+					$("div#user-info-panel").html(data);
+				})
+			});
 		}		
 	});
 	//删除响应
@@ -85,7 +94,28 @@ $(document).ready(function(){
 			$("div#main_content").load("user/main.html");			
 		}	
 	})
-	$("a#todelteUser").on("click", function(){
-		
+	$("a#tomodifyUser").on("click", function(){
+		if(userId == "0"){
+			alert("未选择用户");
+		}else{
+//			alert(userId);
+			$("div#main_content").load("user/userModify.html", function(){
+				$.post("user/getbyno.mvc", {no:userId}, function(userData){
+					var userName = "" + userData.name;
+					var userRole = "</option>" + userData.role + "</option>";
+					$("div#modifyName input").attr("value", userName);
+					$("div#modifyRoles select option").html(userRole);
+				});
+				//点击返回
+				$("button#returnAllUser").on("click", function(){
+					$("div#main_content").load("user/main.html");
+				});
+				//点击丢该
+				$("button#modifyUserButton").on("click", function(){
+					alert("click modify");
+				});
+			});
+			
+		}	
 	})
 })

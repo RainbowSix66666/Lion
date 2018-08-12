@@ -37,7 +37,7 @@ public class UserService implements IUserService {
 
 	public void update(UserModel user) throws Exception {
 		// TODO Auto-generated method stub
-
+		userDao.update(user);
 	}
 
 	public List<UserModel> selectAll() throws Exception {
