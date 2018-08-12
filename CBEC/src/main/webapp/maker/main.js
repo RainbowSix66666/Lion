@@ -23,6 +23,7 @@ $(document).ready(function(){
 			});		
 			
 		});
+		makerNO = 0;
 	}
 
 	//点击增加按钮事件处理
@@ -30,7 +31,7 @@ $(document).ready(function(){
 		$("div#makerMainContext").load("maker/add.html",function(){
 			
 			$("button#makerAddButton").on("click",function(event){
-//				取得输入的id值
+				//取得输入的id值
 				var makerNO = $("input[name='makerNO']").val();
 				var makerName = $("input[name='makerName']").val();
 				var makerPassword = $("input[name='makerPassword']").val();
@@ -106,9 +107,9 @@ $(document).ready(function(){
 			if(confirmResult){
 				$.post("maker/delete.mvc", {makerNO:makerNO}, function(resultData){
 					if(resultData=="ok"){
-						alert("品牌商信息修改成功");							
+						alert("品牌商信息删除成功");							
 					}else{
-						alert("品牌商信息修改失败");
+						alert("品牌商信息删除失败");
 					}
 					showMakerList();
 				});
