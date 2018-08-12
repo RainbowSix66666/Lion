@@ -39,9 +39,9 @@ public class MakerServiceImplWithSpring implements IMakerService {
 		return makerDao.selectListByAll();
 	}
 
-	public MakerModel selectByMakerId(int makerId) throws Exception {
+	public MakerModel selectByMakerNO(int makerNO) throws Exception {
 		// TODO Auto-generated method stub
-		return makerDao.selectByMakerId(makerId);
+		return makerDao.selectByMakerNO(makerNO);
 	}
 
 }
