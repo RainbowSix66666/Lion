@@ -15,7 +15,11 @@ public interface IMakerDao {
 		public void delete(int  makerId) throws Exception;
 		//获取品牌商的所有商品
 		public List<MakerModel> selectListByAll() throws Exception;
+		//获取品牌商的所有商品
+		public List<MakerModel> selectListByAllWithPage(int rows, int page) throws Exception;
 		//通过品牌商id取得品牌商的商品
 		public MakerModel selectByMakerId(int makerId) throws Exception;
+		//取得所有品牌商的个数
+		public int selectCoutByAll() throws Exception;
 		
 }
