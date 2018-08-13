@@ -14,8 +14,11 @@
 	</resultMap>
 
 	<insert id="create" parameterType="Role">
+		<selectKey keyProperty="id" resultType="int" order="BEFORE">
+			select ROLE_ID_SQ.nextval from dual
+		</selectKey>	
 		insert into user_role (roleId, roleName, detial) values 
-		(ROLE_ID_SQ.nextval, #{name}, #{detial})
+		(#{id}, #{name}, #{detial})
 	</insert>
 	
 	<update id="update" parameterType="Role">
@@ -28,7 +31,9 @@
 	<select id="selectByRoleName" parameterType="string" resultMap="roleResultMap">
 		select * from user_role where roleName = #{name}
 	</select>
-	<select id="selectByRoleId" parameterType="int" resultType="Role"></select>
+	<select id="selectById" parameterType="int" resultMap="roleResultMap">
+		select * from user_role where roleId = #{id}
+	</select>
 	
 	<select id="selectAll" resultMap="roleResultMap">
 		select * from user_role

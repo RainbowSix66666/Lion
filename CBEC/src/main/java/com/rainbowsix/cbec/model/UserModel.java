@@ -7,13 +7,19 @@ public class UserModel {
 	private long no;
 	private String name;
 	private String password;
-	private long bvoid;
 	private long mvoid;
 	private long paypackageid;
 	
 	private RoleModel role = null;
+	private ResellerModel reseller = null;
 	
 	
+	public ResellerModel getReseller() {
+		return reseller;
+	}
+	public void setReseller(ResellerModel reseller) {
+		this.reseller = reseller;
+	}
 	public RoleModel getRole() {
 		return role;
 	}
@@ -39,12 +45,6 @@ public class UserModel {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public long getBvoid() {
-		return bvoid;
-	}
-	public void setBvoid(long bvoid) {
-		this.bvoid = bvoid;
-	}
 	public long getMvoid() {
 		return mvoid;
 	}
@@ -57,12 +57,6 @@ public class UserModel {
 	public void setPaypackageid(long paypackageid) {
 		this.paypackageid = paypackageid;
 	}
-//	public String getRole() {
-//		return role;
-//	}
-//	public void setRole(String role) {
-//		this.role = role;
-//	}
 	
 	
 }

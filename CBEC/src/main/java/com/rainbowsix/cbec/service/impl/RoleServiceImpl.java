@@ -30,7 +30,7 @@ public class RoleServiceImpl implements IRoleService {
 		// TODO Auto-generated method stub
 		
 		roledao.create(role);
-		
+		System.out.println(role.getId());
 	}
 
 	public void delete(RoleModel role) throws Exception {
