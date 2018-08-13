@@ -42,8 +42,8 @@ $(document).ready(function(){
 				$.post("maker/add.mvc",{makerNO:makerNO,email:email, makerName:makerName, 
 					makerPassword:makerPassword, address:address, phoneNumber:phoneNumber},function(resultData){
 					alert("添加成功");
+					showMakerList();
 					});
-				showMakerList();
 			});
 			
 			
