@@ -11,8 +11,7 @@ public class UserModel {
 	private long mvoid;
 	private long paypackageid;
 	
-	private RoleModel role = null;
-	
+	private RoleModel role = null;	
 	
 	public RoleModel getRole() {
 		return role;

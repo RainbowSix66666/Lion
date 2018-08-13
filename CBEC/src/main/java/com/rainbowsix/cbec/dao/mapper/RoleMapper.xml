@@ -28,7 +28,9 @@
 	<select id="selectByRoleName" parameterType="string" resultMap="roleResultMap">
 		select * from user_role where roleName = #{name}
 	</select>
-	<select id="selectByRoleId" parameterType="int" resultType="Role"></select>
+	<select id="selectById" parameterType="int" resultMap="roleResultMap">
+		select * from user_role where roleId = #{id}
+	</select>
 	
 	<select id="selectAll" resultMap="roleResultMap">
 		select * from user_role

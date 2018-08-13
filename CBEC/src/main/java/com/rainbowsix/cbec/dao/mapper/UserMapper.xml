@@ -11,7 +11,7 @@
 		<result property="bvoid" column="bvoid"/>
 		<result property="mvoid" column="mvoid"/>
 		<result property="paypackageid" column="paypackageid"/>
-		<association property="role" column="ROLENAME" select="com.rainbowsix.cbec.dao.IRoleDao.selectByRoleName"></association>
+		<association property="role" column="ROLE_ID" select="com.rainbowsix.cbec.dao.IRoleDao.selectById"></association>
 <!-- 		<result property="role" column="rolename"/> -->
 	</resultMap>
 
