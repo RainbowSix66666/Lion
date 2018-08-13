@@ -94,6 +94,7 @@ $(document).ready(function(){
 			$("div#main_content").load("user/main.html");			
 		}	
 	})
+	//修改响应
 	$("a#tomodifyUser").on("click", function(){
 		if(userId == "0"){
 			alert("未选择用户");
