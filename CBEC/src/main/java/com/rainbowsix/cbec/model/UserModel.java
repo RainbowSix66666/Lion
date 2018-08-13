@@ -11,15 +11,8 @@ public class UserModel {
 	private long mvoid;
 	private long paypackageid;
 	
-	private RoleModel role;
-	
-	
-	public RoleModel getRole() {
-		return role;
-	}
-	public void setRole(RoleModel role) {
-		this.role = role;
-	}
+	private RoleModel role = null;
+//	private String role;
 	public long getNo() {
 		return no;
 	}
@@ -56,5 +49,12 @@ public class UserModel {
 	public void setPaypackageid(long paypackageid) {
 		this.paypackageid = paypackageid;
 	}
+//	public String getRole() {
+//		return role;
+//	}
+//	public void setRole(String role) {
+//		this.role = role;
+//	}
+	
 	
 }
