@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+
 <mapper namespace="com.rainbowsix.cbec.dao.IGoodsDao">
 
 <resultMap type="GoodsModel" id="GoodsModel">
@@ -10,12 +11,16 @@
 			<result property="title" column="title"/>
 			<result property="price" column="price"/>
 			<result property="date" column="gooddate"/>
+			<result property="stock" column="stock"/>
+			<result property="desc" column="gooddesc"/>
+			<result property="type" column="type"/>
+			<result property="weight" column="weight"/>
 </resultMap>
 
 
 <insert id="create" parameterType="GoodsModel">
 insert into GOODS (PROID,COMID,TITLE,PRICE,GOODDATE,STOCK,GOODDESC,TYPE,WEIGHT)
-values (PROID.nextval,#{comid},#{title},#{price},#{date},#{stock},#{desc},#{type},#{weight})
+values (PROID.nextval,#{comid},#{title},#{price},#{date,jdbcType=DATE},#{stock},#{desc,jdbcType=VARCHAR},#{type},#{weight})
 </insert>
 
 <update id="update" parameterType="int">
@@ -23,9 +28,6 @@ update GOODS set
 
 STATE = #{state},
 STOCK = #{stock},
-PHOTO = #{photo},
-PHOTOTYPE = #{phototype},
-PHOTONAME = #{photoname},
 GOODDESC = #{desc},
 TYPE = #{type},
 WEIGHT = #{weight}

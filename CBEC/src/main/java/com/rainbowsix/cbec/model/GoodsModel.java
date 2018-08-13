@@ -1,6 +1,5 @@
 package com.rainbowsix.cbec.model;
 
-import java.sql.Blob;
 import java.util.Date;
 
 import org.apache.ibatis.type.Alias;
@@ -17,12 +16,9 @@ public class GoodsModel {
 	private int stock=0;//库存
 	private double price=0;//价格
 	private double weight=0;//重量
-	@DateTimeFormat(pattern = "yyyy-mm-dd")
-	private Date gooddate=null;//生产日期
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date date=null;//生产日期
 	private String desc=null;//简介
-	private Blob  photo=null;//照片
-	private String photoname=null;//照片文件名
-	private String phototype=null;//照片文件类型
 	
 	
 	public String getProid() {
@@ -73,35 +69,17 @@ public class GoodsModel {
 	public void setWeight(double weight) {
 		this.weight = weight;
 	}
-	public Date getGooddate() {
-		return gooddate;
+	public Date getdate() {
+		return date;
 	}
-	public void setGooddate(Date gooddate) {
-		this.gooddate = gooddate;
+	public void setdate(Date date) {
+		this.date = date;
 	}
 	public String getDesc() {
 		return desc;
 	}
 	public void setDesc(String desc) {
 		this.desc = desc;
-	}
-	public Blob getPhoto() {
-		return photo;
-	}
-	public void setPhoto(Blob photo) {
-		this.photo = photo;
-	}
-	public String getPhotoname() {
-		return photoname;
-	}
-	public void setPhotoname(String photoname) {
-		this.photoname = photoname;
-	}
-	public String getPhototype() {
-		return phototype;
-	}
-	public void setPhototype(String phototype) {
-		this.phototype = phototype;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;

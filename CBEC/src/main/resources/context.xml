@@ -43,8 +43,12 @@
    -->
   <!-- c3p0 连接池配置 -->
   	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+<<<<<<< HEAD
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@10.1.53.30:1521:neuedu"/>
+=======
+		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
+>>>>>>> branch 'master' of https://github.com/RainbowSix66666/Lion.git
 		<!-- <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:neuedu"/> -->
 		<!-- <property name="jdbcUrl" value="jdbc:oracle:thin:@10.1.53.30:1521:neuedu"/> -->
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@10.1.53.30:1521:neuedu"/>
