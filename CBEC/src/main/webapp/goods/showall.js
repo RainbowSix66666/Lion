@@ -1,6 +1,6 @@
 //商品页面加载成功事件
 $(document).ready(function(){
-	alert("成功加载");
+	//alert("成功加载");
 	$.getJSON("goods/select/one.mvc",{proid:2},function(one){
 		var lines="";
 		lines=one.title;
