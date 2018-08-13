@@ -14,8 +14,11 @@
 	</resultMap>
 
 	<insert id="create" parameterType="Role">
+		<selectKey keyProperty="id" resultType="int" order="BEFORE">
+			select ROLE_ID_SQ.nextval from dual
+		</selectKey>	
 		insert into user_role (roleId, roleName, detial) values 
-		(ROLE_ID_SQ.nextval, #{name}, #{detial})
+		(#{id}, #{name}, #{detial})
 	</insert>
 	
 	<update id="update" parameterType="Role">
