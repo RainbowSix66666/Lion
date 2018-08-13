@@ -12,7 +12,15 @@ public class UserModel {
 	private long paypackageid;
 	
 	private RoleModel role = null;
-//	private String role;
+	
+	
+	public RoleModel getRole() {
+		return role;
+	}
+	public void setRole(RoleModel role) {
+		this.role = role;
+	}
+	//	private String role;
 	public long getNo() {
 		return no;
 	}

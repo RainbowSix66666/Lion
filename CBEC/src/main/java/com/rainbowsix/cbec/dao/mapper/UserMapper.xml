@@ -11,12 +11,13 @@
 		<result property="bvoid" column="bvoid"/>
 		<result property="mvoid" column="mvoid"/>
 		<result property="paypackageid" column="paypackageid"/>
+		<association property="role" column="ROLENAME" select="com.rainbowsix.cbec.dao.IRoleDao.selectByRoleName"></association>
 <!-- 		<result property="role" column="rolename"/> -->
 	</resultMap>
 
 	<insert id="create" parameterType="User">
-		insert into sys_user (userid, username, userpassword, rolename) values 
-		(USER_ID_SQ.nextval, #{name}, #{password}, #{role})
+		insert into sys_user (userid, username, userpassword) values 
+		(USER_ID_SQ.nextval, #{name}, #{password})
 	</insert>
 	
 	<select id="selectAll" resultMap="userResultMap"> 
@@ -32,7 +33,7 @@
 	</select>
 	
 	<update id="update" parameterType="User">
-		update sys_user set username = #{name}, userpassword = #{password}, rolename = #{role} 
+		update sys_user set username = #{name}, userpassword = #{password} 
 		where userid = #{no}
 	</update>
 	

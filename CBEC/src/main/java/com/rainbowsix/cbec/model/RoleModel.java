@@ -8,22 +8,15 @@ public class RoleModel {
 	private String name;
 	private int menuid;
 	private String detial;
-	
-	public String getName() {
-		return name;
-	}
-	
-	
 	public int getId() {
 		return id;
 	}
-
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
-
+	public String getName() {
+		return name;
+	}
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -39,6 +32,8 @@ public class RoleModel {
 	public void setDetial(String detial) {
 		this.detial = detial;
 	}
+	
+	
 	
 	
 }

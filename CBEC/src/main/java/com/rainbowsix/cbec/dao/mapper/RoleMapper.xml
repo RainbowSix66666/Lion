@@ -25,7 +25,9 @@
 	
 	<update id="setMenuId" parameterType="Role"></update>
 	<delete id="delete" parameterType="Role"></delete>
-	<select id="selectByRoleName" parameterType="string" resultType="Role"></select>
+	<select id="selectByRoleName" parameterType="string" resultMap="roleResultMap">
+		select * from user_role where roleName = #{name}
+	</select>
 	<select id="selectByRoleId" parameterType="int" resultType="Role"></select>
 	
 	<select id="selectAll" resultMap="roleResultMap">

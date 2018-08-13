@@ -43,14 +43,7 @@
    -->
   <!-- c3p0 连接池配置 -->
   	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-<<<<<<< HEAD
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@10.1.53.30:1521:neuedu"/>
-=======
-		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
->>>>>>> branch 'master' of https://github.com/RainbowSix66666/Lion.git
-		<!-- <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:neuedu"/> -->
-		<!-- <property name="jdbcUrl" value="jdbc:oracle:thin:@10.1.53.30:1521:neuedu"/> -->
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@10.1.53.30:1521:neuedu"/>
 		<property name="user" value="Rainbowsix6"/>
 		<property name="password" value="123456"/>		
@@ -86,24 +79,4 @@
 	</bean>
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
-	<!-- DBCP2连接池 
-   	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method=
-		"close">
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-		<property name="url" value="jdbc:oracle:thin:@10.1.53.30:1521:neuedu"/>
-		<property name="username" value="muzy"/>
-		<property name="password" value="1a2b3c4d"/>
-	</bean>
-	-->
-  <!-- 
-  <bean id ="EmployeeDao" class="com.neusoft.chenzy.hr.dao.impl.EmployeeDaoImpl"></bean>
- 	
-  <bean id="EmployeeService" class="com.neusoft.chenzy.hr.services.impl.EmployeeServiceImpl">
-  		<property name="employeeDao" ref = "EmployeeDao"></property>
-  </bean>
-    
-    <bean id="EmployeeService" class="com.neusoft.chenzy.hr.services.impl.EmployeeServiceImpl">
-  		<constructor-arg ref="EmployeeDao"></constructor-arg>
-  	</bean>
-  	-->
 </beans>
