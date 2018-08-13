@@ -1,0 +1,32 @@
+<form role="form" method="post">
+	<div class="form-group">
+		<label>品牌商编号</label>&nbsp;&nbsp;&nbsp;
+			<span id="makerNO"></span>
+
+	</div>
+	<div class="form-group">
+		<label>品牌商姓名</label> <input class="form-control" name="makerName"
+			value="${employee.name}">
+	</div>
+
+	<div class="form-group">
+		<label>品牌商密码</label> <input class="form-control" name="makerPassword"
+			value="${employee.age}">
+	</div>
+	<div class="form-group">
+		<label>品牌商地址</label> <input class="form-control" name="address"
+			value="${employee.birthday}">
+	</div>
+	<div class="form-group">
+		<label>品牌商邮箱</label> <input class="form-control" name="email"
+			value="${employee.salary}">
+	</div>
+	<div class="form-group">
+		<label>品牌商号码</label> <input class="form-control" name="phoneNumber"
+			value="${employee.salary}">
+	</div>
+	
+	<input type="hidden" name="no" value="${employee.no }" />
+	<button type="button" class="btn btn-default" id="makerModifyButton">提交</button>
+	<button type="button" class="btn btn-default"id="makerModifyCancelButton">返回</button>
+</form>

@@ -9,5 +9,5 @@ public interface IUserService {
 	public void delete(UserModel user) throws Exception;
 	public void update(UserModel user) throws Exception;
 	public List<UserModel> selectAll() throws Exception;
-	public void selectById(int id) throws Exception;
+	public UserModel selectById(long id) throws Exception;
 }

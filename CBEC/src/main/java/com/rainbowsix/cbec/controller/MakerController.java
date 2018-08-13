@@ -24,8 +24,8 @@ public class MakerController {
 	@RequestMapping(value="/add",method={RequestMethod.POST})
 	@ResponseBody
 	public String add(MakerModel maker) throws Exception{
-			
-			makerService.add(maker);		
+			makerService.add(maker);
+					
 			
 			return "ok";
 		}
@@ -41,9 +41,9 @@ public class MakerController {
 	
 	@RequestMapping(value="/delete",method={RequestMethod.POST})
 	@ResponseBody
-	public String delete(int makerId) throws Exception{
+	public String delete(int makerNO) throws Exception{
 		
-		makerService.delete(makerId);	
+		makerService.delete(makerNO);	
 		
 		return "ok";
 	}
@@ -56,11 +56,11 @@ public class MakerController {
 		
 	}
 	
-	@RequestMapping(value="/bymakerid",method={RequestMethod.GET})
+	@RequestMapping(value="/bymakerNO",method={RequestMethod.GET})
 	@ResponseBody
-	public MakerModel selectByMakerId(int makerId) throws Exception{
+	public MakerModel selectByMakerNO(int makerNO) throws Exception{
 		
-		return makerService.selectByMakerId(makerId);	
+		return makerService.selectByMakerNO(makerNO);	
 		
 	}
 	

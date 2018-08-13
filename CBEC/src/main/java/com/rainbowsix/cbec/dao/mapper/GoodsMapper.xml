@@ -14,8 +14,8 @@
 
 
 <insert id="create" parameterType="GoodsModel">
-insert into GOODS (PROID,COMID,TITLE,PRICE,GOODDATE)
-values (PROID.nextval,#{comid},#{title},#{price},#{date})
+insert into GOODS (PROID,COMID,TITLE,PRICE,GOODDATE,STOCK,GOODDESC,TYPE,WEIGHT)
+values (PROID.nextval,#{comid},#{title},#{price},#{date},#{stock},#{desc},#{type},#{weight})
 </insert>
 
 <update id="update" parameterType="int">
