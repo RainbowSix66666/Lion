@@ -19,34 +19,34 @@
 
 
 <insert id="create" parameterType="GoodsModel">
-insert into GOODS (PROID,COMID,TITLE,PRICE,GOODDATE,STOCK,GOODDESC,TYPE,WEIGHT)
-values (PROID.nextval,#{comid},#{title},#{price},#{date,jdbcType=DATE},#{stock},#{desc,jdbcType=VARCHAR},#{type},#{weight})
+	insert into GOODS (PROID,COMID,TITLE,PRICE,GOODDATE,STOCK,GOODDESC,TYPE,WEIGHT)
+	values (PROID.nextval,#{comid},#{title},#{price},#{date,jdbcType=DATE},#{stock},#{desc,jdbcType=VARCHAR},#{type,jdbcType=VARCHAR},#{weight})
 </insert>
 
-<update id="update" parameterType="int">
-update GOODS set 
-
-STATE = #{state},
-STOCK = #{stock},
-GOODDESC = #{desc},
-TYPE = #{type},
-WEIGHT = #{weight}
-where #{proid}=PROID
-</update>
-
-<delete id="delete" parameterType="int">
-delete from GOODS where PROID = #{proid}
-</delete>
-
-<select id="byone" parameterType="int" resultType="GoodsModel">
-select *
-from GOODS
-where PROID= #{proid}
-</select>
-
-<select id="byall" resultType="GoodsModel">
-select *
-from GOODS
-</select>
+	<update id="update" parameterType="int">
+		update GOODS set 
+		
+		STATE = #{state},
+		STOCK = #{stock},
+		GOODDESC = #{desc},
+		TYPE = #{type},
+		WEIGHT = #{weight}
+		where #{proid}=PROID
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from GOODS where PROID = #{proid}
+	</delete>
+	
+	<select id="byone" parameterType="int" resultType="GoodsModel">
+		select *
+		from GOODS
+		where PROID= #{proid}
+	</select>
+	
+	<select id="byall" resultType="GoodsModel">
+		select *
+		from GOODS
+	</select>
 
 </mapper>

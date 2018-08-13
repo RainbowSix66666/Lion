@@ -43,7 +43,7 @@ public class GoodsController {
 		return "modify complete";
 	}
 	
-	@RequestMapping(value="/select/one",method={RequestMethod.POST})
+	@RequestMapping(value="/select/one",method={RequestMethod.GET})
 	public GoodsModel one(int proid) throws Exception{
 		
 		return goodservice.one(proid);
