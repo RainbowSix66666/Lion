@@ -21,16 +21,17 @@
 
 <update id="update" parameterType="Maker">
 	update MAKER set 
+	MAKER_NO = #{makerNO, jdbcType=NUMERIC},
 	MAKER_NAME = #{makerName, jdbcType=VARCHAR},
 	MAKER_PASSWORD = #{makerPassword, jdbcType=VARCHAR},
 	ADDRESS = #{address, jdbcType=VARCHAR},
 	EMAIL = #{email, jdbcType=VARCHAR},
 	PHONE_NUMBER = #{phoneNumber, jdbcType=VARCHAR}
-	where MAKER_NO= #{makerNO, jdbcType=NUMERIC}
+	where MAKER_ID= #{makerId, jdbcType=NUMERIC}
 </update>
 
 <delete id="delete" parameterType="int">
-	delete from MAKER where MAKER_NO= #{makerNO}
+	delete from MAKER where MAKER_ID= #{makerId}
 </delete>
 
 <select id="selectListByAll" resultMap="MakerResultMap">
@@ -38,10 +39,10 @@
 	from MAKER
 </select>
 
-<select id="selectByMakerNO" parameterType="int" resultMap="MakerResultMap">
+<select id="selectByMakerId" parameterType="int" resultMap="MakerResultMap">
 	select *
 	from MAKER
-	where MAKER_NO= #{makerNO}
+	where MAKER_ID= #{makerId}
 </select>
 
 

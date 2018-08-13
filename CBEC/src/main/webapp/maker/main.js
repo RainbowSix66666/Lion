@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	var makerNO = 0;
+	var makerId = 0;
 	//请求页面列表
 	function showMakerList(){
 		
@@ -7,7 +7,7 @@ $(document).ready(function(){
 			$.getJSON("maker/list/all.mvc", function(makerList){
 				var lines = "";
 				for(var i = 0; i < makerList.length; ++i){			
-					lines = lines + "<tr data-no='"+makerList[i].makerNO+"'><td>"+makerList[i].makerNO+"</td><td>"
+					lines = lines + "<tr data-no='"+makerList[i].makerId+"'><td>"+makerList[i].makerNO+"</td><td>"
 					+ makerList[i].makerName + "</td><td>" + makerList[i].phoneNumber +"</td><td>"
 					+ makerList[i].makerPassword + "</td><td>" + makerList[i].address +"</td><td>"
 					+ makerList[i].email + "</td></tr>";
@@ -15,7 +15,7 @@ $(document).ready(function(){
 				$("table#makerListTable tbody").html(lines);
 				//事件点击处理
 				$("table#makerListTable tbody tr").on("click", function(){
-					makerNO=$(this).attr("data-no");
+					makerId=$(this).attr("data-no");
 					$("table#makerListTable tbody tr").css("background-color", "#FFFFFF");
 					$(this).css("background-color", "#EEEE");
 										
@@ -23,7 +23,7 @@ $(document).ready(function(){
 			});		
 			
 		});
-		makerNO = 0;
+		makerId = 0;
 	}
 
 	//点击增加按钮事件处理
@@ -56,13 +56,14 @@ $(document).ready(function(){
 	
 	//	添加修改按钮
 	$("a#makerModify").on("click",function(){
-		if(makerNO==0){
+		if(makerId==0){
 			alert("请先选中一个品牌商！");
 		}else{
 			$("div#makerMainContext").load("maker/modify.html",function(){
 				//取得选择的部门的信息
-				$.getJSON("maker/bymakerNO.mvc",{makerNO:makerNO},function(resultData){
-					$("span#makerNO").html(resultData.makerNO);
+				$.getJSON("maker/bymakerId.mvc",{makerId:makerId},function(resultData){
+					/*$("span#makerId").html(resultData.makerId);*/
+					$("input[name='makerNO'").val(resultData.makerNO);
 					$("input[name='makerName'").val(resultData.makerName);
 					$("input[name='makerPassword'").val(resultData.makerPassword);
 					$("input[name='address'").val(resultData.address);
@@ -78,7 +79,7 @@ $(document).ready(function(){
 					var address = $("input[name='address']").val();
 					var email = $("input[name='email']").val();
 					var phoneNumber = $("input[name='phoneNumber']").val();
-					$.post("maker/modify.mvc",{makerNO:makerNO,email:email, makerName:makerName, 
+					$.post("maker/modify.mvc",{makerId:makerId,makerNO:makerNO,email:email, makerName:makerName, 
 						makerPassword:makerPassword, address:address, phoneNumber:phoneNumber},function(resultData){
 						if(resultData=="ok"){
 							alert("品牌商信息修改成功");							
@@ -100,12 +101,12 @@ $(document).ready(function(){
 	
 	//添加删除按钮
 	$("a#makerDelete").on("click",function(){
-		if(makerNO==0){
+		if(makerId==0){
 			alert("请先选中一个要删除的品牌商！");
 		}else{
 			var confirmResult = confirm("确认要删除选择的品牌商？");
 			if(confirmResult){
-				$.post("maker/delete.mvc", {makerNO:makerNO}, function(resultData){
+				$.post("maker/delete.mvc", {makerId:makerId}, function(resultData){
 					if(resultData=="ok"){
 						alert("品牌商信息删除成功");							
 					}else{
@@ -118,14 +119,15 @@ $(document).ready(function(){
 	});
 	
 	
-//	添加修改按钮
+//	添加查看按钮
 	$("a#makerView").on("click",function(){
-		if(makerNO==0){
+		if(makerId==0){
 			alert("请先选中一个品牌商！");
 		}else{
 			$("div#makerMainContext").load("maker/view.html",function(){
 				//取得选择的部门的信息
-				$.getJSON("maker/bymakerNO.mvc",{makerNO:makerNO},function(resultData){
+				$.getJSON("maker/bymakerId.mvc",{makerId:makerId},function(resultData){
+					$("span#makerId").html(resultData.makerId);
 					$("span#makerNO").html(resultData.makerNO);
 					$("span#makerName").html(resultData.makerName);
 					$("span#makerPassword").html(resultData.makerPassword);
