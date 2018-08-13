@@ -39,10 +39,10 @@ $(document).ready(function(){
 		$("div#main_content").load("user/addUser.html", function(){
 			//点击添加用户
 			$("button#addUserButton").on("click", function(){
-				var role_type = "undefine";
+				var role_type = $("select option").val();
 				var name = $("input[name='name']").val();
 				var password = $("input[name = 'password']").val();
-//				alert(role_type);
+				alert(role_type);
 //				alert(name);
 				$.post("user/add.mvc", {name:name, password:password, role:role_type}, function(re){
 					

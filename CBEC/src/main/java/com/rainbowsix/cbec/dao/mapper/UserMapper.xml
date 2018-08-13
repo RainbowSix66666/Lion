@@ -11,7 +11,7 @@
 		<result property="bvoid" column="bvoid"/>
 		<result property="mvoid" column="mvoid"/>
 		<result property="paypackageid" column="paypackageid"/>
-		<result property="role" column="rolename"/>
+		<association property="role" column="roleName" select="com.rainbowsix.cbec.dao.IRoleDao"></association>
 	</resultMap>
 
 	<insert id="create" parameterType="User">
