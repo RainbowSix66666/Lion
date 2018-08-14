@@ -17,7 +17,7 @@ $(document).ready(function(){
 				var lines = "";
 				for(var i = 0; i < userList.length; ++i){
 					lines = lines + "<tr user-id='"+ userList[i].no + "'><td>" + userList[i].name + 
-					"</td><td>" + userList[i].role + "</td></tr>";
+					"</td><td>" + userList[i].role.name + "</td></tr>";
 				}
 //				alert(lines);
 				$("table#userListTable tbody").html(lines);

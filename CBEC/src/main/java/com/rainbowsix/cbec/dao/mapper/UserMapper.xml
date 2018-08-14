@@ -11,12 +11,12 @@
 		<result property="bvoid" column="bvoid"/>
 		<result property="mvoid" column="mvoid"/>
 		<result property="paypackageid" column="paypackageid"/>
-		<!-- <association property="role" column="ROLE_ID" select="com.rainbowsix.cbec.dao.IRoleDao.selectById"></association>
+		<!-- <association property="role" column="ROLEID" select="com.rainbowsix.cbec.dao.IRoleDao.selectById"></association>
 		<association property="reseller" column="reseller_ID" select="com.rainbowsix.cbec.dao.IResellerDao.selectById"></association> -->
 	</resultMap>
 	<!-- 有角色关联的ResultMap -->
 	<resultMap type="User" id="userResultMapWithRole" extends="userResultMap">
-		<association property="role" column="ROLE_ID" select="com.rainbowsix.cbec.dao.IRoleDao.selectById"></association>
+		<association property="role" column="ROLEID" select="com.rainbowsix.cbec.dao.IRoleDao.selectById"></association>
 	</resultMap>
 	<!-- 有供应商关联的ResultMap -->
 	<resultMap type="User" id="userResultMapWithReseller" extends="userResultMap">
