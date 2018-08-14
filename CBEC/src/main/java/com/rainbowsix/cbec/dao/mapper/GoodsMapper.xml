@@ -25,7 +25,10 @@
 
 	<update id="update" parameterType="int">
 		update GOODS set 
-		
+		COMID = #{comid},
+		TITLE = #{title},
+		PRICE = #{price},
+		GOODDATE = #{date},
 		STATE = #{state},
 		STOCK = #{stock},
 		GOODDESC = #{desc},

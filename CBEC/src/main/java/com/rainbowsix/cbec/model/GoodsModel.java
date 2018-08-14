@@ -8,7 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class GoodsModel {
 	private static final long serialVersionUID = 1L;
 	//field变量
-	private String proid=null;//商品编号
+	private int proid;//商品编号
 	private String comid=null;//公司编号
 	private String title=null;//商品标题
 	private String state=null;//状态
@@ -21,10 +21,10 @@ public class GoodsModel {
 	private String desc=null;//简介
 	
 	
-	public String getProid() {
+	public int getProid() {
 		return proid;
 	}
-	public void setProid(String proid) {
+	public void setProid(int proid) {
 		this.proid = proid;
 	}
 	public String getComid() {
