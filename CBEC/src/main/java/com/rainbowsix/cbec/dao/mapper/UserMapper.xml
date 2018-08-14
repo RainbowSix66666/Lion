@@ -14,9 +14,13 @@
 		<!-- <association property="role" column="ROLE_ID" select="com.rainbowsix.cbec.dao.IRoleDao.selectById"></association>
 		<association property="reseller" column="reseller_ID" select="com.rainbowsix.cbec.dao.IResellerDao.selectById"></association> -->
 	</resultMap>
-	
+	<!-- 有角色关联的ResultMap -->
 	<resultMap type="User" id="userResultMapWithRole" extends="userResultMap">
 		<association property="role" column="ROLE_ID" select="com.rainbowsix.cbec.dao.IRoleDao.selectById"></association>
+	</resultMap>
+	<!-- 有供应商关联的ResultMap -->
+	<resultMap type="User" id="userResultMapWithReseller" extends="userResultMap">
+		<association property="reseller" column="reseller_ID" select="com.rainbowsix.cbec.dao.IResellerDao.selectById"></association>
 	</resultMap>
 
 	<insert id="create" parameterType="User">
