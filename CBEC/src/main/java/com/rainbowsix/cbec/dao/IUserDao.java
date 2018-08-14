@@ -15,4 +15,6 @@ public interface IUserDao {
 	public UserModel selectById(long no) throws Exception;
 	public List<UserModel> selectAll()
 			throws Exception;
+	public List<UserModel> selectAllWithRole()
+			throws Exception;
 }
