@@ -3,13 +3,28 @@ package com.rainbowsix.cbec.model;
 import org.apache.ibatis.type.Alias;
 
 @Alias("GoodsPhoto")
-public class GoodsPhoto { 
+public class GoodsPhotoModel { 
 	private int photoId;
-	private int goodId;
+	private int proid;
 	private byte[] photo;
 	private String des;
 	private int rank;
+	//关联的属性--商品
+	private GoodsModel goods = null;
 	
+	public GoodsModel getGoods() {
+		return goods;
+	}
+	public void setGoods(GoodsModel goods) {
+		this.goods = goods;
+	}
+	
+	public int getProid() {
+		return proid;
+	}
+	public void setProid(int proid) {
+		this.proid = proid;
+	}
 	//关联属性-商品
 	private GoodsModel good=null;
 	
@@ -26,12 +41,7 @@ public class GoodsPhoto {
 	public void setPhotoId(int photoId) {
 		this.photoId = photoId;
 	}
-	public int getGoodId() {
-		return goodId;
-	}
-	public void setGoodId(int goodId) {
-		this.goodId = goodId;
-	}
+	
 	public byte[] getPhoto() {
 		return photo;
 	}

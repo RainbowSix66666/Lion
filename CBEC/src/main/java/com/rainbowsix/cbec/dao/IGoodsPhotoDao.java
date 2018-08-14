@@ -3,8 +3,9 @@ package com.rainbowsix.cbec.dao;
 import java.util.List;
 
 import com.rainbowsix.cbec.model.GoodsModel;
+import com.rainbowsix.cbec.model.GoodsPhotoModel;
 
-public interface IGoodPhotoDao {
+public interface IGoodsPhotoDao {
 		//添加商品照片
 		public void create(GoodsModel good) throws Exception;
 		
@@ -14,10 +15,10 @@ public interface IGoodPhotoDao {
 		//删除商品照片
 		public void delete(int proid) throws Exception;
 		
-		//分页取得所有商品照片列表
-		public List<GoodsModel> byAll(int rows,int page) throws Exception;
+		//取得商品的所有照片列表
+		public List<GoodsPhotoModel> selectListByAll() throws Exception;
 		
-		//分页取得所有商品照片列表
+		//取得单个商品照片列表
 		public List<GoodsModel> selectByGoodsId() throws Exception;
 		
 		//取得指定的商品照片信息

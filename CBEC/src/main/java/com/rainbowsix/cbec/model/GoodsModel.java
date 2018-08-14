@@ -1,6 +1,7 @@
 package com.rainbowsix.cbec.model;
 
 import java.util.Date;
+import java.util.List;
 
 import org.apache.ibatis.type.Alias;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -20,7 +21,16 @@ public class GoodsModel {
 	private Date date=null;//生产日期
 	private String desc=null;//简介
 	
+	//关联属性--照片
+	private List<GoodsPhotoModel> goodsPhotos=null;
 	
+	
+	public List<GoodsPhotoModel> getGoodsPhotos() {
+		return goodsPhotos;
+	}
+	public void setGoodsPhotos(List<GoodsPhotoModel> goodsPhotos) {
+		this.goodsPhotos = goodsPhotos;
+	}
 	public int getProid() {
 		return proid;
 	}
