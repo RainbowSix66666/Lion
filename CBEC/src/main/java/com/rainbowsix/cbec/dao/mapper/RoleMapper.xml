@@ -13,8 +13,8 @@
 		<!-- </association> -->
 	</resultMap>
 	
-	<resultMap type="Role" id="roleResultMapWithUsers">
-		<collection property="user" javaType="ArrayList" ofType="User" resultMap="com.rainbowsix.cbec.dao.IUserDao.userResultMap"></collection>
+	<resultMap type="Role" id="roleResultMapWithUsers" extends="roleResultMap">
+		<collection property="users" javaType="ArrayList" ofType="User" resultMap="com.rainbowsix.cbec.dao.IUserDao.userResultMap"></collection>
 	</resultMap>
 
 	<insert id="create" parameterType="Role">
