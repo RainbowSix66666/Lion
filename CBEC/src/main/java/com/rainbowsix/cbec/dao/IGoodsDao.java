@@ -15,7 +15,7 @@ public interface IGoodsDao {
 	public void delete(int proid) throws Exception;
 	
 	//分页取得所有商品列表
-	public List<GoodsModel> byall(int rows,int page) throws Exception;
+	public List<GoodsModel> byall() throws Exception;
 	
 	//取得指定的商品信息
 	public GoodsModel byone(int proid) throws Exception;

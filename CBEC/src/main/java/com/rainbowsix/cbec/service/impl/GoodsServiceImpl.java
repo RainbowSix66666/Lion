@@ -71,9 +71,20 @@ public class GoodsServiceImpl implements IGoodsService {
 		return one;
 	}
 	
-	public List<GoodsModel> all(int rows, int page) throws Exception {
-
-		return goodsdao.byall(rows, page);
+	public List<GoodsModel> all() throws Exception {
+		
+		String resource = "wv_config.xml";
+		Reader reader = Resources.getResourceAsReader(resource);
+		SqlSessionFactory sqlSessionFactory= new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		IGoodsDao goodsdao = session.getMapper(IGoodsDao.class);
+		List<GoodsModel> all=goodsdao.byall();
+		
+		session.commit();
+		session.close();
+		
+		return all;
 	}
 
 	
