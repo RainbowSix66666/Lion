@@ -45,7 +45,8 @@ public class RoleServiceImpl implements IRoleService {
 
 	public List<RoleModel> getAll() throws Exception {
 		// TODO Auto-generated method stub
-		return roledao.selectAll();
+//		return roledao.selectAll();
+		return roledao.selectAllWithUsers();
 	}
 
 	public RoleModel getById(int id) throws Exception {

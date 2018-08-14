@@ -1,5 +1,7 @@
 package com.rainbowsix.cbec.model;
 
+import java.util.List;
+
 import org.apache.ibatis.type.Alias;
 
 @Alias("Role")
@@ -8,6 +10,15 @@ public class RoleModel {
 	private String name;
 	private int menuid;
 	private String detial;
+	
+	private List<UserModel> users = null;	
+	
+	public List<UserModel> getUsers() {
+		return users;
+	}
+	public void setUsers(List<UserModel> users) {
+		this.users = users;
+	}
 	public int getId() {
 		return id;
 	}

@@ -12,6 +12,10 @@
 			<result property="menuid" column="menuid"/>
 		<!-- </association> -->
 	</resultMap>
+	
+	<resultMap type="Role" id="roleResultMapWithUsers">
+		<collection property="user" javaType="ArrayList" ofType="User" resultMap="com.rainbowsix.cbec.dao.IUserDao.userResultMap"></collection>
+	</resultMap>
 
 	<insert id="create" parameterType="Role">
 		<selectKey keyProperty="id" resultType="int" order="BEFORE">
@@ -37,6 +41,10 @@
 	
 	<select id="selectAll" resultMap="roleResultMap">
 		select * from user_role
+	</select>
+	
+	<select id="selectAllWithUsers" resultMap="roleResultMapWithUsers">
+		select u.*, r.rolename, r.detial, r.menuid from user_role r left outer join sys_user u on r.roleid = u.roleid
 	</select>
 	
 </mapper>

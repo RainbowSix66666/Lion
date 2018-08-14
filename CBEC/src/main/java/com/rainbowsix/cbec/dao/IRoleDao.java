@@ -11,5 +11,6 @@ public interface IRoleDao {
 	public RoleModel selectByRoleName(String name) throws Exception;
 	public RoleModel selectById(int id) throws Exception;
 	public List<RoleModel> selectAll() throws Exception;
+	public List<RoleModel> selectAllWithUsers() throws Exception;
 	public void setMenuId(RoleModel role) throws Exception;
 }
