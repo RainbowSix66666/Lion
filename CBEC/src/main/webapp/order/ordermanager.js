@@ -37,14 +37,9 @@ $("a#OrderAddLink").on("click", function(){
 			var orderstate=$("input[name='orderstate']").val();
 			var bsid=$("input[name='bsid']").val();
 			
-			$.post("order/add.mvc",{comid:comid,orderstate:orderstate,bsid:bsid},function(or){
-				
-				if(or != 'OK'){
-					alert("添加成功");
-					showOrderList();
-				} else{
-					alert("添加失败");
-				}
+			$.post("order/add.mvc",{comid:comid,orderstate:orderstate,bsid:bsid},function(){			
+					alert("增加成功");
+					showOrderList();		
 			});
 		});
 		$("button#orderReturnButton").on("click",function(){
@@ -66,9 +61,9 @@ $("a#OrderModifyLink").on("click", function(){
 		$("div#OrderMainContent").load("order/ordermodify.html",function(){
 			//取得选择订单的信息
 			$.getJSON("order/get.mvc",{orderid:orderid},function(resultData){
-				$("input[name='comid'").val(resultData.comid);
-				$("input[name='orderstate'").val(resultData.orderstate);
-				$("input[name='bsid'").val(resultData.bsid);
+				$("input[name='comid']").val(resultData.comid);
+				$("input[name='orderstate']").val(resultData.orderstate);
+				$("input[name='bsid']").val(resultData.bsid);
 			});
 			//点击修改提交按钮处理
 			$("button#orderModifyButton").on("click",function(){
@@ -77,8 +72,15 @@ $("a#OrderModifyLink").on("click", function(){
 				var orderstate = $("input[name='orderstate']").val();
 				var bsid = $("input[name='bsid']").val();
 				
-				$.post("order/modify.mvc",{orderid:orderid,comid:comid,orderstate:orderstate,bsid:bsid});
-				showOrderList();
+				$.post("order/modify.mvc",{orderid:orderid,comid:comid,orderstate:orderstate,bsid:bsid},function(resultData){
+					if(resultData!='ok'){
+						alert("修改成功");
+					}else{
+						alert("修改失败");
+					}
+					showOrderList();
+				});
+				
 			});
 			$("button#orderModifyCancelButton").on("click",function(){
 				showOrderList();
