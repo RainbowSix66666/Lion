@@ -3,25 +3,31 @@
  */
 $(document).ready(function(){
 	var orderid=0;//选择的订单ID
-	//请求取得订单列表的Rest API
-	$.getJSON("order/list/all.mvc",function(orderList){
-		var lines="";
-		for(var i=0;i<orderList.length;i++){
-			lines=lines+"<tr data-no='"+orderList[i].orderid+"'><td>"+orderList[i].orderid+"</td><td>"+orderList[i].comid+"</td><td>"+orderList[i].orderstate+"</td><td>"+orderList[i].bsid+"</td></tr>"
-		}
-		$("table#orderListTable tbody").html(lines);
-		
-		//点击TR事件处理
-		$("table#orderListTable tbody tr").on("click",function(){
-			orderid=$(this).attr("data-no");
-			//alert(orderid);
-			//选中一行变颜色，表示选中这一行
-			$("table#orderListTable tbody tr").css("background-color","#FFFFFF");
-			$(this).css("background-color","#EEEE");
-		});
-	}); 
 	
-});
+	function showOrderList(){
+		$("div#OrderMainContent").load("order/list.html",function(){
+			//请求取得订单列表的Rest API
+			$.getJSON("order/list/all.mvc",function(orderList){
+				var lines="";
+				for(var i=0;i<orderList.length;i++){
+					lines=lines+"<tr data-no='"+orderList[i].orderid+"'><td>"+orderList[i].orderid+"</td><td>"+orderList[i].comid+"</td><td>"+orderList[i].orderstate+"</td><td>"+orderList[i].bsid+"</td></tr>"
+	 			}
+				$("table#orderListTable tbody").html(lines);
+				//点击TR事件处理
+				$("table#orderListTable tbody tr").on("click",function(){
+					orderid=$(this).attr("data-no");
+					//alert(orderid);
+					//选中一行变颜色，表示选中这一行
+					$("table#orderListTable tbody tr").css("background-color","#FFFFFF");
+					$(this).css("background-color","#EEEE");
+				});
+			});	
+		});
+		
+		orderid=0;
+	}
+	
+
 
 //点击增加按钮事件处理
 $("a#OrderAddLink").on("click", function(){
@@ -32,17 +38,18 @@ $("a#OrderAddLink").on("click", function(){
 			var bsid=$("input[name='bsid']").val();
 			
 			$.post("order/add.mvc",{comid:comid,orderstate:orderstate,bsid:bsid},function(or){
-				alert("添加成功");
-				if(or == 'OK'){
+				
+				if(or != 'OK'){
 					alert("添加成功");
-					$("div#main_body").load("order/ordermanager.html");
+					showOrderList();
 				} else{
 					alert("添加失败");
 				}
 			});
 		});
 		$("button#orderReturnButton").on("click",function(){
-			$("div#OrderMainContent").load("order/ordermanager.html");
+			//alert("返回");
+			showOrderList();
 		});
 	});
 	
@@ -70,14 +77,8 @@ $("a#OrderModifyLink").on("click", function(){
 				var orderstate = $("input[name='orderstate']").val();
 				var bsid = $("input[name='bsid']").val();
 				
-				$.post("order/modify.mvc",{orderid:orderid,comid:comid,orderstate:orderstate,bsid:bsid},function(resultData){
-					if(resultData=="ok"){
-						alert("订单修改成功");							
-					}else{
-						alert("订单修改失败");
-					}
-					//showOrderList();
-					});
+				$.post("order/modify.mvc",{orderid:orderid,comid:comid,orderstate:orderstate,bsid:bsid});
+				showOrderList();
 			});
 			$("button#orderModifyCancelButton").on("click",function(){
 				showOrderList();
@@ -120,16 +121,20 @@ $("a#OrderDeleteLink").on("click", function(){
 		var confirmResult=confirm("确认要删除选择的订单吗？");
 		if(confirmResult){
 			$.post("order/delete.mvc",{orderid:orderid},function(resultData){
-				if(resultData=="ok"){
-					alert("删除订单成功");							
+				if(resultData!="ok"){
+					alert("删除订单成功");
+					showOrderList();
 				}else{
 					alert("删除订单失败");
 				}
-				showOrderList();
+				
 		});
 	}
 	}
 	
+});
+showOrderList();
+
 });
 
 
