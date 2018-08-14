@@ -28,10 +28,9 @@ public class GoodsController {
 	
 	@RequestMapping(value="/del",method={RequestMethod.POST})
 	public String del(int proid) throws Exception{
-	
-		goodservice.del(proid);		
+		goodservice.del(proid);
 		
-		return "add complete";
+		return "del complete";
 	}
 	
 	
