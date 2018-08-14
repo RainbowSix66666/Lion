@@ -1,5 +1,7 @@
 package com.rainbowsix.cbec.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,5 +48,11 @@ public class GoodsController {
 	public GoodsModel one(int proid) throws Exception{
 		
 		return goodservice.one(proid);
+	}
+	
+	@RequestMapping(value="/select/all",method={RequestMethod.GET})
+	public List<GoodsModel> all() throws Exception{
+		
+		return goodservice.all();
 	}
 }
