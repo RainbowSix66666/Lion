@@ -21,10 +21,10 @@ public class GoodsPhotoController {
 		this.goodsPhotoService = goodsPhotoService;
 	}
 	
-	@RequestMapping(value="/list/all",method={RequestMethod.GET})
+	@RequestMapping(value="/list/all/withgoods",method={RequestMethod.GET})
 	@ResponseBody
 	public List<GoodsPhotoModel> selectListByAll() throws Exception{
-		return goodsPhotoService.selectListByAll();
+		return goodsPhotoService.selectListWithGoodsByAll();
 	}
 
 

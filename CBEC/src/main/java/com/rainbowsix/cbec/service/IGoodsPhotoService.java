@@ -5,6 +5,6 @@ import java.util.List;
 import com.rainbowsix.cbec.model.GoodsPhotoModel;
 
 public interface IGoodsPhotoService {
-	public List<GoodsPhotoModel> selectListByAll() throws Exception;
+	public List<GoodsPhotoModel> selectListWithGoodsByAll() throws Exception;
 	
 }

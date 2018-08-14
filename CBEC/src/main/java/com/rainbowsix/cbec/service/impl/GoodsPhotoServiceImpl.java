@@ -20,9 +20,9 @@ public class GoodsPhotoServiceImpl implements IGoodsPhotoService {
 		this.goodsPhotoDao = goodsPhotoDao;
 	}
 
-	public List<GoodsPhotoModel> selectListByAll() throws Exception {
+	public List<GoodsPhotoModel> selectListWithGoodsByAll() throws Exception {
 		
-		return goodsPhotoDao.selectListByAll();
+		return goodsPhotoDao.selectListWithGoodsByAll();
 	}
 
 }

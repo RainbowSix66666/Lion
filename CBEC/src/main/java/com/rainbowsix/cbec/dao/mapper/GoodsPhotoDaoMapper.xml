@@ -3,15 +3,30 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rainbowsix.cbec.dao.IGoodsPhotoDao">
 
+	<!--有信息无图片、无商品  -->
 <resultMap id="GoodsPhotoResultMap" type="GoodsPhoto">
   <id property="photoId" column="PHOTO_ID"/>
   <result property="goodId" column="GOODID" />
   <result property="des" column="DES"/>
-  <result property="photo" column="PHOTO"/>
   <result property="rank" column="RANK"/>
-  <association property="goods" column="PROID" select="com.rainbowsix.cbec.dao.IGoodsDao.byone"></association>
+  	</resultMap>
+
+	<!-- 有goodphoto 无商品 的字段映射resultMap -->
+<resultMap id="GoodsPhotoWithPhotoResultMap" type="GoodsPhoto" extends="GoodsPhotoResultMap">
+	<result property="photo" column="PHOTO"/>
 </resultMap>
 
+	<!--有信息和商品 无图片 的字段映射resultMap  -->
+<resultMap id="GoodsPhotoWithGoodsResultMap" type="GoodsPhoto" extends="GoodsPhotoResultMap">
+	<!-- <association property="goods" column="PROID" select="com.rainbowsix.cbec.dao.IGoodsDao.byone"></association> -->
+  	<association property="goods" resultMap="com.rainbowsix.cbec.dao.IGoodsDao.GoodsModel"></association> 
+</resultMap>
+
+	<!--有信息、图片、商品的字段映射resultMap  -->
+<resultMap id="GoodsPhotoWithPhotoAndInfotMap" type="GoodsPhoto" extends="GoodsPhotoWithPhotoResultMap">
+	<!-- <association property="goods" column="PROID" select="com.rainbowsix.cbec.dao.IGoodsDao.byone"></association> -->
+  	<association property="goods" resultMap="com.rainbowsix.cbec.dao.IGoodsDao.GoodsModel"></association> 
+</resultMap>
 
 <insert id="create" parameterType="GoodsPhoto">
 	insert into GoodsPhoto (MAKER_ID, MAKER_NO, MAKER_NAME, MAKER_PASSWORD, ADDRESS , EMAIL, PHONE_NUMBER)
@@ -34,15 +49,25 @@
 	delete from MAKER where MAKER_ID= #{makerId}
 </delete>
 
-<select id="selectListByAll" resultMap="GoodsPhotoResultMap">
-	select *
-	from GOODSPHOTO
+<!-- 照片信息，无关联 -->
+<select id="selectListWithoutGoodsByAll" resultMap="GoodsPhotoResultMap">
+	select a.photo_id, a.des, a.rank, b.*  
+	from goodsphoto a inner join goods b 
+	on a.proid=b.proid
 </select>
 
-<select id="selectByGoodsId" parameterType="int" resultMap="GoodsPhotoResultMap">
-	select *
-	from GoodsPhoto
-	where MAKER_ID= #{makerId}
+<!-- 照片信息、商品，有关联 -->
+<select id="selectListWithGoodsByAll" resultMap="GoodsPhotoWithGoodsResultMap">
+	select a.photo_id, a.des, a.rank, b.*  
+	from goodsphoto a inner join goods b 
+	on a.proid=b.proid
+</select>
+
+<!--取单个 ： 照片信息、商品，照片 有关联 -->
+<select id="selectByGoodsId" parameterType="int" resultMap="GoodsPhotoWithPhotoResultMap">
+	select a.photo_id, a.des, a.rank, b.*  
+	from goodsphoto a inner join goods b 
+	on a.proid=b.proid
 </select>
 
 
