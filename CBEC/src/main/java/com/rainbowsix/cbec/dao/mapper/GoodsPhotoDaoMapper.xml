@@ -15,14 +15,14 @@
 </resultMap>
 
 
-<insert id="create" parameterType="Maker">
-	insert into MAKER (MAKER_ID, MAKER_NO, MAKER_NAME, MAKER_PASSWORD, ADDRESS , EMAIL, PHONE_NUMBER)
+<insert id="create" parameterType="GoodsPhoto">
+	insert into GoodsPhoto (MAKER_ID, MAKER_NO, MAKER_NAME, MAKER_PASSWORD, ADDRESS , EMAIL, PHONE_NUMBER)
 	values (MAKERID.nextval,#{makerNO},#{makerName},#{makerPassword},#{address},#{email},#{phoneNumber})
 </insert>
 
 
-<update id="update" parameterType="Maker">
-	update MAKER set 
+<update id="update" parameterType="GoodsPhoto">
+	update GoodsPhoto set 
 	MAKER_NO = #{makerNO, jdbcType=NUMERIC},
 	MAKER_NAME = #{makerName, jdbcType=VARCHAR},
 	MAKER_PASSWORD = #{makerPassword, jdbcType=VARCHAR},
@@ -36,14 +36,14 @@
 	delete from MAKER where MAKER_ID= #{makerId}
 </delete>
 
-<select id="selectListByAll" resultMap="MakerResultMap">
+<select id="selectListByAll" resultMap="GoodsPhotoResultMap">
 	select *
 	from MAKER
 </select>
 
-<select id="selectByMakerId" parameterType="int" resultMap="MakerResultMap">
+<select id="selectByGoodsId" parameterType="int" resultMap="GoodsPhotoResultMap">
 	select *
-	from MAKER
+	from GoodsPhoto
 	where MAKER_ID= #{makerId}
 </select>
 
