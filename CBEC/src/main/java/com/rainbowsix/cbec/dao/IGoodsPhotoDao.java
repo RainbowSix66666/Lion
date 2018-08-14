@@ -22,7 +22,7 @@ public interface IGoodsPhotoDao {
 		public List<GoodsModel> selectByGoodsId() throws Exception;
 		
 		//取得指定的商品照片信息
-		public GoodsModel byNO(int proid) throws Exception;
+		//public GoodsModel byNO(int proid) throws Exception;
 		
 		//取得所有商品总数
 //		public int Count() throws Exception;

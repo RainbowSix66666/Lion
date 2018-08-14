@@ -9,7 +9,7 @@
   <result property="des" column="DES"/>
   <result property="photo" column="PHOTO"/>
   <result property="rank" column="RANK"/>
-  <association property="goods" column="PROID" select="com.rainbowsix.cbec.dao.IGoodsDao。byone"></association>
+  <association property="goods" column="PROID" select="com.rainbowsix.cbec.dao.IGoodsDao.byone"></association>
 </resultMap>
 
 
@@ -36,7 +36,7 @@
 
 <select id="selectListByAll" resultMap="GoodsPhotoResultMap">
 	select *
-	from GoodsPhoto
+	from GOODSPHOTO
 </select>
 
 <select id="selectByGoodsId" parameterType="int" resultMap="GoodsPhotoResultMap">
