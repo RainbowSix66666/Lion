@@ -1,6 +1,9 @@
 package com.rainbowsix.cbec.dao;
 
+import java.util.Date;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 
 import com.rainbowsix.cbec.model.UserModel;
 
@@ -17,5 +20,9 @@ public interface IUserDao {
 			throws Exception;
 	public List<UserModel> selectAllWithRole()
 			throws Exception;
-	public List<UserModel> selectByCondiction() throws Exception;
+	public List<UserModel> selectByCondiction(@Param("name")String name,@Param("before")Date before, 
+			@Param("after")Date after, @Param("roles") int[] roles) throws Exception;
+	public List<UserModel> selectByCondictionWithPage(@Param("name")String name, @Param("before")Date before, 
+			@Param("after")Date after, @Param("roles") int[] roles, @Param("start")int start, @Param("end")int end)
+			throws Exception;
 }

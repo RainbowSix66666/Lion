@@ -1,8 +1,10 @@
 package com.rainbowsix.cbec.model;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.type.Alias;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Alias("User")
 public class UserModel {
@@ -11,10 +13,18 @@ public class UserModel {
 	private String password;
 	private long mvoid;
 	private long paypackageid;
+	@DateTimeFormat(pattern = "yyy-MM-dd")
+	private Date createDate;
 	
 	private ResellerModel reseller = null;
 	private List<RoleModel> roles = null;	
 	
+	public Date getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
 	public List<RoleModel> getRoles() {
 		return roles;
 	}

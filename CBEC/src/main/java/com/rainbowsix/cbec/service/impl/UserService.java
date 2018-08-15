@@ -1,6 +1,7 @@
 package com.rainbowsix.cbec.service.impl;
 
 import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.io.Resources;
@@ -50,6 +51,12 @@ public class UserService implements IUserService {
 		// TODO Auto-generated method stub
 //		System.out.println(id);
 		return userDao.selectById(id);
+	}
+
+	@Override
+	public List<UserModel> selectListByCondiction(String name, Date before, Date after, int[] roles) throws Exception {
+		// TODO Auto-generated method stub
+		return userDao.selectByCondiction(name, before, after, roles);
 	}
 
 }

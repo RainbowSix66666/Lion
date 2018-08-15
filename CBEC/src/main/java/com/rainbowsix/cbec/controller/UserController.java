@@ -1,10 +1,12 @@
 package com.rainbowsix.cbec.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rainbowsix.cbec.model.UserModel;
@@ -45,6 +47,12 @@ public class UserController {
 //		System.out.print(no);
 //		return null;
 		return userService.selectById(no);
+	}
+	@RequestMapping("list/condiction")
+	public List<UserModel> listByCondiction(@RequestParam(required=false)String name, @RequestParam(required=false)Date before, 
+			@RequestParam(required=false)Date after, @RequestParam(required=false)int[] roles) throws Exception{
+			name = "%" + name + "%";
+		return userService.selectListByCondiction(name, before, after, roles);
 	}
 	
 	@RequestMapping(value="modify", method={RequestMethod.POST})

@@ -10,6 +10,7 @@
 		<result property="password" column="userpassword"/>
 		<result property="mvoid" column="mvoid"/>
 		<result property="paypackageid" column="paypackageid"/>
+		<result property="createDate" column="createDate"/>
 		<!-- <association property="role" column="ROLEID" select="com.rainbowsix.cbec.dao.IRoleDao.selectById"></association>
 		<association property="reseller" column="reseller_ID" select="com.rainbowsix.cbec.dao.IResellerDao.selectById"></association> -->
 	</resultMap>
@@ -56,5 +57,30 @@
 		update sys_user set username = #{name}, userpassword = #{password} 
 		where userid = #{no}
 	</update>
+	<!-- 根据条件进行查找 -->
+	<select id="selectByCondiction" resultMap="userResultMapWithRole">
+		select * from 
+    		(select u.*, r.roleid, r.rolename, r.detial, r.menuid 
+     		from sys_user u inner join user_link_role l on u.userid = l.userid
+     		inner join user_role r on l.roleid = r.roleid 
+     		order by u.userid desc)
+  		<where>
+  			<if test="name != null and name != '' ">
+  				username like #{name}
+  			</if>
+  			<if test="roles != null">
+  				and roleid in
+  				<foreach collection="roles" item = "i" open="(" separator="," close=")">
+  					#{i}
+  				</foreach>
+  			</if>
+  			<if test="before != null">
+  				and createDate &gt;= #{before}
+  			</if>
+  			<if test="after != null">
+  				and createDate &lt;= #{after}
+  			</if>
+  		</where>
+	</select>
 	
 </mapper>
