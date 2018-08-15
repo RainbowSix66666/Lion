@@ -9,15 +9,11 @@ public class GoodsPhotoModel {
 	private byte[] photo;
 	private String des;
 	private int rank;
-	//关联的属性--商品
-	private GoodsModel goods = null;
 	
-	public GoodsModel getGoods() {
-		return goods;
-	}
-	public void setGoods(GoodsModel goods) {
-		this.goods = goods;
-	}
+	//关联属性-商品
+	private GoodsModel good=null;
+	
+	
 	
 	public int getProid() {
 		return proid;
@@ -25,8 +21,6 @@ public class GoodsPhotoModel {
 	public void setProid(int proid) {
 		this.proid = proid;
 	}
-	//关联属性-商品
-	private GoodsModel good=null;
 	
 	
 	public GoodsModel getGood() {
