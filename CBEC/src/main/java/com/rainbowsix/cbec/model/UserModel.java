@@ -1,5 +1,7 @@
 package com.rainbowsix.cbec.model;
 
+import java.util.List;
+
 import org.apache.ibatis.type.Alias;
 
 @Alias("User")
@@ -10,22 +12,27 @@ public class UserModel {
 	private long mvoid;
 	private long paypackageid;
 	
-	private RoleModel role = null;
 	private ResellerModel reseller = null;
+	private List<RoleModel> roles = null;	
 	
-	
+	public List<RoleModel> getRoles() {
+		return roles;
+	}
+	public void setRoles(List<RoleModel> roles) {
+		this.roles = roles;
+	}
 	public ResellerModel getReseller() {
 		return reseller;
 	}
 	public void setReseller(ResellerModel reseller) {
 		this.reseller = reseller;
 	}
-	public RoleModel getRole() {
-		return role;
-	}
-	public void setRole(RoleModel role) {
-		this.role = role;
-	}
+//	public RoleModel getRole() {
+//		return role;
+//	}
+//	public void setRole(RoleModel role) {
+//		this.role = role;
+//	}
 	//	private String role;
 	public long getNo() {
 		return no;

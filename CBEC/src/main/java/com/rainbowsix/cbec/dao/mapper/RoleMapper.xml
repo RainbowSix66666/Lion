@@ -44,7 +44,9 @@
 	</select>
 	
 	<select id="selectAllWithUsers" resultMap="roleResultMapWithUsers">
-		select u.*, r.rolename, r.detial, r.menuid from user_role r left outer join sys_user u on r.roleid = u.roleid
+		select u.*, r.roleid, r.rolename, r.detial, r.menuid from sys_user u 
+		inner join user_link_role l on(u.userid = l.userid)
+		right outer join user_role r on(l.roleid = r.roleid)
 	</select>
 	
 </mapper>

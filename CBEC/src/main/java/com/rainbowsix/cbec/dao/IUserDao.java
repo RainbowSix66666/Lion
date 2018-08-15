@@ -17,4 +17,5 @@ public interface IUserDao {
 			throws Exception;
 	public List<UserModel> selectAllWithRole()
 			throws Exception;
+	public List<UserModel> selectByCondiction() throws Exception;
 }
