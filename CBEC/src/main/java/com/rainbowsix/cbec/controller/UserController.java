@@ -51,8 +51,25 @@ public class UserController {
 	@RequestMapping("list/condiction")
 	public List<UserModel> listByCondiction(@RequestParam(required=false)String name, @RequestParam(required=false)Date before, 
 			@RequestParam(required=false)Date after, @RequestParam(required=false)int[] roles) throws Exception{
+		
+		if(name != null && name.trim().length() > 0) {
 			name = "%" + name + "%";
+		}
+		
 		return userService.selectListByCondiction(name, before, after, roles);
+	}
+	@RequestMapping("list/condiction/page")
+	public List<UserModel> listByCondictionWithPage(@RequestParam(required=false)String name, @RequestParam(required=false)Date before, 
+			@RequestParam(required=false)Date after, @RequestParam(required=false)int[] roles, 
+			@RequestParam(required=false, defaultValue="10") int rows, 
+			@RequestParam(required=false, defaultValue="1") int page) throws Exception{
+		if(name != null && name.trim().length() > 0) {
+			name = "%" + name + "%";
+		}
+		int start = rows * (page - 1) + 1;
+		int end = rows * page;
+		
+		return userService.selectListByCondictionWithPage(name, before, after, roles, start, end);
 	}
 	
 	@RequestMapping(value="modify", method={RequestMethod.POST})

@@ -13,4 +13,6 @@ public interface IUserService {
 	public UserModel selectById(long id) throws Exception;
 	public List<UserModel> selectListByCondiction(String name, Date before, Date after, int[] roles) 
 			throws Exception;
+	public List<UserModel> selectListByCondictionWithPage(String name, Date before, Date after, int[] roles, int start, int end) 
+			throws Exception;
 } 

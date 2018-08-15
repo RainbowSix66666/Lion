@@ -59,4 +59,11 @@ public class UserService implements IUserService {
 		return userDao.selectByCondiction(name, before, after, roles);
 	}
 
+	@Override
+	public List<UserModel> selectListByCondictionWithPage(String name, Date before, Date after, int[] roles, int start,
+			int end) throws Exception {
+		// TODO Auto-generated method stub
+		return userDao.selectByCondictionWithPage(name, before, after, roles, start, end);
+	}
+
 }

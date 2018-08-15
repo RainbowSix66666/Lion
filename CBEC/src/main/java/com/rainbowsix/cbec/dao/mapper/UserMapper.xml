@@ -83,4 +83,34 @@
   		</where>
 	</select>
 	
+	<select id="selectByCondictionWithPage" resultMap="userResultMapWithRole">
+		select * from(
+			select a.*, rownum rn from 
+		    (select u.*, r.roleid, r.rolename, r.detial, r.menuid 
+		     from sys_user u inner join user_link_role l on u.userid = l.userid
+		     inner join user_role r on l.roleid = r.roleid 
+		     order by u.userid desc) a
+		     <where>
+		     	<if test="name != null and name != '' ">
+	  				username like #{name}
+	  			</if>
+	  			<if test="roles != null">
+	  				and roleid in
+	  				<foreach collection="roles" item = "i" open="(" separator="," close=")">
+	  					#{i}
+	  				</foreach>
+	  			</if>
+	  			<if test="before != null">
+	  				and createDate &gt;= #{before}
+	  			</if>
+	  			<if test="after != null">
+	  				and createDate &lt;= #{after}
+	  			</if>
+	  			<if test="true">
+	  				and rownum &lt;= #{end}
+	  			</if>
+		     </where>	  
+		 ) where rn &gt;= #{start}
+	</select>
+	
 </mapper>
