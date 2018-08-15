@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rainbowsix.cbec.dao.ILogisticsDao">
+
+	<resultMap id="LogisticsResultMap" type="Logistics">
+	  <id property="logisticsid" column="LOGISTICSID" />
+	  <result property="address" column="ADDRESS"/>
+	  <result property="expressnumber" column="EXPRESSNUMBER"/>
+	  <result property="consignee" column="CONSIGNEE"/>
+	  <result property="phone" column="PHONE"/>
+	</resultMap>
+	
+	<insert id="create" parameterType="Logistics">
+	insert into LOGISTICS (LOGISTICSID,ADDRESS,EXPRESSNUMBER,CONSIGNEE,PHONE)
+	values (LOGISTICS_SEQUENCE.nextval,#{address},#{expressnumber},#{consignee},#{phone})
+	</insert>
+	
+	<update id="update" parameterType="Logistics">
+	update LOGISTICS set ADDRESS=#{address}, EXPRESSNUMBER=#{expressnumber}, CONSIGNEE=#{consignee}, PHONE=#{phone} where LOGISTICSID=#{logisticsid}
+	</update>
+	
+	<delete id="delete" parameterType="Logistics">
+	delete from LOGISTICS where LOGISTICSID=#{logisticsid}
+	</delete>
+	
+	<select id="selectLogisticsListByAll" resultMap="LogisticsResultMap">
+		select * from LOGISTICS
+	</select>
+	
+	<select id="selectLogisticsListById" resultMap="LogisticsResultMap">
+	select * from LOGISTICS where LOGISTICSID=#{logisticsid}
+	</select>
+
+
+</mapper>
