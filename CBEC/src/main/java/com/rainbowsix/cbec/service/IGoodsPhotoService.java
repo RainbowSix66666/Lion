@@ -2,6 +2,8 @@ package com.rainbowsix.cbec.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.rainbowsix.cbec.model.GoodsPhotoModel;
 
 public interface IGoodsPhotoService {
@@ -15,4 +17,12 @@ public interface IGoodsPhotoService {
 	public List<GoodsPhotoModel> selectLisAllWithGoods() throws Exception;
 	//取得所有GoodsPhoto列表无商品   无分页（有图片）
 	public List<GoodsPhotoModel> selectLisAllWithoutGoods() throws Exception;
+	
+	//根据条件取照片列表 无分页
+	public List<GoodsPhotoModel> selectListByCondition(int photoId,int proid,  
+			String des, int rank) throws Exception;
+	
+	//根据条件取照片列表 分页
+	public List<GoodsPhotoModel> selectListByConditionWithPage(int photoId,int proid,  
+			String des, int rank, int start, int end) throws Exception;
 }

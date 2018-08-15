@@ -2,6 +2,8 @@ package com.rainbowsix.cbec.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.rainbowsix.cbec.model.GoodsModel;
 import com.rainbowsix.cbec.model.GoodsPhotoModel;
 
@@ -35,8 +37,38 @@ public interface IGoodsPhotoDao {
 		//取得单个商品照片列表 
 		public GoodsPhotoModel selectByPhotoId(int photoId) throws Exception;	
 		
+		//根据条件取照片列表 无分页
+		 public List<GoodsPhotoModel> selectListByCondition(@Param("photoId") int photoId,
+				 @Param("proid") int proid, @Param("des")  String des,
+				 @Param("rank")  int rank) throws Exception;
 		 
-		//取得所有商品总数
+		 //根据条件取照片列表 分页
+		 public List<GoodsPhotoModel> selectListByConditionWithPage(@Param("photoId") int photoId,
+				 @Param("proid") int proid, @Param("des")  String des,
+				 @Param("rank")  int rank,  @Param("start") int start,  @Param("end") int end) throws Exception;
+		
+		 
+		 //取得所有商品总数
 //		public int Count() throws Exception;
 		
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

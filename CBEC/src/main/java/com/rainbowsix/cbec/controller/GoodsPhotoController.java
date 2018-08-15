@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -56,6 +57,22 @@ public class GoodsPhotoController {
 		return goodsPhotoService.selectLisAllWithoutGoods();
 	}
 	
-
+	//取得所有GoodsPhoto列表商品   无分页（有图片）	
+		@RequestMapping(value="/list/byphotoid/all",method={RequestMethod.GET})
+		@ResponseBody
+	public List<GoodsPhotoModel> selectListByCondition(@RequestParam(required=false,defaultValue="0") int photoId,
+			@RequestParam(required=false,defaultValue="0") int proid,  
+			@RequestParam(required=false,defaultValue="null")String des, 
+			@RequestParam(required=false,defaultValue="0")int rank)throws Exception{
+			
+			return goodsPhotoService.selectListByCondition(photoId, proid, des, rank);
+		}
 	
+		//根据条件取照片列表 分页
+		@RequestMapping(value="/list/byphotoid/allwithoutgoods/page",method={RequestMethod.GET})
+		@ResponseBody
+		public List<GoodsPhotoModel> selectListByConditionWithPage(int photoId,int proid,  
+				String des, int rank, int start, int end) throws Exception{
+			return goodsPhotoService.selectListByConditionWithPage(photoId, proid, des, rank, start, end);
+		}
 }

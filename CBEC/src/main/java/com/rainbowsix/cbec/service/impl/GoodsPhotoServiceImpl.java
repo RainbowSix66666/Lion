@@ -46,6 +46,16 @@ public class GoodsPhotoServiceImpl implements IGoodsPhotoService {
 	public List<GoodsPhotoModel> selectLisAllWithoutGoods() throws Exception {	
 		return goodsPhotoDao.selectLisAllWithoutGoods();
 	}
+	@Override
+	public List<GoodsPhotoModel> selectListByCondition(int photoId, int proid, String des, int rank) throws Exception {
+		
+		return goodsPhotoDao.selectListByCondition(photoId, proid, des, rank);
+	}
+	@Override
+	public List<GoodsPhotoModel> selectListByConditionWithPage(int photoId, int proid, String des, int rank, int start,
+			int end) throws Exception {
+		return goodsPhotoDao.selectListByConditionWithPage(photoId, proid, des, rank, start, end);
+	}
 	
 	
 }
