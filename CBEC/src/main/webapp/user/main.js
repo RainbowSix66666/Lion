@@ -12,28 +12,30 @@ $(document).ready(function(){
 //	alert("run bad");
 	//显示所有用户数据
 	function showAllUserData(){
-		$("div#userContent").load("user/allUserTable.html", function(){
-			$.getJSON("user/all.mvc", function(userList){
-				var lines = "";
-				for(var i = 0; i < userList.length; ++i){
-					lines = lines + "<tr user-id='"+ userList[i].no + "'><td>" + userList[i].name + 
-					"</td><td>" + userList[i].role.name + "</td></tr>";
-				}
-//				alert(lines);
-				$("table#userListTable tbody").html(lines);
-				//点击tr时间处理
-//				alert("va");
-				$("table#userListTable tbody tr").on("click",function(){				
-//					alert($(this).attr("user-id"));
-					userId = $(this).attr("user-id");
-					$("table#userListTable tbody tr").css("background-color","#FFFFFF")
-					$(this).css("background-color","#EEEE");
-				});
+		$("div#userContent").load("user/tables.html", function(){
+			alert("hello");
+			$('table#userGrid').jqGrid({			 
+				 url: 'user/list/condiction/page.mvc',
+		         mtype: 'GET',
+				 styleUI : 'Bootstrap',
+		         datatype: 'json',
+		         colModel: [
+		        	 { label: '编号', name: 'no',  width: 100 },
+		             { label:'用户名', name: 'name', width: 50 }
+		         ],
+		         autowidth:true,
+		         width: "100%",
+				 height: 350,
+		         pager: "#userGridPager"
 			});
+			
 		});
 	}
 	
 	showAllUserData();
+	
+	
+	
 	//添加响应
 	$("a#toAddUser").on("click", function(){
 		$("div#main_content").load("user/addUser.html", function(){
