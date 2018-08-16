@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.apache.ibatis.type.Alias;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 @Alias("GoodsModel")
 public class GoodsModel {
 	private static final long serialVersionUID = 1L;
@@ -18,6 +20,7 @@ public class GoodsModel {
 	private double price=0;//价格
 	private double weight=0;//重量
 	
+	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date gooddate=null;//生产日期
 	
