@@ -135,7 +135,16 @@ $("a#OrderDeleteLink").on("click", function(){
 	}
 	
 });
+
+//点击查看物流按钮事件处理
+$("a#LogisticsViewLink").on("click", function(){
+	$("div#OrderMainContent").load("logistics/main.html");
+
+	
+});
 showOrderList();
+
+
 
 });
 
