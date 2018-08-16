@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.ibatis.type.Alias;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Alias("User")
 public class UserModel {
 	private long no;
@@ -14,6 +16,7 @@ public class UserModel {
 	private long mvoid;
 	private long paypackageid;
 	@DateTimeFormat(pattern = "yyy-MM-dd")
+	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
 	private Date createDate;
 	
 	private ResellerModel reseller = null;
