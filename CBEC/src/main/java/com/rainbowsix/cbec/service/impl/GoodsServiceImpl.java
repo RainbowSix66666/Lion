@@ -34,7 +34,7 @@ public class GoodsServiceImpl implements IGoodsService {
 		goodsdao.create(good);
 	}
 
-	public void mod(int proid) throws Exception {
+	public void modify(GoodsModel good) throws Exception {
 //		String resource = "wv_config.xml";
 //		Reader reader = Resources.getResourceAsReader(resource);
 //		SqlSessionFactory sqlSessionFactory= new SqlSessionFactoryBuilder().build(reader);
@@ -45,7 +45,7 @@ public class GoodsServiceImpl implements IGoodsService {
 //		
 //		session.commit();
 //		session.close();
-		goodsdao.update(proid);
+		goodsdao.update(good);
 		
 
 	}

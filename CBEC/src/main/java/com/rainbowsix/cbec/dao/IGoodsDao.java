@@ -9,7 +9,7 @@ public interface IGoodsDao {
 	public void create(GoodsModel good) throws Exception;
 	
 	//修改商品
-	public void update(int proid) throws Exception;
+	public void update(GoodsModel good) throws Exception;
 	
 	//删除商品
 	public void delete(int proid) throws Exception;

@@ -10,9 +10,9 @@
 			<result property="comid" column="comid"/>
 			<result property="title" column="title"/>
 			<result property="price" column="price"/>
-			<result property="date" column="gooddate"/>
+			<result property="gooddate" column="gooddate"/>
 			<result property="stock" column="stock"/>
-			<result property="desc" column="gooddesc"/>
+			<result property="gooddesc" column="gooddesc"/>
 			<result property="type" column="type"/>
 			<result property="weight" column="weight"/>
 </resultMap>
@@ -20,21 +20,21 @@
 
 <insert id="create" parameterType="GoodsModel">
 	insert into GOODS (PROID,COMID,TITLE,PRICE,GOODDATE,STOCK,GOODDESC,TYPE,WEIGHT,STATE)
-	values (PROID.nextval,#{comid},#{title},#{price},#{date,jdbcType=DATE},#{stock},#{desc,jdbcType=VARCHAR},#{type,jdbcType=VARCHAR},#{weight},#{state})
+	values (PROID.nextval,#{comid},#{title},#{price},#{gooddate,jdbcType=DATE},#{stock},#{gooddesc,jdbcType=VARCHAR},#{type,jdbcType=VARCHAR},#{weight},#{state})
 </insert>
 
-	<update id="update" parameterType="int">
+	<update id="update" parameterType="GoodsModel">
 		update GOODS set 
 		COMID = #{comid},
 		TITLE = #{title},
 		PRICE = #{price},
-		GOODDATE = #{date},
+		GOODDATE = #{gooddate},
 		STATE = #{state},
 		STOCK = #{stock},
-		GOODDESC = #{desc},
+		GOODDESC = #{gooddesc},
 		TYPE = #{type},
 		WEIGHT = #{weight}
-		where #{proid}=PROID
+		where PROID =#{proid}
 	</update>
 	
 	<delete id="delete" parameterType="int">
