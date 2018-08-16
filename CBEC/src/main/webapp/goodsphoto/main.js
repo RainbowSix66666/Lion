@@ -21,8 +21,9 @@ $(document).ready(function(){
              { label:'生日', name: 'rank', width: 150 },
          ],
 		 viewrecords: true,
+		 width: "100%",
          height: 400,
-         rowNum: 15,
+         rowNum: 2,
          pager: "#goodsphotoGridPager"
 	});
 	
