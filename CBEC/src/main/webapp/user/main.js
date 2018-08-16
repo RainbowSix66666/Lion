@@ -9,10 +9,10 @@
 
 $(document).ready(function(){
 	var userId = "0";
-	alert("run bad");
+//	alert("run bad");
 	//显示所有用户数据
 	function showAllUserData(){
-		alert("load html");
+//		alert("load html");
 		$("div#userContent1").load("user/tables.html", function(){
 			
 			$('table#userGrid').jqGrid({	
@@ -48,7 +48,7 @@ $(document).ready(function(){
 		         multiselect:false,
 		         onSelectRow:function(id){
 		        	 userId = id;
-		        	 alert(id);
+//		        	 alert(id);
 		         }
 			});
 			
