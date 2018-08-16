@@ -37,9 +37,9 @@ public class GoodsController {
 	
 	
 	@RequestMapping(value="/modify",method={RequestMethod.POST})
-	public String modify(int proid) throws Exception{
+	public String modify(GoodsModel good) throws Exception{
 		
-		goodservice.mod(proid);;		
+		goodservice.modify(good);;		
 		
 		return "modify complete";
 	}
