@@ -13,27 +13,31 @@ $(document).ready(function(){
 	//显示所有用户数据
 	function showAllUserData(){
 		$("div#userContent").load("user/tables.html", function(){
-			alert("hello");
-			$('table#userGrid').jqGrid({			 
+//			alert("hello");
+			$('table#userGrid').jqGrid({	
+				//获取数据
 				 url: 'user/list/condiction/page.mvc',
 		         mtype: 'GET',
 				 styleUI : 'Bootstrap',
 		         datatype: 'json',
 		         colModel: [
-		        	 { label: '编号', name: 'no',  width: 100 },
-		             { label:'用户名', name: 'name', width: 50 }
+		        	 { label: '编号', name: 'no',  width: 50 },
+		             { label:'用户名', name: 'name', width: 50 },
+		             { label:'创建日期', name: 'createDate', width: 50 }
 		         ],
+		         //设置表格宽高
 		         autowidth:true,
 		         width: "100%",
 				 height: 350,
+				 //加载表头
 		         pager: "#userGridPager"
+		         
 			});
 			
 		});
 	}
 	
-	showAllUserData();
-	
+	showAllUserData();	
 	
 	
 	//添加响应
