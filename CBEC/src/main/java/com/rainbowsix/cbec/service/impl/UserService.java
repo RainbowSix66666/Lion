@@ -66,4 +66,19 @@ public class UserService implements IUserService {
 		return userDao.selectByCondictionWithPage(name, before, after, roles, start, end);
 	}
 
+	@Override
+	public int getCountByCondictionWithoutRole(String name, Date before, Date after) throws Exception {
+		// TODO Auto-generated method stub
+		
+		return userDao.selectCountByCondictionWithoutRole(name, before, after);
+	}
+
+	@Override
+	public List<UserModel> selectListByCondictionWithPageWithoutRole(String name, Date before, Date after, int start,
+			int end) throws Exception {
+		// TODO Auto-generated method stub
+		return userDao.selectByCondictionWithPageWithoutRole(name, before, after, start, end);
+	}
+	
+
 }

@@ -15,4 +15,7 @@ public interface IUserService {
 			throws Exception;
 	public List<UserModel> selectListByCondictionWithPage(String name, Date before, Date after, int[] roles, int start, int end) 
 			throws Exception;
+	public int getCountByCondictionWithoutRole(String name, Date before, Date after) throws Exception;
+	public List<UserModel> selectListByCondictionWithPageWithoutRole(String name, Date before, Date after, int start, int end) throws Exception;
+	
 } 

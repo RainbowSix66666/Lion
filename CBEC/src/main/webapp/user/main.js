@@ -16,22 +16,39 @@ $(document).ready(function(){
 //			alert("hello");
 			$('table#userGrid').jqGrid({	
 				//获取数据
-				 url: 'user/list/condiction/page.mvc',
-		         mtype: 'GET',
-				 styleUI : 'Bootstrap',
-		         datatype: 'json',
-		         colModel: [
+				url: 'user/list/condiction/page/without/role.mvc',
+		        mtype: 'GET',
+				styleUI : 'Bootstrap',
+		        datatype: 'json',
+		        colModel: [
 		        	 { label: '编号', name: 'no',  width: 50 },
-		             { label:'用户名', name: 'name', width: 50 },
-		             { label:'创建日期', name: 'createDate', width: 50 }
-		         ],
+		        	 { label:'用户名', name: 'name', width: 50 },
+		        	 { label:'创建日期', name: 'createDate', width: 50 }
+		        ],
 		         //设置表格宽高
-		         autowidth:true,
-		         width: "100%",
-				 height: 350,
+		        autowidth:true,
+		        width: "100%",
+				height: 350,
 				 //加载表头
-		         pager: "#userGridPager"
-		         
+		        pager: "#userGridPager",
+		         //设置每页格式
+		        rowNum: 10,
+		        rowList:[2,10,15,20],
+		        //映射
+		        jsonReader : {
+		             root: "rows",  //指定数据列表
+		             page: "page",
+		             total: "total",
+		             records: "records",
+		             repeatitems: true,
+		             id: "id"
+		         },
+		         //选择单条数据
+		         multiselect:false,
+		         onSelectRow:function(id){
+		        	 userId=id;
+		        	 alert(userId);
+		         }
 			});
 			
 		});
