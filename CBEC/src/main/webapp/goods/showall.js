@@ -1,7 +1,7 @@
 //商品页面加载成功事件
 $(document).ready(function(){
-	//alert("成功加载");
 	var proid=0;
+	//alert("成功加载");
 	
 			$.getJSON("goods/select/all.mvc",function(all){
 				var title="";
@@ -12,13 +12,34 @@ $(document).ready(function(){
 	                		"<h3 class='panel-title'><i class='fa fa-shopping-cart'>"+all[i].title+"</i></h3>"+
 	            		"</div>"+
 	            		"<div>"+
-	            		"<a id='goodInfo' href=goodInfo.html?'proid="+all[i].proid+"'><img class='img-thumbnail' src='http://placehold.it/200x200' alt=''/></a>"+
+	            		"<a id='goodInfo' href=goods/goodInfo.html proid='"+all[i].proid+"'><img class='img-thumbnail' src='http://placehold.it/200x200' alt=''/></a>"+
 	            		"</div>"+
 	        		"</div>"+
 	    		"</div>"
 					//title=title+"<tr data-no='"+all[i].proid+"'><td>"+all[i].title+"</td></tr>"
 	 			}
 				$("div#goodsall").html(title);
+				$("a#goodInfo").on("click",function(){
+					var href = $(this).attr("href");
+					proid=$(this).attr("proid");
+					$("div#main_body").load(href,function(){
+						alert(proid);
+						$.getJSON("goods/select/one.mvc",{proid:proid},function(resultData){
+							var title=resultData.title
+									//将原有的值显示
+									$("input[name='comid']").val(resultData.comid);
+									$("input[name='title']").val(resultData.title);
+									$("input[name='price']").val(resultData.price);
+									$("input[name='state']").val(resultData.state);
+									$("input[name='stock']").val(resultData.stock);
+									$("input[name='date']").val(resultData.date);
+									$("input[name='type']").val(resultData.type);
+									$("input[name='weight']").val(resultData.weight);
+									$("input[name='desc']").val(resultData.desc);
+								});
+					});	
+					event.preventDefault();
+				})
 			});	
 });
 
