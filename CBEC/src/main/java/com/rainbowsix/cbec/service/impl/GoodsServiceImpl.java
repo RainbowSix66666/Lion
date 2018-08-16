@@ -77,6 +77,7 @@ public class GoodsServiceImpl implements IGoodsService {
 //		
 //		session.commit();
 //		session.close();
+		System.out.println(goodsdao.byone(proid).getdate());
 		return goodsdao.byone(proid);
 	}
 	

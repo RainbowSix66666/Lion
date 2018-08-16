@@ -22,7 +22,6 @@ public class GoodsController {
 	
 	@RequestMapping(value="/add",method={RequestMethod.POST})
 	public String add(GoodsModel good) throws Exception{
-		System.out.println(good.getdate().toString());
 		goodservice.add(good);		
 		
 		return "add complete";
@@ -38,7 +37,6 @@ public class GoodsController {
 	
 	@RequestMapping(value="/modify",method={RequestMethod.POST})
 	public String modify(GoodsModel good) throws Exception{
-		
 		goodservice.modify(good);;		
 		
 		return "modify complete";

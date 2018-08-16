@@ -28,11 +28,11 @@
 		COMID = #{comid},
 		TITLE = #{title},
 		PRICE = #{price},
-		GOODDATE = #{gooddate},
+		GOODDATE = #{gooddate,jdbcType=DATE},
 		STATE = #{state},
 		STOCK = #{stock},
-		GOODDESC = #{gooddesc},
-		TYPE = #{type},
+		GOODDESC = #{gooddesc,jdbcType=VARCHAR},
+		TYPE = #{type,jdbcType=VARCHAR},
 		WEIGHT = #{weight}
 		where PROID =#{proid}
 	</update>
