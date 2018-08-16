@@ -45,8 +45,8 @@
   	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
 		
-	<!-- 	<property name="jdbcUrl" value="jdbc:oracle:thin:@10.1.53.30:1521:neuedu"/> -->
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:neuedu"/>
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@10.1.53.30:1521:neuedu"/>
+		<!-- <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:neuedu"/> -->
 		<property name="user" value="RainbowSix6"/>
 		<property name="password" value="123456"/>		
 		<property name="initialPoolSize" value="3"></property>  
@@ -65,11 +65,13 @@
 			</list>
 		</property>
 		<property name="typeAliasesPackage" value="com.rainbowsix.cbec.model"/>
+		<!-- 
 		<property name="configuration">
 		    <bean class="org.apache.ibatis.session.Configuration">
 		      <property name="mapUnderscoreToCamelCase" value="true"/>
 		    </bean>
-	  	</property>
+	  	</property> -->
+	  	 <property name="configLocation" value="classpath:mybatis-config.xml"/>
 	</bean>
 	<!-- 配置SqlSession -->
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">

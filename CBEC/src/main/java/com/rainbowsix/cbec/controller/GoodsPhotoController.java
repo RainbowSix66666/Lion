@@ -62,8 +62,11 @@ public class GoodsPhotoController {
 		@ResponseBody
 	public List<GoodsPhotoModel> selectListByCondition(@RequestParam(required=false,defaultValue="0") int photoId,
 			@RequestParam(required=false,defaultValue="0") int proid,  
-			@RequestParam(required=false,defaultValue="null")String des, 
-			@RequestParam(required=false,defaultValue="0")int rank)throws Exception{
+			@RequestParam(required=false,defaultValue="") String des, 
+			@RequestParam(required=false,defaultValue="0") int rank)throws Exception{
+			if(des!=null&&des.trim().length()>0) {
+				des="%"+des+"%";
+			}
 			
 			return goodsPhotoService.selectListByCondition(photoId, proid, des, rank);
 		}
@@ -71,8 +74,16 @@ public class GoodsPhotoController {
 		//根据条件取照片列表 分页
 		@RequestMapping(value="/list/byphotoid/allwithoutgoods/page",method={RequestMethod.GET})
 		@ResponseBody
-		public List<GoodsPhotoModel> selectListByConditionWithPage(int photoId,int proid,  
-				String des, int rank, int start, int end) throws Exception{
-			return goodsPhotoService.selectListByConditionWithPage(photoId, proid, des, rank, start, end);
+		public List<GoodsPhotoModel> selectListByConditionWithPage(@RequestParam(required=false,defaultValue="0") int photoId,
+				@RequestParam(required=false,defaultValue="0") int proid,  
+				@RequestParam(required=false,defaultValue="") String des, 
+				@RequestParam(required=false,defaultValue="0") int rank,
+				@RequestParam(required=false,defaultValue="1") int rows, 
+				@RequestParam(required=false,defaultValue="1") int page) throws Exception{
+			
+			if(des!=null&&des.trim().length()>0) {
+				des="%"+des+"%";
+			}
+			return goodsPhotoService.selectListByConditionWithPage(photoId, proid,des, rank, rows, page);
 		}
 }

@@ -24,5 +24,5 @@ public interface IGoodsPhotoService {
 	
 	//根据条件取照片列表 分页
 	public List<GoodsPhotoModel> selectListByConditionWithPage(int photoId,int proid,  
-			String des, int rank, int start, int end) throws Exception;
+			String des, int rank, int rows, int page) throws Exception;
 }
