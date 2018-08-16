@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rainbowsix.cbec.model.GoodsPhotoModel;
+import com.rainbowsix.cbec.result.JqGridJson;
 import com.rainbowsix.cbec.service.IGoodsPhotoService;
 
 @RestController
@@ -74,16 +75,32 @@ public class GoodsPhotoController {
 		//根据条件取照片列表 分页
 		@RequestMapping(value="/list/byphotoid/allwithoutgoods/page",method={RequestMethod.GET})
 		@ResponseBody
-		public List<GoodsPhotoModel> selectListByConditionWithPage(@RequestParam(required=false,defaultValue="0") int photoId,
+		public JqGridJson<GoodsPhotoModel> selectListByConditionWithPage(@RequestParam(required=false,defaultValue="0") int photoId,
 				@RequestParam(required=false,defaultValue="0") int proid,  
 				@RequestParam(required=false,defaultValue="") String des, 
 				@RequestParam(required=false,defaultValue="0") int rank,
-				@RequestParam(required=false,defaultValue="1") int rows, 
+				@RequestParam(required=false,defaultValue="3") int rows, 
 				@RequestParam(required=false,defaultValue="1") int page) throws Exception{
 			
 			if(des!=null&&des.trim().length()>0) {
 				des="%"+des+"%";
 			}
-			return goodsPhotoService.selectListByConditionWithPage(photoId, proid,des, rank, rows, page);
+			JqGridJson<GoodsPhotoModel> result = new JqGridJson<GoodsPhotoModel>();
+			
+			result.setRecords(goodsPhotoService.getCountWithPhoto(photoId, proid, des, rank));
+			int pageCount = goodsPhotoService.getPageWithPhoto(photoId, proid, des, rank, rows);
+			if(page>pageCount) {
+				page = pageCount;
+			}
+			if(page<1) {
+				page = 1;
+			}
+			
+			result.setTotal(pageCount);
+			result.setRows(goodsPhotoService.selectListByConditionWithPage(photoId, proid, des, rank, rows, page));
+			result.setPage(page);
+			
+			return result;
+//					;
 		}
 }

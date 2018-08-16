@@ -47,6 +47,15 @@ public interface IGoodsPhotoDao {
 				 @Param("proid") int proid, @Param("des")  String des,
 				 @Param("rank")  int rank,  @Param("start") int start,  @Param("end") int end) throws Exception;
 		
+		 //根据检索条件取得照片的个数
+		 public int getCountWithPhoto(@Param("photoId") int photoId,
+				 @Param("proid") int proid, @Param("des")  String des,
+				 @Param("rank")  int rank) throws Exception;
+		 
+		 //根据检索条件取得照片的页数
+		 public int getPageWithPhoto(@Param("photoId") int photoId,
+				 @Param("proid") int proid, @Param("des")  String des,
+				 @Param("rank")  int rank, @Param("rows")  int rows) throws Exception;
 		 
 		 //取得所有商品总数
 //		public int Count() throws Exception;
