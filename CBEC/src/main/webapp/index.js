@@ -1,7 +1,8 @@
 
 $(document).ready(function(){
-	$("ul#main_menu li ul a").on("click", function(event){
+	$("ul#userManage li a").on("click", function(event){
 		var href = $(this).attr("href");
+		alert("first");
 		$("div#main_body").load(href);		
 		event.preventDefault();
 	});
@@ -23,7 +24,7 @@ $(document).ready(function(){
 		$("div#main_body").load(href);		
 		event.preventDefault();
 	});
-})
+});
 
 
 

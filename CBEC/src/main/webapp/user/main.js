@@ -9,11 +9,12 @@
 
 $(document).ready(function(){
 	var userId = "0";
-//	alert("run bad");
+	alert("run bad");
 	//显示所有用户数据
 	function showAllUserData(){
-		$("div#userContent").load("user/tables.html", function(){
-//			alert("hello");
+		alert("load html");
+		$("div#userContent1").load("user/tables.html", function(){
+			
 			$('table#userGrid').jqGrid({	
 				//获取数据
 				url: 'user/list/condiction/page/without/role.mvc',
@@ -36,18 +37,18 @@ $(document).ready(function(){
 		        rowList:[2,10,15,20],
 		        //映射
 		        jsonReader : {
-		             root: "rows",  //指定数据列表
+		             rows: "rows",  //指定数据列表
 		             page: "page",
 		             total: "total",
 		             records: "records",
 		             repeatitems: true,
-		             id: "id"
+		             id: "no"
 		         },
 		         //选择单条数据
 		         multiselect:false,
 		         onSelectRow:function(id){
-		        	 userId=id;
-		        	 alert(userId);
+		        	 userId = id;
+		        	 alert(id);
 		         }
 			});
 			
@@ -71,15 +72,16 @@ $(document).ready(function(){
 					
 					if(re == 'OK'){
 						alert("添加成功");
-						$("div#main_content").load("user/main.html");
+						showAllUserData();
 					}else{
 						alert("添加失败");
 					}
 				});
-			})
+			});
 			//点击返回
 			$("button#returnAllUser").on("click", function(){
-				$("div#main_content").load("user/main.html");
+//				alert("click back");
+				showAllUserData();
 			});
 		});
 	});
@@ -114,9 +116,9 @@ $(document).ready(function(){
 					}
 				});
 			}
-			$("div#main_content").load("user/main.html");			
+			showAllUserData();		
 		}	
-	})
+	});
 	//修改响应
 	$("a#tomodifyUser").on("click", function(){
 		if(userId == "0"){
@@ -134,7 +136,7 @@ $(document).ready(function(){
 				});
 				//点击返回
 				$("button#returnAllUser").on("click", function(){
-					$("div#main_content").load("user/main.html");
+					showAllUserData();
 				});
 				//点击丢该
 				$("button#modifyUserButton").on("click", function(){
@@ -149,5 +151,5 @@ $(document).ready(function(){
 			});
 			
 		}	
-	})
+	});
 })
