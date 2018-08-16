@@ -46,15 +46,18 @@ public class GoodsPhotoServiceImpl implements IGoodsPhotoService {
 	public List<GoodsPhotoModel> selectLisAllWithoutGoods() throws Exception {	
 		return goodsPhotoDao.selectLisAllWithoutGoods();
 	}
+	
+	//	<!-- 根据条件取照片列表 无分页 -->
 	@Override
 	public List<GoodsPhotoModel> selectListByCondition(int photoId, int proid, String des, int rank) throws Exception {
-		
 		return goodsPhotoDao.selectListByCondition(photoId, proid, des, rank);
 	}
+	
+//	<!-- 根据条件取照片列表 有分页 -->
 	@Override
-	public List<GoodsPhotoModel> selectListByConditionWithPage(int photoId, int proid, String des, int rank, int start,
-			int end) throws Exception {
-		return goodsPhotoDao.selectListByConditionWithPage(photoId, proid, des, rank, start, end);
+	public List<GoodsPhotoModel> selectListByConditionWithPage(int photoId, int proid, String des, int rank, int rows,
+			int page) throws Exception {
+		return goodsPhotoDao.selectListByConditionWithPage(photoId, proid, des, rank, rows*(page-1)+1, rows*page);
 	}
 	
 	

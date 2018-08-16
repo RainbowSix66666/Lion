@@ -65,11 +65,13 @@
 			</list>
 		</property>
 		<property name="typeAliasesPackage" value="com.rainbowsix.cbec.model"/>
+		<!-- 
 		<property name="configuration">
 		    <bean class="org.apache.ibatis.session.Configuration">
 		      <property name="mapUnderscoreToCamelCase" value="true"/>
 		    </bean>
-	  	</property>
+	  	</property> -->
+	  	 <property name="configLocation" value="classpath:mybatis-config.xml"/>
 	</bean>
 	<!-- 配置SqlSession -->
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">

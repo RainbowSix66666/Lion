@@ -99,10 +99,35 @@
 				<if test="rank!=0">
 					and a.rank=#{rank}
 				</if>
-				<if test="photoId!=null and photoId!=' '">
+				<if test="des!=null and des!=''">
 					and a.des like #{des}
 				</if>
 			</where>
+		</select>
+		
+		
+		<!-- 根据条件取照片列表 有分页 -->
+		<select id="selectListByConditionWithPage" resultMap="GoodsPhotoWithGoodsResultMap">
+			SELECT * FROM  (SELECT X.*, ROWNUM RN  
+	FROM (
+			select a.photo_id, a.des, a.rank, b.*  
+			from goodsphoto a inner join goods b 
+			on a.proid=b.proid
+			<where>
+				<if test="photoId!=0">
+					and a.photo_id=#{photoId}
+				</if>
+				<if test="proid!=0">
+					and a.proid=#{proid}
+				</if>
+				<if test="rank!=0">
+					and a.rank=#{rank}
+				</if>
+				<if test="des!=null and des!=''">
+					and a.des like #{des}
+				</if>
+			</where>)
+			 X WHERE ROWNUM &lt;=#{end})  WHERE RN &gt;=#{start}
 		</select>
 		
 		

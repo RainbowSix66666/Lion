@@ -17,9 +17,11 @@ public class GoodsModel {
 	private int stock=0;//库存
 	private double price=0;//价格
 	private double weight=0;//重量
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date date=null;//生产日期
-	private String desc=null;//简介
+	private Date gooddate=null;//生产日期
+	
+	private String gooddesc=null;//简介
 	
 	//关联属性--照片
 	private List<GoodsPhotoModel> goodsPhotos=null;
@@ -80,16 +82,16 @@ public class GoodsModel {
 		this.weight = weight;
 	}
 	public Date getdate() {
-		return date;
+		return gooddate;
 	}
-	public void setdate(Date date) {
-		this.date = date;
+	public void setdate(Date gooddate) {
+		this.gooddate = gooddate;
 	}
 	public String getDesc() {
-		return desc;
+		return gooddesc;
 	}
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setDesc(String gooddesc) {
+		this.gooddesc = gooddesc;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;

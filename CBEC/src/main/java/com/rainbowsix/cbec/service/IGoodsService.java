@@ -10,7 +10,7 @@ public interface IGoodsService {
 	public void add(GoodsModel good) throws Exception;
 	
 	//修改商品
-	public void mod(int proid) throws Exception;
+	public void modify(GoodsModel good) throws Exception;
 	
 	//删除商品
 	public void del(int proid) throws Exception;
