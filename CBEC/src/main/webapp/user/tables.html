@@ -1,10 +1,10 @@
 <div class="table-responsive" id="userContent">
-	<div class="panel-heading">
+	<div class="panel-heading"> 
 		<div class="row">
 			<div class="col-lg-3">
 				<div class="form-group input-group">
 					<span class="input-group-addon">用户名</span>
-					<input type="text" class="form-control" placeholder="Username" id="userName">
+					<input type="text" class="form-control" placeholder="Username" id="userName">					
 				</div>
 			</div>
 			<div class="col-lg-3">
@@ -15,7 +15,7 @@
 				</div>
 				<div class="col-lg-8">
 					<div class="form-group selected-row">
-						<select class="form-control">
+						<select class="form-control" id="selectTest">
 							<option>1</option>
 							<option>2</option>
 						</select>
@@ -26,13 +26,13 @@
 				<div class="form-group">
                     <label><h4>单选框</h4></label>
                     <label class="radio-inline">
-                            <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="option1" checked>1
+                        <input type="radio" name="radioTest" value="1" checked>1
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="option2">2
+                        <input type="radio" name="radioTest" value="2">2
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline3" value="option3">3
+                        <input type="radio" name="radioTest" value="3">3
                     </label>
                 </div>				
 			</div>
@@ -40,21 +40,15 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
-				<div class="form-group">
-					<label><h4>角色:  </h4></label>
-					<label class="checkbox-inline">
-                        <input type="checkbox">管理员
-                    </label>
-                    <label class="checkbox-inline">
-                        <input type="checkbox">借卖商
-                    </label>
+				<div class="form-group" id="rolesSelect">
+					<label> <h4>角色:  </h4></label>
 				</div>
 			</div>
 			<div class="col-lg-3">
-	            <input type="date" class="form-control" id="StartBirthdayDate" />
+	            <input type="date" class="form-control" id="beforeCreateDate" />
 			</div>
 			<div class="col-lg-3">
-	            <input type="date" class="form-control" id="StartBirthdayDate" />
+	            <input type="date" class="form-control" id="afterCreateDate" />
 			</div>
 		</div>
 	</div>

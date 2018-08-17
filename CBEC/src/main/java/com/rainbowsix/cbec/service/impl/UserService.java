@@ -44,8 +44,8 @@ public class UserService implements IUserService {
 
 	public List<UserModel> selectAll() throws Exception {
 		// TODO Auto-generated method stub
-//		return userDao.selectAll();
-		return userDao.selectAllWithRole();
+		return userDao.selectAll();
+//		return userDao.selectAllWithRole();
 	}
 
 	public UserModel selectById(long id) throws Exception {

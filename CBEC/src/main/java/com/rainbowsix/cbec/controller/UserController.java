@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -61,8 +62,10 @@ public class UserController {
 		return userService.selectListByCondiction(name, before, after, roles, area);
 	}
 	@RequestMapping("list/condiction/page")
-	public JqGridJson<UserModel> listByCondictionWithPage(@RequestParam(required=false)String name, @RequestParam(required=false)Date before, 
-			@RequestParam(required=false)Date after, @RequestParam(required=false)int[] roles,
+	public JqGridJson<UserModel> listByCondictionWithPage(@RequestParam(required=false)String name,
+			@RequestParam(required=false) @DateTimeFormat(pattern = "yyy-MM-dd") Date before, 
+			@RequestParam(required=false) @DateTimeFormat(pattern = "yyy-MM-dd") Date after, 
+			@RequestParam(required=false)int[] roles,
 			@RequestParam(required=false, defaultValue="0")int area,
 			@RequestParam(required=false, defaultValue="10") int rows, 
 			@RequestParam(required=false, defaultValue="1") int page) throws Exception{
@@ -72,10 +75,20 @@ public class UserController {
 		if(name != null && name.trim().length() > 0) {
 			name = "%" + name + "%";
 		}
+		
+		int records = userService.getCountByCondictionWithoutRole(name, before, after, area);
+		int total = ((records + rows - 1) / rows);
+		
+		if(page < 1) {
+			page = 1;
+		}else if(page > total) {
+			page = total;
+		}
+		
 		int start = rows * (page - 1) + 1;
 		int end = rows * page;		
 		result.setRows(userService.selectListByCondictionWithPage(name, before, after, roles, area, start, end));	
-		
+		result.setTotal(records);
 		result.setPage(page);
 		
 		return result;
