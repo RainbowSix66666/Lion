@@ -10,6 +10,11 @@
 		  <result property="des" column="DES"/>
 		  <result property="rank" column="RANK"/>
 		  	</resultMap>
+		  	
+		  	<!-- 取得照片等级的modelresultmapper -->
+		  	<resultMap id="GoodsPhotoRankResultMap" type="GoodsPhoto">
+				  <result property="rank" column="RANK"/>
+		  	</resultMap>
 		
 			<!-- 有goodsphoto 无商品 的字段映射resultMap 选择单个goodsphoto全部内容 -->
 		<resultMap id="GoodsPhotoWithPhotoResultMap" type="GoodsPhoto" extends="GoodsPhotoResultMap">
@@ -149,5 +154,20 @@
 				</if>
 			</where>
 		</select>
+		
+		<!-- 取得照片等级的modelresultmapper -->
+		<select id="selectRankCondition" resultMap="GoodsPhotoRankResultMap">
+			select DISTINCT rank from goodsphoto  order by rank 
+		</select>
 
 </mapper>
+
+
+
+
+
+
+
+
+
+

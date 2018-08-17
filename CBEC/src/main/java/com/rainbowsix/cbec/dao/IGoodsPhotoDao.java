@@ -57,6 +57,9 @@ public interface IGoodsPhotoDao {
 				 @Param("proid") int proid, @Param("des")  String des,
 				 @Param("rank")  int rank, @Param("rows")  int rows) throws Exception;
 		 
+		 //取得照片等级
+		 public List<GoodsPhotoModel> selectRankCondition() throws Exception;
+		 
 		 //取得所有商品总数
 //		public int Count() throws Exception;
 		

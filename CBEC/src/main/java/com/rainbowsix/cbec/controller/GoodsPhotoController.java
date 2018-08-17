@@ -103,4 +103,11 @@ public class GoodsPhotoController {
 			return result;
 //					;
 		}
+		
+		 //取得照片等级
+		@RequestMapping(value="/list/photorank",method={RequestMethod.GET})
+		@ResponseBody
+		 public List<GoodsPhotoModel> selectRankCondition() throws Exception{
+			 return goodsPhotoService.selectRankCondition();
+		 }
 }

@@ -79,6 +79,10 @@ public class GoodsPhotoServiceImpl implements IGoodsPhotoService {
 		
 		return pageCount;
 	}
+	@Override
+	public List<GoodsPhotoModel> selectRankCondition() throws Exception {
+		return goodsPhotoDao.selectRankCondition();
+	}
 	
 	
 }

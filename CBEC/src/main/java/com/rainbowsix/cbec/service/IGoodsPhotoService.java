@@ -35,5 +35,8 @@ public interface IGoodsPhotoService {
 	 public int getPageWithPhoto(int photoId,int proid,  
 				String des, int rank, int rows) throws Exception;
 	 
+	 //取得照片等级
+	 public List<GoodsPhotoModel> selectRankCondition() throws Exception;
+	 
 	
 }
