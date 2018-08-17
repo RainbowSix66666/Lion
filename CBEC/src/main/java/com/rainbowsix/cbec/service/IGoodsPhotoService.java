@@ -25,4 +25,15 @@ public interface IGoodsPhotoService {
 	//根据条件取照片列表 分页
 	public List<GoodsPhotoModel> selectListByConditionWithPage(int photoId,int proid,  
 			String des, int rank, int rows, int page) throws Exception;
+
+
+	//根据检索条件取得照片的个数
+	 public int getCountWithPhoto(int photoId,int proid,  
+				String des, int rank) throws Exception;
+	 
+	 //根据检索条件取得照片的页数
+	 public int getPageWithPhoto(int photoId,int proid,  
+				String des, int rank, int rows) throws Exception;
+	 
+	
 }

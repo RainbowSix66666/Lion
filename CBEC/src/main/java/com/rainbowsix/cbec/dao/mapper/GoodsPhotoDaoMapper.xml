@@ -130,6 +130,24 @@
 			 X WHERE ROWNUM &lt;=#{end})  WHERE RN &gt;=#{start}
 		</select>
 		
-		
+		<!-- 根据条件检索取得照片的个数 -->
+		<select id="getCountWithPhoto" resultType="int">
+			select count(a.photo_id)  
+			from goodsphoto a
+			<where>
+				<if test="photoId!=0">
+					and a.photo_id=#{photoId}
+				</if>
+				<if test="proid!=0">
+					and a.proid=#{proid}
+				</if>
+				<if test="rank!=0">
+					and a.rank=#{rank}
+				</if>
+				<if test="des!=null and des!=''">
+					and a.des like #{des}
+				</if>
+			</where>
+		</select>
 
 </mapper>

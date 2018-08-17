@@ -60,5 +60,25 @@ public class GoodsPhotoServiceImpl implements IGoodsPhotoService {
 		return goodsPhotoDao.selectListByConditionWithPage(photoId, proid, des, rank, rows*(page-1)+1, rows*page);
 	}
 	
+	//根据检索条件取得照片的个数
+	@Override
+	public int getCountWithPhoto(int photoId, int proid, String des, int rank) throws Exception {
+		return goodsPhotoDao.getCountWithPhoto(photoId, proid, des, rank);
+	}
+	
+	//根据检索条件取得照片的页数
+	@Override
+	public int getPageWithPhoto(int photoId, int proid, String des, int rank, int rows) throws Exception {
+		int pageCount = 0;
+		int count = this.getCountWithPhoto(photoId, proid, des, rank);
+		if(count%rows ==0) {
+			pageCount = count/rows;
+		}else {
+			pageCount = count/rows + 1;
+		}
+		
+		return pageCount;
+	}
+	
 	
 }
