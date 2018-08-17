@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rainbowsix.cbec.model.UserModel;
+import com.rainbowsix.cbec.result.JqGridJson;
 import com.rainbowsix.cbec.service.IUserService;
 
 @RestController
@@ -59,17 +60,53 @@ public class UserController {
 		return userService.selectListByCondiction(name, before, after, roles);
 	}
 	@RequestMapping("list/condiction/page")
-	public List<UserModel> listByCondictionWithPage(@RequestParam(required=false)String name, @RequestParam(required=false)Date before, 
+	public JqGridJson<UserModel> listByCondictionWithPage(@RequestParam(required=false)String name, @RequestParam(required=false)Date before, 
 			@RequestParam(required=false)Date after, @RequestParam(required=false)int[] roles, 
 			@RequestParam(required=false, defaultValue="10") int rows, 
 			@RequestParam(required=false, defaultValue="1") int page) throws Exception{
+		
+		JqGridJson<UserModel> result = new JqGridJson<UserModel>();
+		
 		if(name != null && name.trim().length() > 0) {
 			name = "%" + name + "%";
 		}
 		int start = rows * (page - 1) + 1;
-		int end = rows * page;
+		int end = rows * page;		
+		result.setRows(userService.selectListByCondictionWithPage(name, before, after, roles, start, end));	
 		
-		return userService.selectListByCondictionWithPage(name, before, after, roles, start, end);
+		result.setPage(page);
+		
+		return result;
+	}
+	@RequestMapping("list/condiction/page/without/role")
+	public JqGridJson<UserModel> listByCondictionWithPageWithoutRole(@RequestParam(required=false)String name, @RequestParam(required=false)Date before, 
+			@RequestParam(required=false)Date after, @RequestParam(required=false, defaultValue="10") int rows, 
+			@RequestParam(required=false, defaultValue="1") int page) throws Exception{
+		
+		JqGridJson<UserModel> result = new JqGridJson<UserModel>();
+		
+		if(name != null && name.trim().length() > 0) {
+			name = "%" + name + "%";
+		}
+		
+		int records = userService.getCountByCondictionWithoutRole(name, before, after);
+		int total = ((records + rows - 1) / rows);
+		
+		if(page < 1) {
+			page = 1;
+		}else if(page > total) {
+			page = total;
+		}
+			
+		int start = rows * (page - 1) + 1;
+		int end = rows * page;		
+		result.setRows(userService.selectListByCondictionWithPageWithoutRole(name, before, after, start, end));	
+		result.setPage(page);		
+		result.setRecords(records);
+		result.setTotal(total);
+		
+		return result;
+		
 	}
 	
 	@RequestMapping(value="modify", method={RequestMethod.POST})
@@ -79,5 +116,7 @@ public class UserController {
 		
 		return true;
 	}
+	
+	
 	
 }

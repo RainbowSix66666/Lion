@@ -12,17 +12,31 @@ public interface IUserDao {
 	public void create(UserModel userModel) throws Exception;
 	public void update(UserModel userModel) throws Exception;
 	public void delete(UserModel userModel) throws Exception;
-	
+	//查询所有用户，分页，未实现
 	public List<UserModel> selectAllWithPage(int rows, int page)
 		throws Exception;
+	//根据用户id查询用户
 	public UserModel selectById(long no) throws Exception;
+	//查询所有用户
 	public List<UserModel> selectAll()
 			throws Exception;
+	//查询所有用户，带有角色
 	public List<UserModel> selectAllWithRole()
 			throws Exception;
+	//根据条件查询
 	public List<UserModel> selectByCondiction(@Param("name")String name,@Param("before")Date before, 
 			@Param("after")Date after, @Param("roles") int[] roles) throws Exception;
+	//根据条件查询，分页
 	public List<UserModel> selectByCondictionWithPage(@Param("name")String name, @Param("before")Date before, 
 			@Param("after")Date after, @Param("roles") int[] roles, @Param("start")int start, @Param("end")int end)
 			throws Exception;
+	//根据条件查询得到查询结果的个数
+	public int selectCountByCondiction(@Param("name")String name, @Param("before")Date before, 
+			@Param("after")Date after, @Param("roles") int[] roles) throws Exception;
+	//根据条件查询，分页，不带角色差别
+	public List<UserModel> selectByCondictionWithPageWithoutRole(@Param("name")String name, @Param("before")Date before, 
+			@Param("after")Date after, @Param("start")int start, @Param("end")int end) throws Exception;
+	//根据条件查询不带角色的用户个数
+	public int selectCountByCondictionWithoutRole(@Param("name")String name, @Param("before")Date before, 
+			@Param("after")Date after) throws Exception;
 }

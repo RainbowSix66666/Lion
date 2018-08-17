@@ -12,28 +12,50 @@ $(document).ready(function(){
 //	alert("run bad");
 	//显示所有用户数据
 	function showAllUserData(){
-		$("div#userContent").load("user/tables.html", function(){
-			alert("hello");
-			$('table#userGrid').jqGrid({			 
-				 url: 'user/list/condiction/page.mvc',
-		         mtype: 'GET',
-				 styleUI : 'Bootstrap',
-		         datatype: 'json',
-		         colModel: [
-		        	 { label: '编号', name: 'no',  width: 100 },
-		             { label:'用户名', name: 'name', width: 50 }
-		         ],
-		         autowidth:true,
-		         width: "100%",
-				 height: 350,
-		         pager: "#userGridPager"
+//		alert("load html");
+		$("div#userContent1").load("user/tables.html", function(){
+			
+			$('table#userGrid').jqGrid({	
+				//获取数据
+				url: 'user/list/condiction/page/without/role.mvc',
+		        mtype: 'GET',
+				styleUI : 'Bootstrap',
+		        datatype: 'json',
+		        colModel: [
+		        	 { label: '编号', name: 'no',  width: 50 },
+		        	 { label:'用户名', name: 'name', width: 50 },
+		        	 { label:'创建日期', name: 'createDate', width: 50 }
+		        ],
+		         //设置表格宽高
+		        autowidth:true,
+		        width: "100%",
+				height: 350,
+				 //加载表头
+		        pager: "#userGridPager",
+		         //设置每页格式
+		        rowNum: 10,
+		        rowList:[2,10,15,20],
+		        //映射
+		        jsonReader : {
+		             rows: "rows",  //指定数据列表
+		             page: "page",
+		             total: "total",
+		             records: "records",
+		             repeatitems: true,
+		             id: "no"
+		         },
+		         //选择单条数据
+		         multiselect:false,
+		         onSelectRow:function(id){
+		        	 userId = id;
+//		        	 alert(id);
+		         }
 			});
 			
 		});
 	}
 	
-	showAllUserData();
-	
+	showAllUserData();	
 	
 	
 	//添加响应
@@ -50,15 +72,16 @@ $(document).ready(function(){
 					
 					if(re == 'OK'){
 						alert("添加成功");
-						$("div#main_content").load("user/main.html");
+						showAllUserData();
 					}else{
 						alert("添加失败");
 					}
 				});
-			})
+			});
 			//点击返回
 			$("button#returnAllUser").on("click", function(){
-				$("div#main_content").load("user/main.html");
+//				alert("click back");
+				showAllUserData();
 			});
 		});
 	});
@@ -93,9 +116,9 @@ $(document).ready(function(){
 					}
 				});
 			}
-			$("div#main_content").load("user/main.html");			
+			showAllUserData();		
 		}	
-	})
+	});
 	//修改响应
 	$("a#tomodifyUser").on("click", function(){
 		if(userId == "0"){
@@ -113,7 +136,7 @@ $(document).ready(function(){
 				});
 				//点击返回
 				$("button#returnAllUser").on("click", function(){
-					$("div#main_content").load("user/main.html");
+					showAllUserData();
 				});
 				//点击丢该
 				$("button#modifyUserButton").on("click", function(){
@@ -128,5 +151,5 @@ $(document).ready(function(){
 			});
 			
 		}	
-	})
+	});
 })

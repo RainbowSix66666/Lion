@@ -2,7 +2,7 @@ $(document).ready(function(){
 	var makerId = 0;
 	//请求页面列表
 	function showMakerList(){
-		
+	
 		$("div#makerMainContext").load("maker/list.html",function(){
 			$.getJSON("maker/list/all.mvc", function(makerList){
 				var lines = "";

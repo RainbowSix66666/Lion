@@ -82,7 +82,7 @@
   			</if>
   		</where>
 	</select>
-	
+	<!-- 根据条件查询用户，包含角色 -->
 	<select id="selectByCondictionWithPage" resultMap="userResultMapWithRole">
 		select * from(
 			select a.*, rownum rn from 
@@ -111,6 +111,41 @@
 	  			</if>
 		     </where>	  
 		 ) where rn &gt;= #{start}
+	</select>
+	<!-- 根据条件查询用户，不包含角色 -->
+	<select id="selectByCondictionWithPageWithoutRole" resultMap="userResultMap">
+		select * from (
+       		select u.*, rownum rn from sys_user u 
+		<where>
+			<if test="name != null and name != '' ">
+	  				username like #{name}
+	  			</if>
+	  			<if test="before != null">
+	  				and createDate &gt;= #{before}
+	  			</if>
+	  			<if test="after != null">
+	  				and createDate &lt;= #{after}
+	  			</if>
+			<if test="true">
+	  				and rownum &lt;= #{end}
+	  		</if>	
+		</where> 
+		)where rn &gt;= #{start}
+	</select>
+	
+	<select id="selectCountByCondictionWithoutRole" resultType="int">
+		select count(u.userid) from sys_user u 
+		<where>
+			<if test="name != null and name != '' ">
+	  				username like #{name}
+	  			</if>
+	  			<if test="before != null">
+	  				and createDate &gt;= #{before}
+	  			</if>
+	  			<if test="after != null">
+	  				and createDate &lt;= #{after}
+	  			</if>	
+		</where> 
 	</select>
 	
 </mapper>
