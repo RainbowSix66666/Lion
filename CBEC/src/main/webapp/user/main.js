@@ -53,9 +53,13 @@ $(document).ready(function(){
 			});
 			
 		});
+		$("input#userName").on("change",function(){
+			alert("username");		
+		});
 	}
 	
 	showAllUserData();	
+	//用户名响应
 	
 	
 	//添加响应
