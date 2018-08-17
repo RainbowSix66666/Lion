@@ -8,6 +8,35 @@
 
 $(document).ready(function(){
 	var photoNo = null;
+	var rank=null;
+	//取得照片等级列表，填充照片下拉框
+	$.getJSON("goodsphoto/list/photorank.mvc",function(photoList){
+		$.each(photoList,function(index, photo){
+			$("select#photoRank").append("<option value='"+photo.rank+"'>"+photo.rank+"</option>");
+		});
+	});
+	
+	
+	//取得请求参数，并重新载入Grid数据并刷新
+	function getParamGrid(){
+		var datas={rank:rank};
+		$("table#goodsphotoGrid").jqGrid("setGridParam",{postData:datas}).trigger("reloadGrid");
+	}
+	
+	//照片下拉框更改事件处理
+	$("select#photoRank").on("change",function(){
+		rank=$("select#photoRank").val();
+		getParamGrid();
+		
+	});
+	
+	//名字更改事件处理
+	$("select#goodstitle").on("change",function(){
+		rank=$("select#goodstitle").val();
+		getParamGrid();
+	
+	});
+	
 	/*显示员工列表表格*/
 	$("table#goodsphotoGrid").jqGrid({
 		 url: 'goodsphoto/list/byphotoid/allwithoutgoods/page.mvc',
