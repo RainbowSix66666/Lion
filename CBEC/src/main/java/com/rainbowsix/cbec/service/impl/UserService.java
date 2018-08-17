@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.UserCredentialsDataSourceAdapter;
 import org.springframework.stereotype.Service;
 
 import com.rainbowsix.cbec.dao.IRoleDao;
@@ -54,30 +55,31 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public List<UserModel> selectListByCondiction(String name, Date before, Date after, int[] roles) throws Exception {
+	public List<UserModel> selectListByCondiction(String name, Date before, Date after, int[] roles, int area) throws Exception {
 		// TODO Auto-generated method stub
-		return userDao.selectByCondiction(name, before, after, roles);
+		return userDao.selectByCondiction(name, before, after, roles, area);
 	}
 
 	@Override
-	public List<UserModel> selectListByCondictionWithPage(String name, Date before, Date after, int[] roles, int start,
+	public List<UserModel> selectListByCondictionWithPage(String name, Date before, Date after, int[] roles, int area, int start,
 			int end) throws Exception {
-		// TODO Auto-generated method stub
-		return userDao.selectByCondictionWithPage(name, before, after, roles, start, end);
+		// TODO Auto-generated method 	stub
+		
+		return userDao.selectByCondictionWithPage(name, before, after, roles, area, start, end);
 	}
 
 	@Override
-	public int getCountByCondictionWithoutRole(String name, Date before, Date after) throws Exception {
+	public int getCountByCondictionWithoutRole(String name, Date before, Date after, int area) throws Exception {
 		// TODO Auto-generated method stub
 		
-		return userDao.selectCountByCondictionWithoutRole(name, before, after);
+		return userDao.selectCountByCondictionWithoutRole(name, before, after, area);
 	}
 
 	@Override
-	public List<UserModel> selectListByCondictionWithPageWithoutRole(String name, Date before, Date after, int start,
+	public List<UserModel> selectListByCondictionWithPageWithoutRole(String name, Date before, Date after, int area, int start,
 			int end) throws Exception {
 		// TODO Auto-generated method stub
-		return userDao.selectByCondictionWithPageWithoutRole(name, before, after, start, end);
+		return userDao.selectByCondictionWithPageWithoutRole(name, before, after, area, start, end);
 	}
 	
 

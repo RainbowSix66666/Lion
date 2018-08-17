@@ -11,11 +11,13 @@ public interface IUserService {
 	public void update(UserModel user) throws Exception;
 	public List<UserModel> selectAll() throws Exception;
 	public UserModel selectById(long id) throws Exception;
-	public List<UserModel> selectListByCondiction(String name, Date before, Date after, int[] roles) 
+	//条件查询
+	public List<UserModel> selectListByCondiction(String name, Date before, Date after, int[] roles, int area) 
 			throws Exception;
-	public List<UserModel> selectListByCondictionWithPage(String name, Date before, Date after, int[] roles, int start, int end) 
+	public List<UserModel> selectListByCondictionWithPage(String name, Date before, Date after, int[] roles, int area, int start, int end) 
 			throws Exception;
-	public int getCountByCondictionWithoutRole(String name, Date before, Date after) throws Exception;
-	public List<UserModel> selectListByCondictionWithPageWithoutRole(String name, Date before, Date after, int start, int end) throws Exception;
+	public int getCountByCondictionWithoutRole(String name, Date before, Date after, int area) throws Exception;
+	public List<UserModel> selectListByCondictionWithPageWithoutRole(String name, Date before, Date after, int area, int start, int end) 
+			throws Exception;
 	
 } 

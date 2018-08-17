@@ -51,17 +51,19 @@ public class UserController {
 	}
 	@RequestMapping("list/condiction")
 	public List<UserModel> listByCondiction(@RequestParam(required=false)String name, @RequestParam(required=false)Date before, 
-			@RequestParam(required=false)Date after, @RequestParam(required=false)int[] roles) throws Exception{
+			@RequestParam(required=false)Date after, @RequestParam(required=false)int[] roles,
+			@RequestParam(required=false, defaultValue="0")int area) throws Exception{
 		
 		if(name != null && name.trim().length() > 0) {
 			name = "%" + name + "%";
 		}
 		
-		return userService.selectListByCondiction(name, before, after, roles);
+		return userService.selectListByCondiction(name, before, after, roles, area);
 	}
 	@RequestMapping("list/condiction/page")
 	public JqGridJson<UserModel> listByCondictionWithPage(@RequestParam(required=false)String name, @RequestParam(required=false)Date before, 
-			@RequestParam(required=false)Date after, @RequestParam(required=false)int[] roles, 
+			@RequestParam(required=false)Date after, @RequestParam(required=false)int[] roles,
+			@RequestParam(required=false, defaultValue="0")int area,
 			@RequestParam(required=false, defaultValue="10") int rows, 
 			@RequestParam(required=false, defaultValue="1") int page) throws Exception{
 		
@@ -72,7 +74,7 @@ public class UserController {
 		}
 		int start = rows * (page - 1) + 1;
 		int end = rows * page;		
-		result.setRows(userService.selectListByCondictionWithPage(name, before, after, roles, start, end));	
+		result.setRows(userService.selectListByCondictionWithPage(name, before, after, roles, area, start, end));	
 		
 		result.setPage(page);
 		
@@ -80,7 +82,9 @@ public class UserController {
 	}
 	@RequestMapping("list/condiction/page/without/role")
 	public JqGridJson<UserModel> listByCondictionWithPageWithoutRole(@RequestParam(required=false)String name, @RequestParam(required=false)Date before, 
-			@RequestParam(required=false)Date after, @RequestParam(required=false, defaultValue="10") int rows, 
+			@RequestParam(required=false)Date after, 
+			@RequestParam(required=false, defaultValue="0")int area,
+			@RequestParam(required=false, defaultValue="10") int rows, 
 			@RequestParam(required=false, defaultValue="1") int page) throws Exception{
 		
 		JqGridJson<UserModel> result = new JqGridJson<UserModel>();
@@ -89,7 +93,7 @@ public class UserController {
 			name = "%" + name + "%";
 		}
 		
-		int records = userService.getCountByCondictionWithoutRole(name, before, after);
+		int records = userService.getCountByCondictionWithoutRole(name, before, after, area);
 		int total = ((records + rows - 1) / rows);
 		
 		if(page < 1) {
@@ -100,7 +104,7 @@ public class UserController {
 			
 		int start = rows * (page - 1) + 1;
 		int end = rows * page;		
-		result.setRows(userService.selectListByCondictionWithPageWithoutRole(name, before, after, start, end));	
+		result.setRows(userService.selectListByCondictionWithPageWithoutRole(name, before, after, area, start, end));	
 		result.setPage(page);		
 		result.setRecords(records);
 		result.setTotal(total);

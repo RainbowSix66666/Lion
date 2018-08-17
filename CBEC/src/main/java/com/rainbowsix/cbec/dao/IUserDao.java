@@ -23,20 +23,23 @@ public interface IUserDao {
 	//查询所有用户，带有角色
 	public List<UserModel> selectAllWithRole()
 			throws Exception;
+	/**************************************************************************/
 	//根据条件查询
 	public List<UserModel> selectByCondiction(@Param("name")String name,@Param("before")Date before, 
-			@Param("after")Date after, @Param("roles") int[] roles) throws Exception;
+			@Param("after")Date after, @Param("roles") int[] roles, @Param("area") int area) throws Exception;
 	//根据条件查询，分页
 	public List<UserModel> selectByCondictionWithPage(@Param("name")String name, @Param("before")Date before, 
-			@Param("after")Date after, @Param("roles") int[] roles, @Param("start")int start, @Param("end")int end)
+			@Param("after")Date after, @Param("roles") int[] roles, @Param("area") int area, 
+			@Param("start")int start, @Param("end")int end)
 			throws Exception;
 	//根据条件查询得到查询结果的个数
 	public int selectCountByCondiction(@Param("name")String name, @Param("before")Date before, 
-			@Param("after")Date after, @Param("roles") int[] roles) throws Exception;
+			@Param("after")Date after, @Param("roles") int[] roles, @Param("area") int area) throws Exception;
 	//根据条件查询，分页，不带角色差别
 	public List<UserModel> selectByCondictionWithPageWithoutRole(@Param("name")String name, @Param("before")Date before, 
-			@Param("after")Date after, @Param("start")int start, @Param("end")int end) throws Exception;
+			@Param("after")Date after, @Param("area") int area, 
+			@Param("start")int start, @Param("end")int end) throws Exception;
 	//根据条件查询不带角色的用户个数
 	public int selectCountByCondictionWithoutRole(@Param("name")String name, @Param("before")Date before, 
-			@Param("after")Date after) throws Exception;
+			@Param("after")Date after, @Param("area") int area) throws Exception;
 }

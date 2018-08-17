@@ -57,7 +57,9 @@
 		update sys_user set username = #{name}, userpassword = #{password} 
 		where userid = #{no}
 	</update>
+	
 	<!-- 根据条件进行查找 -->
+	
 	<select id="selectByCondiction" resultMap="userResultMapWithRole">
 		select * from 
     		(select u.*, r.roleid, r.rolename, r.detial, r.menuid 
@@ -79,6 +81,9 @@
   			</if>
   			<if test="after != null">
   				and createDate &lt;= #{after}
+  			</if>
+  			<if test="area != 0">
+  				and areaid = #{area}
   			</if>
   		</where>
 	</select>
@@ -106,6 +111,9 @@
 	  			<if test="after != null">
 	  				and createDate &lt;= #{after}
 	  			</if>
+	  			<if test="area != 0">
+  					and areaid = #{area}
+  				</if>
 	  			<if test="true">
 	  				and rownum &lt;= #{end}
 	  			</if>
@@ -126,9 +134,12 @@
 	  			<if test="after != null">
 	  				and createDate &lt;= #{after}
 	  			</if>
-			<if test="true">
+	  			<if test="area != 0">
+  					and areaid = #{area}
+  				</if>
+				<if test="true">
 	  				and rownum &lt;= #{end}
-	  		</if>	
+	  			</if>	
 		</where> 
 		)where rn &gt;= #{start}
 	</select>
@@ -144,7 +155,10 @@
 	  			</if>
 	  			<if test="after != null">
 	  				and createDate &lt;= #{after}
-	  			</if>	
+	  			</if>
+	  			<if test="area != 0">
+  					and areaid = #{area}
+  				</if>	
 		</where> 
 	</select>
 	
