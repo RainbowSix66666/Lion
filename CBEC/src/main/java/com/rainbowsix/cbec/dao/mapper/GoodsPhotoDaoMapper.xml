@@ -9,6 +9,7 @@
 		  <result property="goodId" column="GOODID" />
 		  <result property="des" column="DES"/>
 		  <result property="rank" column="RANK"/>
+		  <result property="loaddate" column="LOADDATE"/>
 		  	</resultMap>
 		  	
 		  	<!-- 取得照片等级的modelresultmapper -->
@@ -33,9 +34,16 @@
 		  	<association property="good" resultMap="com.rainbowsix.cbec.dao.IGoodsDao.GoodsModel"></association> 
 		</resultMap>
 		
-		<insert id="create" parameterType="GoodsPhoto">
-			insert into GoodsPhoto (MAKER_ID, MAKER_NO, MAKER_NAME, MAKER_PASSWORD, ADDRESS , EMAIL, PHONE_NUMBER)
-			values (MAKERID.nextval,#{makerNO},#{makerName},#{makerPassword},#{address},#{email},#{phoneNumber})
+		<!-- 添加有照片信息 -->
+		<insert id="createWithPhoto" parameterType="GoodsPhoto">
+			insert into GoodsPhoto (PHOTO_ID, PROID, PHOTO, DES, RANK , LOADDATE, PhotoFileName,PhotoContentType)
+			values (PHOTOID.nextval,#{proid},#{photo},#{des},#{rank},#{loaddate},#{photoFileName},#{photoContentType})
+		</insert>
+		
+		<!-- 添加无图片信息 -->
+		<insert id="createWithoutPhoto" parameterType="GoodsPhoto">
+			insert into GoodsPhoto (PHOTO_ID, PROID, DES, RANK , LOADDATE)
+			values (PHOTOID.nextval,#{proid},#{des},#{rank},#{loaddate})
 		</insert>
 		
 		
@@ -115,7 +123,7 @@
 		<select id="selectListByConditionWithPage" resultMap="GoodsPhotoWithGoodsResultMap">
 			SELECT * FROM  (SELECT X.*, ROWNUM RN  
 	FROM (
-			select a.photo_id, a.des, a.rank, b.*  
+			select a.photo_id, a.des, a.rank, a.LOADDATE , b.*  
 			from goodsphoto a inner join goods b 
 			on a.proid=b.proid
 			<where>
@@ -128,6 +136,12 @@
 				<if test="rank!=0">
 					and a.rank=#{rank}
 				</if>
+				<if test="startDate!=null">
+			      and a.LOADDATE &gt;=#{startDate}
+			   </if>
+			   <if test="endDate!=null">
+			      and a.LOADDATE &lt;=#{endDate}
+			   </if>
 				<if test="des!=null and des!=''">
 					and a.des like #{des}
 				</if>
@@ -159,6 +173,8 @@
 		<select id="selectRankCondition" resultMap="GoodsPhotoRankResultMap">
 			select DISTINCT rank from goodsphoto  order by rank 
 		</select>
+		
+		
 
 </mapper>
 

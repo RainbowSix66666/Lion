@@ -1,13 +1,16 @@
 package com.rainbowsix.cbec.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.rainbowsix.cbec.model.GoodsPhotoModel;
 import com.rainbowsix.cbec.result.JqGridJson;
@@ -79,8 +82,10 @@ public class GoodsPhotoController {
 				@RequestParam(required=false,defaultValue="0") int proid,  
 				@RequestParam(required=false,defaultValue="") String des, 
 				@RequestParam(required=false,defaultValue="0") int rank,
-				@RequestParam(required=false,defaultValue="3") int rows, 
-				@RequestParam(required=false,defaultValue="1") int page) throws Exception{
+				@RequestParam(required=false,defaultValue="10") int rows, 
+				@RequestParam(required=false,defaultValue="1") int page,
+				@RequestParam(required=false) @DateTimeFormat(pattern="yyyy-MM-dd") Date startDate, 
+				@RequestParam(required=false) @DateTimeFormat(pattern="yyyy-MM-dd") Date endDate ) throws Exception{
 			
 			if(des!=null&&des.trim().length()>0) {
 				des="%"+des+"%";
@@ -97,11 +102,10 @@ public class GoodsPhotoController {
 			}
 			
 			result.setTotal(pageCount);
-			result.setRows(goodsPhotoService.selectListByConditionWithPage(photoId, proid, des, rank, rows, page));
+			result.setRows(goodsPhotoService.selectListByConditionWithPage(photoId, proid, des, rank, rows, page, startDate, endDate));
 			result.setPage(page);
-			
+
 			return result;
-//					;
 		}
 		
 		 //取得照片等级
@@ -110,4 +114,22 @@ public class GoodsPhotoController {
 		 public List<GoodsPhotoModel> selectRankCondition() throws Exception{
 			 return goodsPhotoService.selectRankCondition();
 		 }
+		
+		//增加照片信息和上传照片
+		@RequestMapping(value="/add",method=RequestMethod.POST)
+		public String  add(GoodsPhotoModel goodsPhoto,@RequestParam(required=false) MultipartFile loadPhoto) throws Exception{
+			if(loadPhoto==null || loadPhoto.isEmpty()) {
+				//无图片提交
+				goodsPhotoService.addWithoutPhoto(goodsPhoto);
+			}
+			else {
+				//有图片提交
+				goodsPhoto.setPhoto(loadPhoto.getBytes());
+				goodsPhoto.setPhotoContentType(loadPhoto.getOriginalFilename());
+				goodsPhoto.setPhotoFileName(loadPhoto.getOriginalFilename());
+				goodsPhotoService.addWithPhoto(goodsPhoto);
+			}			
+			return "添加照片成功";
+		}
+		
 }

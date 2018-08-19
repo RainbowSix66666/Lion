@@ -1,6 +1,11 @@
 package com.rainbowsix.cbec.model;
 
+import java.util.Date;
+
 import org.apache.ibatis.type.Alias;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Alias("GoodsPhoto")
 public class GoodsPhotoModel { 
@@ -9,20 +14,49 @@ public class GoodsPhotoModel {
 	private byte[] photo;
 	private String des;
 	private int rank;
+	@DateTimeFormat(pattern = "yyy-MM-dd")
+	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
+	private Date loaddate;
+	private String photoFileName=null; //照片文件名
+	private String photoContentType=null; //照片文件类型
+	private String photoIsImage=null; //照片是否是图片
 	
 	//关联属性-商品
 	private GoodsModel good=null;
 	
 	
 	
+	
+	public String getPhotoFileName() {
+		return photoFileName;
+	}
+	public void setPhotoFileName(String photoFileName) {
+		this.photoFileName = photoFileName;
+	}
+	public String getPhotoContentType() {
+		return photoContentType;
+	}
+	public void setPhotoContentType(String photoContentType) {
+		this.photoContentType = photoContentType;
+	}
+	public String getPhotoIsImage() {
+		return photoIsImage;
+	}
+	public void setPhotoIsImage(String photoIsImage) {
+		this.photoIsImage = photoIsImage;
+	}
+	public Date getLoaddate() {
+		return loaddate;
+	}
+	public void setLoaddate(Date loaddate) {
+		this.loaddate = loaddate;
+	}
 	public int getProid() {
 		return proid;
 	}
 	public void setProid(int proid) {
 		this.proid = proid;
 	}
-	
-	
 	public GoodsModel getGood() {
 		return good;
 	}

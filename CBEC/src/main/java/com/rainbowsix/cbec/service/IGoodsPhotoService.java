@@ -1,8 +1,11 @@
 package com.rainbowsix.cbec.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.rainbowsix.cbec.model.GoodsPhotoModel;
 
@@ -24,7 +27,7 @@ public interface IGoodsPhotoService {
 	
 	//根据条件取照片列表 分页
 	public List<GoodsPhotoModel> selectListByConditionWithPage(int photoId,int proid,  
-			String des, int rank, int rows, int page) throws Exception;
+			String des, int rank, int rows, int page, Date startDate, Date endDate) throws Exception;
 
 
 	//根据检索条件取得照片的个数
@@ -37,6 +40,12 @@ public interface IGoodsPhotoService {
 	 
 	 //取得照片等级
 	 public List<GoodsPhotoModel> selectRankCondition() throws Exception;
+	 
+	 //添加有照片的goodsphoto
+	 public void addWithPhoto(GoodsPhotoModel goodsPhoto) throws Exception;
+	 
+	 //添加无照片的goodsphoto	 
+	 public void addWithoutPhoto(GoodsPhotoModel goodsPhoto) throws Exception;
 	 
 	
 }

@@ -1,82 +1,63 @@
- <script src="goodsphoto/main.js"></script>
+<script src="goodsphoto/main.js"></script>
 <div class="panel panel-default">
-         <div class="panel-heading">
-             	商品照片查看
-         </div>
-         
-                <div class="panel-body">
-           <div class="row">
-            <div class="col-md-1">
-            	照片等级
-            </div>
-            <div class="col-md-3">
-              <select class="form-control" id="photoRank">
-                 <option value="0">所有</option>
-              </select>
-            </div>
-            <div class="col-md-1">
-            	性别
-            </div>
-            <div class="col-md-3">
-	            <label class="radio-inline">
-			        <input type="radio" name="empsex"  value="" checked>全部
-			    </label>
-			    <label class="radio-inline">
-			        <input type="radio" name="empsex" value="男">男
-			    </label>
-			    <label class="radio-inline">
-			        <input type="radio" name="empsex" value="女">女
-			    </label>
-            </div>
-            <div class="col-md-1" id="goodstitle">
-            	姓名
-            </div>
-            <div class="col-md-3">
-              <input type="text" class="form-controll" id="employeeName" />
-            </div> 	
-            
-            </div>
-            
-            <div class="row">
-            <div class="col-md-1">
-            	起始
-            </div>
-            <div class="col-md-3">
-              <input type="text" class="form-controll" id="employeeName" />
-            </div>
-            <div class="col-md-1">
-            	截止
-            </div>
-            <div class="col-md-3">
-	            <input type="text" class="form-controll" id="employeeName" />
-            </div>
-            </div>
-            <div class="row">
-            <div class="col-md-1">
-            	角色
-            </div>
-            <div class="col-md-10">
-              <label class="checkbox-inline">
-			        <input type="checkbox" id="inlineCheckbox1" value="option1"> 选项 1
-			  </label>
-			  <label class="checkbox-inline">
-			        <input type="checkbox" id="inlineCheckbox2" value="option2"> 选项 2
-			  </label>
-			  <label class="checkbox-inline">
-			        <input type="checkbox" id="inlineCheckbox3" value="option3"> 选项 3
-			  </label>
-            </div> 	
-            </div>
-            
-            
-            <div class="col-md-12">
-       		<table id="goodsphotoGrid"></table>
-			<div id="goodsphotoGridPager"></div>
+	<div class="panel-heading">
+		<div class="rows" style="height: 40px;">
+			<div class="col-md-4">
+				<b>照片管理</b>
 			</div>
-             
-         </div>
-        
-         
-     
-   		
-     </div>
+			<div class="col-md-8 text-right">
+				<a href="#" id="GoodsPhotoAddLink" class="btn btn-default"><b>增加</b></a> <a
+					href="#" id="GoodsPhotoModifyLink" class="btn btn-default"><b>修改</b></a> <a
+					href="#" id="GoodsPhotoDeleteLink" class="btn btn-default"><b>删除</b></a> <a
+					href="#" id="GoodsPhotoViewLink" class="btn btn-default"><b>查看</b></a>
+			</div>
+		</div>
+	</div>
+	<div class="panel-body">
+		<div class="row" style="height: 40px;">
+			<div class="col-md-1"><b>照片等级</b></div>
+			<div class="col-md-3">
+				<select class="form-control" id="photoRank">
+					<option value="0">所有</option>
+				</select>
+			</div>			
+			<div class="col-md-1" id="goodstitle" ><b>商品标题</b></div>
+			<div class="col-md-3" >
+			<input type="text" class="form-controll" id="photoName" />
+			</div>
+		</div>
+
+		<div class="row" style="height: 40px;">
+	            <div class="col-md-1" >
+	            	<b>起始</b>
+	            </div>
+	            <div class="col-md-3" >
+	              <input type="date" class="form-control" id="photoStartDate" />
+	            </div>
+	            <div class="col-md-1" >
+	            	<b>截止</b>
+	            </div>
+	            <div class="col-md-3" >
+		            <input type="date" class="form-control" id="photoEndDate" />
+	            </div>
+	    </div>
+		<div class="row" style="height: 30px;">
+				<div class="col-md-1" id="goodstitle" ><b>商品id</b></div>
+				<div class="col-md-3">
+				<input type="text" class="form-controll" id="photoGoodsId" />
+				</div>
+				<div class="col-md-1" id="photo" ><b><b>照片id</b></div>
+				<div class="col-md-3">
+				<input type="text" class="form-controll" id="matchPhotoId" />
+				</div>
+		</div>
+
+
+		<div class="col-md-12">
+			<table id="goodsphotoGrid"></table>
+			<div id="goodsphotoGridPager"></div>
+		</div>
+
+	</div>
+</div>
+<div id="GoodsPhotoDialog"></div>

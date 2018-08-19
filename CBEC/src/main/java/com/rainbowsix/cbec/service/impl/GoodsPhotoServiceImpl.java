@@ -1,5 +1,6 @@
 package com.rainbowsix.cbec.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,8 +57,8 @@ public class GoodsPhotoServiceImpl implements IGoodsPhotoService {
 //	<!-- 根据条件取照片列表 有分页 -->
 	@Override
 	public List<GoodsPhotoModel> selectListByConditionWithPage(int photoId, int proid, String des, int rank, int rows,
-			int page) throws Exception {
-		return goodsPhotoDao.selectListByConditionWithPage(photoId, proid, des, rank, rows*(page-1)+1, rows*page);
+			int page, Date startDate, Date endDate) throws Exception {
+		return goodsPhotoDao.selectListByConditionWithPage(photoId, proid, des, rank, rows*(page-1)+1, rows*page , startDate, endDate);
 	}
 	
 	//根据检索条件取得照片的个数
@@ -82,6 +83,18 @@ public class GoodsPhotoServiceImpl implements IGoodsPhotoService {
 	@Override
 	public List<GoodsPhotoModel> selectRankCondition() throws Exception {
 		return goodsPhotoDao.selectRankCondition();
+	}
+	
+	//添加有照片的goodsphoto
+	@Override
+	public void addWithPhoto(GoodsPhotoModel goodsPhoto) throws Exception {
+		goodsPhotoDao.createWithPhoto(goodsPhoto);
+	}
+	
+	//添加无照片的goodsphoto
+	@Override
+	public void addWithoutPhoto(GoodsPhotoModel goodsPhoto) throws Exception {
+		goodsPhotoDao.createWithoutPhoto(goodsPhoto);
 	}
 	
 	

@@ -1,5 +1,6 @@
 package com.rainbowsix.cbec.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -45,7 +46,9 @@ public interface IGoodsPhotoDao {
 		 //根据条件取照片列表 分页
 		 public List<GoodsPhotoModel> selectListByConditionWithPage(@Param("photoId") int photoId,
 				 @Param("proid") int proid, @Param("des")  String des,
-				 @Param("rank")  int rank,  @Param("start") int start,  @Param("end") int end) throws Exception;
+				 @Param("rank")  int rank, @Param("start") int start, @Param("end") int end, 
+				 @Param("startDate")  Date startDate, 
+				 @Param("endDate") Date endDate) throws Exception;
 		
 		 //根据检索条件取得照片的个数
 		 public int getCountWithPhoto(@Param("photoId") int photoId,
@@ -60,8 +63,14 @@ public interface IGoodsPhotoDao {
 		 //取得照片等级
 		 public List<GoodsPhotoModel> selectRankCondition() throws Exception;
 		 
+		 //添加有照片的goodsphoto
+		 public void createWithPhoto(GoodsPhotoModel goodsPhoto) throws Exception;
+		 
+		 //添加无照片的goodsphoto	 
+		 public void createWithoutPhoto(GoodsPhotoModel goodsPhoto) throws Exception;
+		 
 		 //取得所有商品总数
-//		public int Count() throws Exception;
+		 //public int Count() throws Exception;
 		
 }
 
