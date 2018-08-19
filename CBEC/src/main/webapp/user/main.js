@@ -21,10 +21,12 @@ $(document).ready(function(){
 	var groballRoles = null;
 	var allRoles = new Array();
 	var flage = false;
+	var areaId = "0";
 //	alert("run bad");
 	
-	function getParamAndReloadGrid(){
-		var datas={name:userName};
+	function getParamAndReloadGrid(){		
+		
+		var datas={name:userName, area:areaId};
 		
 		if(before != null){
 //			alert(before);
@@ -33,15 +35,15 @@ $(document).ready(function(){
 		if(after != null){
 			datas.after = after;
 		}
-		if(flage){
+		if(groballRoles != null){
 			datas.roles = groballRoles;
-//			groballRoles = null;
-		}else{
-			datas.roles = allRoles;
 		}
-//		writeObj(datas);
-//		alert(groballRoles);
-//		alert(datas);
+		//清除累积的参数
+		var postData = $('table#userGrid').jqGrid("getGridParam", "postData");
+		$.each(postData, function (k, v) {
+            delete postData[k];
+        });
+		
 		$("table#userGrid").jqGrid("setGridParam",{postData:datas}).trigger("reloadGrid");
 	}
 	
@@ -58,6 +60,7 @@ $(document).ready(function(){
 		        colModel: [
 		        	 { label: '编号', name: 'no',  width: 50 },
 		        	 { label:'用户名', name: 'name', width: 50 },
+		        	 { label:'所在地区', name: 'area.desc', width: 50 },
 		        	 { label:'创建日期', name: 'createDate', width: 50 }
 		        ],
 		         //设置表格宽高
@@ -92,7 +95,7 @@ $(document).ready(function(){
 					$("div#rolesSelect").append("<label class='checkbox-inline'><input type='checkbox' name='roles' value='"+rm.id+"'>"+rm.detial+"</label>");
 					allRoles.push(rm.id);
 				});
-				alert(allRoles);
+//				alert(allRoles);
 				$("input[type='checkbox'][name='roles']").on("click",function(){
 					//先创建保存选中角色编号的数组
 					var roles=new Array();
@@ -100,8 +103,6 @@ $(document).ready(function(){
 					flage = false;
 					$("input[type='checkbox'][name='roles']:checked").each(function(index,role){
 						//通过$(this) 或 $(role)取得选中的复选框
-						//roles[index]=$(role).val();
-//						alert($(role).val());
 						roles.push($(role).val());
 						flage = true;
 					});
@@ -112,16 +113,29 @@ $(document).ready(function(){
 				
 			});
 			
+			//生成下拉框
+			$.getJSON("area/list/all.mvc", function(areaList){
+				$.each(areaList.rows,function(index,elemt){
+//					alert(elemt.id);
+//					alert(elemt.desc);
+					$("select#selectTest").append("<option value='"+elemt.id+"'>"+elemt.desc+"</option>");
+				});
+				//下拉框监听
+				$("select#selectTest").on("change", function(){					
+					areaId = $(this).val();
+//					alert(areaId);	
+					getParamAndReloadGrid();
+				});
+			});
+			
+			
 			//用户名响应
 			$("input#userName").on("change", function(){
 				userName = $(this).val();
 //				alert(userName);
 				getParamAndReloadGrid();
 			});
-			//下拉框监听
-			$("select#selectTest").on("change", function(){
-				alert($(this).val());
-			});
+			
 			//单选监听
 			$("input[type='radio'][name='radioTest']").on("change",function(){
 				alert($(this).val());				
@@ -147,30 +161,29 @@ $(document).ready(function(){
 	});
 	//添加响应
 	$("a#toAddUser").on("click", function(){
-		$("div#userContent").load("user/addUser.html", function(){
-			//点击添加用户
-			$("button#addUserButton").on("click", function(){
-				var role_type = $("select option").val();
-				var name = $("input[name='name']").val();
-				var password = $("input[name = 'password']").val();
-				alert(role_type);
-//				alert(name);
-				$.post("user/add.mvc", {name:name, password:password, role:role_type}, function(re){
-					
-					if(re == 'OK'){
-						alert("添加成功");
-						showAllUserData();
-					}else{
-						alert("添加失败");
-					}
+//		alert("click add");
+		
+		$("div#userDialog").dialog({
+			title:"增加新用户",
+			width:450,
+			height:450
+		});
+		
+		$("div#userDialog").load("user/addUser.html", function(){
+			$.getJSON("area/list/all.mvc", function(areaList){
+				$.each(areaList.rows,function(index,elemt){
+					$("select#areaSelection").append("<option value='"+elemt.id+"'>"+elemt.desc+"</option>");
 				});
 			});
-			//点击返回
-			$("button#returnAllUser").on("click", function(){
-//				alert("click back");
-				showAllUserData();
+			$("form#addUser").submit(function(){
+				 $(this).ajaxSubmit(function() {   
+				      alert("添加成功");				      
+				      showAllUserData();				     
+				 });				
+				 return false; //阻止表单默认提交	
 			});
 		});
+		
 	});
 	//查看响应
 	$("a#toshowUser").on("click", function(){

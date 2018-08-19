@@ -19,9 +19,16 @@ public class UserModel {
 	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
 	private Date createDate;
 	
+	private AreaModel area = null;
 	private ResellerModel reseller = null;
 	private List<RoleModel> roles = null;	
 	
+	public AreaModel getArea() {
+		return area;
+	}
+	public void setArea(AreaModel area) {
+		this.area = area;
+	}
 	public Date getCreateDate() {
 		return createDate;
 	}

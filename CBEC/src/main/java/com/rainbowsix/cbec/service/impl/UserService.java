@@ -81,6 +81,11 @@ public class UserService implements IUserService {
 		// TODO Auto-generated method stub
 		return userDao.selectByCondictionWithPageWithoutRole(name, before, after, area, start, end);
 	}
+
+	@Override
+	public List<UserModel> selectAllWithArea() throws Exception {
+		return userDao.selectAllWithArea();
+	}
 	
 
 }

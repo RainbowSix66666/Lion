@@ -9,7 +9,10 @@ public interface IUserService {
 	public void add(UserModel user) throws Exception;
 	public void delete(UserModel user) throws Exception;
 	public void update(UserModel user) throws Exception;
+	//查询所有
 	public List<UserModel> selectAll() throws Exception;
+	public List<UserModel> selectAllWithArea() throws Exception;
+	
 	public UserModel selectById(long id) throws Exception;
 	//条件查询
 	public List<UserModel> selectListByCondiction(String name, Date before, Date after, int[] roles, int area) 

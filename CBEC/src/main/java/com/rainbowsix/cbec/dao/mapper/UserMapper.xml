@@ -12,7 +12,7 @@
 		<result property="paypackageid" column="paypackageid"/>
 		<result property="createDate" column="createDate"/>
 		<!-- <association property="role" column="ROLEID" select="com.rainbowsix.cbec.dao.IRoleDao.selectById"></association>
-		<association property="reseller" column="reseller_ID" select="com.rainbowsix.cbec.dao.IResellerDao.selectById"></association> -->
+		<association property="area" column="area_ID" select="com.rainbowsix.cbec.dao.IAreaDao.selectById"></association> -->
 	</resultMap>
 	<!-- 有角色关联的ResultMap -->
 	<resultMap type="User" id="userResultMapWithRole" extends="userResultMap">
@@ -28,12 +28,21 @@
 	<resultMap type="User" id="userResultMapWithReseller" extends="userResultMap">
 		<association property="reseller" column="reseller_ID" select="com.rainbowsix.cbec.dao.IResellerDao.selectById"></association>
 	</resultMap>
+	<!-- 有带地区管理 -->
+	<resultMap type="User" id="userResultMapWithArea" extends="userResultMap">
+		<association property="area" column="area_ID" resultMap="com.rainbowsix.cbec.dao.IAreaDao.areaResultMap"></association>
+	</resultMap>
+	<!-- 带地区，角色 -->
+	<resultMap type="User" id="userResultMapWithAreaAndRole" extends="userResultMapWithRole">
+		<association property="area" column="area_ID" resultMap="com.rainbowsix.cbec.dao.IAreaDao.areaResultMap"></association>
+	</resultMap>
 
 	<insert id="create" parameterType="User">
 		insert into sys_user (userid, username, userpassword) values 
 		(USER_ID_SQ.nextval, #{name}, #{password})
 	</insert>
 	
+	<!-- 查询所有 -->
 	<select id="selectAll" resultMap="userResultMap"> 
 		select * from sys_user
 	</select>
@@ -45,6 +54,11 @@
     	order by u.userid
 	</select>
 	
+	<select id="selectAllWithArea" resultMap="userResultMapWithArea">
+		select * from sys_user natural join area
+	</select>
+	
+	<!-- 查询所有结束 -->
 	<delete id="delete" parameterType="User">
 		delete from sys_user where userid = #{no}
 	</delete>
@@ -60,11 +74,13 @@
 	
 	<!-- 根据条件进行查找 -->
 	
-	<select id="selectByCondiction" resultMap="userResultMapWithRole">
+	<select id="selectByCondiction" resultMap="userResultMapWithAreaAndRole">
 		select * from 
     		(select u.*, r.roleid, r.rolename, r.detial, r.menuid 
-     		from sys_user u inner join user_link_role l on u.userid = l.userid
-     		inner join user_role r on l.roleid = r.roleid 
+     		from sys_user u 
+        	left outer join user_link_role l on u.userid = l.userid
+     		left outer join user_role r on l.roleid = r.roleid
+     		left outer join area a on u.area_ID = a.area_ID 
      		order by u.userid desc)
   		<where>
   			<if test="name != null and name != '' ">
@@ -82,19 +98,21 @@
   			<if test="after != null">
   				and createDate &lt;= #{after}
   			</if>
-  			<if test="area != 0">
-  				and areaid = #{area}
+  			<if test="area != null and area != 0">
+  				and area_id = #{area}
   			</if>
   		</where>
 	</select>
 	<!-- 根据条件查询用户，包含角色 -->
-	<select id="selectByCondictionWithPage" resultMap="userResultMapWithRole">
+	<select id="selectByCondictionWithPage" resultMap="userResultMapWithAreaAndRole">
 		select * from(
 			select a.*, rownum rn from 
 		    (select u.*, r.roleid, r.rolename, r.detial, r.menuid 
-		     from sys_user u inner join user_link_role l on u.userid = l.userid
-		     inner join user_role r on l.roleid = r.roleid 
-		     order by u.userid desc) a
+     		from sys_user u 
+        	left outer join user_link_role l on u.userid = l.userid
+     		left outer join user_role r on l.roleid = r.roleid
+     		left outer join area a on u.area_ID = a.area_ID 
+     		order by u.userid desc) a
 		     <where>
 		     	<if test="name != null and name != '' ">
 	  				username like #{name}
@@ -112,7 +130,7 @@
 	  				and createDate &lt;= #{after}
 	  			</if>
 	  			<if test="area != 0">
-  					and areaid = #{area}
+  					and area_id = #{area}
   				</if>
 	  			<if test="true">
 	  				and rownum &lt;= #{end}
@@ -135,7 +153,7 @@
 	  				and createDate &lt;= #{after}
 	  			</if>
 	  			<if test="area != 0">
-  					and areaid = #{area}
+  					and area_id = #{area}
   				</if>
 				<if test="true">
 	  				and rownum &lt;= #{end}
@@ -157,7 +175,7 @@
 	  				and createDate &lt;= #{after}
 	  			</if>
 	  			<if test="area != 0">
-  					and areaid = #{area}
+  					and area_id = #{area}
   				</if>	
 		</where> 
 	</select>

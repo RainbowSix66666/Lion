@@ -17,12 +17,15 @@ public interface IUserDao {
 		throws Exception;
 	//根据用户id查询用户
 	public UserModel selectById(long no) throws Exception;
-	//查询所有用户
+	/*******************获取所有用户的不同信息**************************/
+	//查询所有用户，
 	public List<UserModel> selectAll()
 			throws Exception;
 	//查询所有用户，带有角色
 	public List<UserModel> selectAllWithRole()
 			throws Exception;
+	public List<UserModel> selectAllWithArea() throws Exception;
+	
 	/**************************************************************************/
 	//根据条件查询
 	public List<UserModel> selectByCondiction(@Param("name")String name,@Param("before")Date before, 

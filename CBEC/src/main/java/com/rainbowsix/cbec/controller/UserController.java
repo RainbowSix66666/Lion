@@ -26,7 +26,7 @@ public class UserController {
 	
 	@RequestMapping("add")
 	public String add(UserModel user) throws Exception{
-		
+		user.setCreateDate(new Date());
 		userService.add(user);
 		
 		return "OK";
@@ -43,6 +43,10 @@ public class UserController {
 	@RequestMapping("all")
 	public List<UserModel> all() throws Exception{
 		return userService.selectAll();
+	}
+	@RequestMapping("all/area")
+	public List<UserModel> allWithArea() throws Exception{
+		return userService.selectAllWithArea();
 	}
 	@RequestMapping("getbyno")
 	public UserModel getByNo(long no) throws Exception{
@@ -93,6 +97,7 @@ public class UserController {
 		
 		return result;
 	}
+	
 	@RequestMapping("list/condiction/page/without/role")
 	public JqGridJson<UserModel> listByCondictionWithPageWithoutRole(@RequestParam(required=false)String name, @RequestParam(required=false)Date before, 
 			@RequestParam(required=false)Date after, 

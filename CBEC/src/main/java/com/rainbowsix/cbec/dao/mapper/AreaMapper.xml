@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rainbowsix.cbec.dao.IAreaDao">
+
+	<resultMap type="Area" id="areaResultMap">
+		<id property="id" column="area_id"/>
+		<result property="desc" column="des"/>
+	</resultMap>
+	
+	<!-- 查询 -->
+	
+	<!-- 查询所有 -->
+	<!-- 查询所有，不带其他信息 -->
+	<select id="selectAll" resultMap="areaResultMap">
+		select * from area
+	</select>
+	
+	<!-- 查询所有结束 -->
+	<select id="selectById" parameterType="int" resultMap="areaResultMap">
+		select * from area where area_id = #{id}
+	</select>
+	
+	<!-- 查询结束 -->
+	
+	<!-- 添加 -->
+	<insert id="add" parameterType="Area">
+		insert into area (area_id, des)
+		values(#{id}, #{desc})
+	</insert>
+	
+	<!-- 删除 -->
+	<delete id="delete" parameterType="Area">
+		delete from area where area_id = #{id}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="modify" parameterType="Area">
+		update area set area_id = #{id}, des = #{desc}
+	</update>
+</mapper>
