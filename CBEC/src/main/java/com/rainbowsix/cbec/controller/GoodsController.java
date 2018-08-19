@@ -14,7 +14,7 @@ import com.rainbowsix.cbec.service.IGoodsService;
 @RestController
 @RequestMapping("/goods")
 public class GoodsController {
-	public IGoodsService goodservice = null;
+	private IGoodsService goodservice = null;
 	@Autowired
 	public void setRoleService(IGoodsService goodservice) {
 		this.goodservice = goodservice;
