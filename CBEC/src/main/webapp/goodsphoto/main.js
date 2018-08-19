@@ -131,7 +131,16 @@ $(document).ready(function(){
 				$.each(photoList,function(index, photo){
 					$("select#addRank").append("<option value='"+photo.rank+"'>"+photo.rank+"</option>");
 				});
-			});	
+			});
+			
+			//拦截员工增加表单提交
+			$("form#photoAddForm").ajaxForm(function(result){
+				alert("1");
+				getParamAndReloadGrid(); //重新载入员工列表，并刷新Grid显示。
+				$("div#GoodsPhotoDialog").dialog("close"); //关闭弹出Dialog
+				
+			});
+			
 		});	
 		//加载弹窗
 		$("div#GoodsPhotoDialog").dialog({
