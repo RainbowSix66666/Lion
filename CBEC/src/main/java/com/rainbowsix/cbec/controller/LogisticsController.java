@@ -105,5 +105,9 @@ private ILogisticsService logisticsService = null;
 		return result;
 	}
 
+	@RequestMapping(value="/list/address",method= {RequestMethod.GET})
+	public List<LogisticsModel> getAddress() throws Exception{
+		return logisticsService.getAddress();
+	}
 
 }

@@ -30,4 +30,6 @@ public interface ILogisticsDao {
 	public List<LogisticsModel> selectLogisticsListByConditionWithPage(@Param("address") String address,@Param("expressnumber") int expressnumber,@Param("consignee") String consignee,@Param("phone") int phone,@Param("start")  int start,@Param("end")  int end) throws Exception;
 	//根据检索条件取得物流条数
 	public int selectCountByCondition(@Param("address") String address,@Param("expressnumber") int expressnumber,@Param("consignee") String consignee,@Param("phone") int phone) throws Exception;
+	//按地址分组的查询,用于下拉选项
+	public List<LogisticsModel> selectAddress() throws Exception; 
 }

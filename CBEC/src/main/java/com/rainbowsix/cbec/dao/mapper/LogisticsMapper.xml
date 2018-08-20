@@ -138,4 +138,9 @@
 	   </if>
 		</trim>
 	</select>
+	
+	<!-- 按地址分组查询 -->
+	<select id="selectAddress" resultMap="LogisticsResultMap">
+		select address from logistics group by address
+	</select>
 </mapper>

@@ -30,4 +30,6 @@ public interface ILogisticsService {
 	public int getCountByCondition(String address,int expressnumber,String consignee,int phone) throws Exception;
 	//根据检索条件取得物流显示页数
 	public int getPageCountByCondition(String address,int expressnumber,String consignee,int phone,int rows) throws Exception;
+	//按地址分组的查询,用于下拉选项
+	public List<LogisticsModel> getAddress() throws Exception; 
 }
