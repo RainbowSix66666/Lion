@@ -6,31 +6,33 @@
 $(document).ready(function(){
 	var logisticsid=0;
 	
-/*$.getJSON("logistics/list/all.mvc",function(logisticsList){
-	$.each(logisticsList,function(index,lg){
-		//alert(lg);
-		$("select#AddressSelection").append ("<option value='"+lg.logisticsid+"'>"+lg.address+"</option>");
+	$.getJSON("logistics/list/address.mvc",function(logisticsList){
+		//alert(logisticsList);
+		$.each(logisticsList,function(index,lg){
+			//alert(lg);
+			//alert(lg.logisticsid);
+			$("select#AddressSelection").append ("<option value='"+lg.address+"'>"+lg.address+"</option>");
+		});
+		
 	});
-	
-});
 
 
 
-$("select#AddressSelection").on("change",function(){
-	logisticsid=$("select#AddressSelection").val();
-	alert(logisticsid);
-	//getParamAndReloadGrid();
-	//var datas={logisticsid:logisticsid,address:address};
-	//alert(comid);
-	getParamAndReloadGrid();
-});	
+	$("select#AddressSelection").on("change",function(){
+		address=$("select#AddressSelection").val();
+		//alert(logisticsid);
+		//getParamAndReloadGrid();
+		//var datas={logisticsid:logisticsid,address:address};
+		//alert(comid);
+		getParamAndReloadGrid();
+	});	
 
-//取得请求参数，并重新载入Grid数据并刷新
-function getParamAndReloadGrid(){
-	var datas={logisticsid:logisticsid};
-	$("table#logisticsGrid").jqGrid("setGridParam",{postData:datas}).trigger("reloadGrid");
-}	
-	*/
+	//取得请求参数，并重新载入Grid数据并刷新
+	function getParamAndReloadGrid(){
+		var datas={address:address};
+		$("table#logisticsGrid").jqGrid("setGridParam",{postData:datas}).trigger("reloadGrid");
+	}	
+		
 	
 	//显示物流信息列表表格
 	$("table#logisticsGrid").jqGrid({
@@ -63,8 +65,12 @@ function getParamAndReloadGrid(){
 		multiselect:false,
 		onSelectRow:function(id){
 			logisticsid=id;
-			alert(logisticsid);
+			//alert(logisticsid);
 		}
 	});
+	
+	
+	
+		
 });
 
