@@ -86,6 +86,12 @@ public class UserService implements IUserService {
 	public List<UserModel> selectAllWithArea() throws Exception {
 		return userDao.selectAllWithArea();
 	}
+
+	@Override
+	public UserModel getByName(String name) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }

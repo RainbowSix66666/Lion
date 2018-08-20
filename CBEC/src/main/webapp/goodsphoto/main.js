@@ -151,6 +151,52 @@ $(document).ready(function(){
 				$("div#GoodsPhotoDialog").dialog("close"); //关闭弹出Dialog
 			});
 			
+			$("form#photoAddForm").validate({
+				rules:{
+					des:{
+						required:true
+					},
+					loaddate:{
+						required:true,
+					},
+					loadPhoto:{
+						required:true,
+						accept: "audio/*,image/*"
+					}
+				},
+				messages:{
+					des:{
+						required:"描述为空"
+					},
+					loaddate:{
+						required:"日期为空"
+					},
+					loadPhoto:{
+						required:"照片为空",
+						accept: "照片必须为图片或声音"
+					}
+				}
+			});
+		
+			
+			/*rules:{
+				loadPhoto:{
+					accept: "audio/*,image/*"
+				},
+				des:{
+					required:true
+				}
+				
+			},
+			messages:{
+				loadPhoto:{
+					accept: "照片必须为图片或声音"
+				},
+				des:{
+					required:"描述为空"
+				}
+			}
+			*/
 		});	
 		//加载弹窗
 		$("div#GoodsPhotoDialog").dialog({

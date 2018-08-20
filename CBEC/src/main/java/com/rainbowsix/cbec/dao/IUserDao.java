@@ -8,15 +8,19 @@ import org.apache.ibatis.annotations.Param;
 import com.rainbowsix.cbec.model.UserModel;
 
 public interface IUserDao {
-	
-	public void create(UserModel userModel) throws Exception;
 	public void update(UserModel userModel) throws Exception;
 	public void delete(UserModel userModel) throws Exception;
-	//查询所有用户，分页，未实现
-	public List<UserModel> selectAllWithPage(int rows, int page)
-		throws Exception;
+	
+	/***************************添加新用户***************************************/
+	public void create(UserModel userModel) throws Exception;
+	//添加用户，含有头像信息
+	public void createWithPhoto(UserModel userModel) throws Exception;
+	
+	/*********************获取单个用户*************************************/
 	//根据用户id查询用户
 	public UserModel selectById(long no) throws Exception;
+	//根据用户名查找用户
+	public UserModel selectByName(String name) throws Exception;
 	/*******************获取所有用户的不同信息**************************/
 	//查询所有用户，
 	public List<UserModel> selectAll()
@@ -26,7 +30,10 @@ public interface IUserDao {
 			throws Exception;
 	public List<UserModel> selectAllWithArea() throws Exception;
 	
-	/**************************************************************************/
+	/*************************查询用户列表***********************************/
+	//查询所有用户，分页，未实现
+	public List<UserModel> selectAllWithPage(int rows, int page)
+		throws Exception;
 	//根据条件查询
 	public List<UserModel> selectByCondiction(@Param("name")String name,@Param("before")Date before, 
 			@Param("after")Date after, @Param("roles") int[] roles, @Param("area") int area) throws Exception;
