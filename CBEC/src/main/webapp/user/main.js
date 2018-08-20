@@ -113,6 +113,8 @@ $(document).ready(function(){
 				
 			});
 			
+			
+			
 			//生成下拉框
 			$.getJSON("area/list/all.mvc", function(areaList){
 				$.each(areaList.rows,function(index,elemt){
@@ -151,7 +153,6 @@ $(document).ready(function(){
 				getParamAndReloadGrid();
 			});
 			
-			//
 			
 		});
 		
@@ -178,6 +179,21 @@ $(document).ready(function(){
 					$("select#areaSelection").append("<option value='"+elemt.id+"'>"+elemt.desc+"</option>");
 				});
 			});
+			
+			//表单验证
+			$("form#addUser").validate({
+				rules:{
+					name:{
+						required:true
+					}
+				},
+				messages:{
+					name:{
+						required:"用户名不能为空"
+					}
+				}
+			});
+			
 			$("form#addUser").submit(function(){
 				 $(this).ajaxSubmit(function() {   
 				      alert("添加成功");				      
@@ -186,6 +202,9 @@ $(document).ready(function(){
 				 });				
 				 return false; //阻止表单默认提交	
 			});
+			
+			
+			
 			$("button#returnAllUser").on("click", function(){
 //				alert("click");
 				$("div#userDialog").dialog("close");
