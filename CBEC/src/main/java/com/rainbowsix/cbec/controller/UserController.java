@@ -39,6 +39,27 @@ public class UserController {
 		
 		return "OK";
 	}
+	@RequestMapping(value="checkIdUsed", method= {RequestMethod.GET})
+	public boolean checkIdUsed(int id) throws Exception{
+		boolean result = false;
+		
+		if(userService.selectById(id) != null) {
+			result = true;
+		}
+		
+		return result;
+	}
+	
+	@RequestMapping(value="checkNameUsed", method= {RequestMethod.GET})
+	public boolean checkIdUsed(String name) throws Exception{
+		boolean result = false;
+		
+		if(userService.getByName(name) == null) {
+			result = true;
+		}
+		
+		return result;
+	}
 	
 	@RequestMapping("all")
 	public List<UserModel> all() throws Exception{

@@ -62,9 +62,13 @@
 	<delete id="delete" parameterType="User">
 		delete from sys_user where userid = #{no}
 	</delete>
-	
+	<!-- 查询单个用户 -->
 	<select id="selectById" parameterType="long" resultMap="userResultMap">
 		select * from sys_user where userid = #{no}
+	</select>
+	<!-- 根据用户名查找 -->
+	<select id="selectByName" parameterType="string" resultMap="userResultMap">
+		select * from sys_user where username = #{name}
 	</select>
 	
 	<update id="update" parameterType="User">
@@ -113,7 +117,7 @@
      		left outer join user_role r on l.roleid = r.roleid
      		left outer join area a on u.area_ID = a.area_ID 
      		order by u.userid desc) a
-		     <where>
+		    <where>
 		     	<if test="name != null and name != '' ">
 	  				username like #{name}
 	  			</if>
@@ -135,7 +139,7 @@
 	  			<if test="true">
 	  				and rownum &lt;= #{end}
 	  			</if>
-		     </where>	  
+		    </where>	  
 		 ) where rn &gt;= #{start}
 	</select>
 	<!-- 根据条件查询用户，不包含角色 -->

@@ -15,8 +15,11 @@ public interface IUserDao {
 	//查询所有用户，分页，未实现
 	public List<UserModel> selectAllWithPage(int rows, int page)
 		throws Exception;
+	/*********************获取单个用户*************************************/
 	//根据用户id查询用户
 	public UserModel selectById(long no) throws Exception;
+	//根据用户名查找用户
+	public UserModel selectByName(String name) throws Exception;
 	/*******************获取所有用户的不同信息**************************/
 	//查询所有用户，
 	public List<UserModel> selectAll()

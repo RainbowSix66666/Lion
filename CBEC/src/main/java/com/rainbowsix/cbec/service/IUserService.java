@@ -23,4 +23,7 @@ public interface IUserService {
 	public List<UserModel> selectListByCondictionWithPageWithoutRole(String name, Date before, Date after, int area, int start, int end) 
 			throws Exception;
 	
+	//查询单个用户
+	public UserModel getByName(String name) throws Exception;
+	
 } 

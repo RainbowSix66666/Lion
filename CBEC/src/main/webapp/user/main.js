@@ -182,23 +182,53 @@ $(document).ready(function(){
 			
 			//表单验证
 			$("form#addUser").validate({
+				//表单提交处理
 				submitHandler: function(form) {
 					$(form).ajaxSubmit(function() {   
 					      alert("添加成功");				      
 					      showAllUserData();
 					      $("div#userDialog").dialog("close");
-					 });				
-					 return false; //阻止表单默认提交
+//					      alert($("input[name='password_agin']").val());
+					 });		
+					//阻止表单提交跳转
+					 return false; 
 				  },
 				
 				rules:{
 					name:{
-						required:true
+						required:true,
+						minlength:4,
+						remote:{
+							url:"user/checkNameUsed.mvc",
+							type:"get",
+							data:{
+								name:function(){
+//									alert($("input[name='name']").val());
+									return $("input[name='name']").val();
+								}
+							}
+						}
+					},
+				    password:{
+				    	required:true,
+				    	minlength:6
+				    },
+					password_agin:{
+						equalTo:"input[name='password']"
 					}
 				},
 				messages:{
 					name:{
-						required:"用户名不能为空"
+						required:"用户名不能为空",
+						minlength:"用户名不能短于4个字符",
+						remote:"用户名已存在"
+					},
+					password:{
+						required:"密码不能为空",
+						minlength:"密码不能短于6个字符"
+					},
+					password_agin:{
+						equalTo:"两次密码不一致"
 					}
 				}
 			});
