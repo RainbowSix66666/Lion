@@ -17,7 +17,7 @@ $(document).ready(function(){
 			//商品类型选择框变化响应
 			$("select#type").on("change",function(){
 				typeno=$("select#type").val();
-				alert(typeno);
+//				alert(typeno);
 				$.getJSON("goods/select/bytype.mvc",{typeno:typeno},function(all){
 					var title="";
 					for(var i=0;i<all.length;i++){

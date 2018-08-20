@@ -46,11 +46,8 @@
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
 		
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@10.1.53.30:1521:neuedu"/>
-<<<<<<< HEAD
 <!-- 		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:neuedu"/> -->
-=======
 		<!-- <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:neuedu"/> -->
->>>>>>> branch 'master' of https://github.com/RainbowSix66666/Lion.git
 		<property name="user" value="RainbowSix6"/>
 		<property name="password" value="123456"/>		
 		<property name="initialPoolSize" value="3"></property>  
