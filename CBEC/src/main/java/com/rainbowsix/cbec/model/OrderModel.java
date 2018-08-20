@@ -10,7 +10,6 @@ public class OrderModel {
 	private int comid=0; //公司ID
 	private String orderstate=null; //订单状态
 	private int bsid=0; //借卖方ID
-	private int logisticsid=0; //物流ID 外键
 	
 	//关联属性-对一-物流
 	private List<LogisticsModel> logistics = null;
@@ -38,12 +37,6 @@ public class OrderModel {
 	}
 	public void setBsid(int bsid) {
 		this.bsid = bsid;
-	}
-	public int getLogisticsid() {
-		return logisticsid;
-	}
-	public void setLogisticsid(int logisticsid) {
-		this.logisticsid = logisticsid;
 	}
 	public List<LogisticsModel> getLogistics() {
 		return logistics;

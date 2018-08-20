@@ -10,6 +10,9 @@ public class LogisticsModel {
 	private int expressnumber=0; //快递单号
 	private String consignee=null; //收货人
 	private int phone=0; //手机号
+	//与订单关联-对一
+	private OrderModel order=null;
+	
 	public int getLogisticsid() {
 		return logisticsid;
 	}
@@ -39,6 +42,13 @@ public class LogisticsModel {
 	}
 	public void setPhone(int phone) {
 		this.phone = phone;
+	}
+	//与订单关联的getter and setter方法
+	public OrderModel getOrder() {
+		return order;
+	}
+	public void setOrder(OrderModel order) {
+		this.order = order;
 	}
 	
 	
