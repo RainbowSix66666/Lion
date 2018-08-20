@@ -132,11 +132,23 @@ $(document).ready(function(){
 				});
 			});
 			
+			//取得商品id列表，填充照片下拉框
+			$.getJSON("goodsphoto/list/proid.mvc",function(photoList){
+				$.each(photoList,function(index, photo){
+					$("select#addProid").append("<option value='"+photo.proid+"'>"+photo.proid+"</option>");
+				});
+			});
+			
 			//拦截员工增加表单提交
 			$("form#photoAddForm").ajaxForm(function(result){
 				getParamGrid(); //重新载入员工列表，并刷新Grid显示。
 				$("div#GoodsPhotoDialog").dialog("close"); //关闭弹出Dialog
 				
+			});
+			
+			//定义取消连接点击事件处理
+			$("a#addCancle").on("click",function(){
+				$("div#GoodsPhotoDialog").dialog("close"); //关闭弹出Dialog
 			});
 			
 		});	
