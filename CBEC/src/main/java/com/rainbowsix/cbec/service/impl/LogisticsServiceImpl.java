@@ -185,5 +185,19 @@ public class LogisticsServiceImpl implements ILogisticsService {
 		return pageCount;
 	}
 	
+	@Override
+	public List<LogisticsModel> getAddress() throws Exception {
+		String resource = "ldj_config.xml";
+		InputStream inputStream = Resources.getResourceAsStream(resource);
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+		SqlSession session = sqlSessionFactory.openSession();
+		ILogisticsDao logisticsDao=session.getMapper(ILogisticsDao.class);
+		List<LogisticsModel> list=logisticsDao.selectAddress();
+		session.commit();
+		session.close();
+		
+		return list;
+	}
+	
 	
 }
