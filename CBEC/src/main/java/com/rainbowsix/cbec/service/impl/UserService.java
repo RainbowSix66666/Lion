@@ -89,11 +89,11 @@ public class UserService implements IUserService {
 
 	@Override
 	public UserModel getByName(String name) throws Exception {
-
-
+		// TODO Auto-generated method stub
 		return userDao.selectByName(name);
-
 	}
+
+	
 	
 
 }
