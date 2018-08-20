@@ -178,9 +178,14 @@ $(document).ready(function(){
 			$("form#addUser").submit(function(){
 				 $(this).ajaxSubmit(function() {   
 				      alert("添加成功");				      
-				      showAllUserData();				     
+				      showAllUserData();
+				      $("div#userDialog").dialog("close");
 				 });				
 				 return false; //阻止表单默认提交	
+			});
+			$("button#returnAllUser").on("click", function(){
+//				alert("click");
+				$("div#userDialog").dialog("close");
 			});
 		});
 		
