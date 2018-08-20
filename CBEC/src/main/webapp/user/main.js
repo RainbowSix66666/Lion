@@ -182,6 +182,15 @@ $(document).ready(function(){
 			
 			//表单验证
 			$("form#addUser").validate({
+				submitHandler: function(form) {
+					$(form).ajaxSubmit(function() {   
+					      alert("添加成功");				      
+					      showAllUserData();
+					      $("div#userDialog").dialog("close");
+					 });				
+					 return false; //阻止表单默认提交
+				  },
+				
 				rules:{
 					name:{
 						required:true
@@ -194,14 +203,14 @@ $(document).ready(function(){
 				}
 			});
 			
-			$("form#addUser").submit(function(){
+			/*$("form#addUser").submit(function(){
 				 $(this).ajaxSubmit(function() {   
 				      alert("添加成功");				      
 				      showAllUserData();
 				      $("div#userDialog").dialog("close");
 				 });				
 				 return false; //阻止表单默认提交	
-			});
+			});*/
 			
 			
 			
