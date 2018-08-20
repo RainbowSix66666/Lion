@@ -150,6 +150,9 @@ $(document).ready(function(){
 				after = $("input#afterCreateDate").val();
 				getParamAndReloadGrid();
 			});
+			
+			//
+			
 		});
 		
 	}
