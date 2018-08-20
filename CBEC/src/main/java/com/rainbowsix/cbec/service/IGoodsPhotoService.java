@@ -41,6 +41,9 @@ public interface IGoodsPhotoService {
 	 //取得照片等级
 	 public List<GoodsPhotoModel> selectRankCondition() throws Exception;
 	 
+	 //取得商品id
+	 public List<GoodsPhotoModel> selectProidCondition() throws Exception;
+	 
 	 //添加有照片的goodsphoto
 	 public void addWithPhoto(GoodsPhotoModel goodsPhoto) throws Exception;
 	 

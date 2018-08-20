@@ -16,6 +16,11 @@
 		  	<resultMap id="GoodsPhotoRankResultMap" type="GoodsPhoto">
 				  <result property="rank" column="RANK"/>
 		  	</resultMap>
+		  	
+		  	<!-- 取得商品id的modelresultmapper -->
+		  	<resultMap id="GoodsProidResultMap" type="GoodsPhoto">
+				  <result property="proid" column="proid"/>
+		  	</resultMap>
 		
 			<!-- 有goodsphoto 无商品 的字段映射resultMap 选择单个goodsphoto全部内容 -->
 		<resultMap id="GoodsPhotoWithPhotoResultMap" type="GoodsPhoto" extends="GoodsPhotoResultMap">
@@ -172,6 +177,13 @@
 		<!-- 取得照片等级的modelresultmapper -->
 		<select id="selectRankCondition" resultMap="GoodsPhotoRankResultMap">
 			select DISTINCT rank from goodsphoto  order by rank 
+		</select>
+		
+		<!-- 取得商品id的modelresultmapper -->
+		<select id="selectProidCondition" resultMap="GoodsProidResultMap">
+			select  DISTINCT b.proid 
+			from goodsphoto a inner join goods b 
+			on a.proid=b.proid  order by b.proid
 		</select>
 		
 		

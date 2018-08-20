@@ -80,9 +80,17 @@ public class GoodsPhotoServiceImpl implements IGoodsPhotoService {
 		
 		return pageCount;
 	}
+	
+	//取得照片等级
 	@Override
 	public List<GoodsPhotoModel> selectRankCondition() throws Exception {
 		return goodsPhotoDao.selectRankCondition();
+	}
+	
+	//取得商品id
+	@Override
+	public List<GoodsPhotoModel> selectProidCondition() throws Exception {
+		return goodsPhotoDao.selectProidCondition();
 	}
 	
 	//添加有照片的goodsphoto

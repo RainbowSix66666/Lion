@@ -117,6 +117,13 @@ public class GoodsPhotoController {
 			 return goodsPhotoService.selectRankCondition();
 		 }
 		
+		//取得商品id
+		@RequestMapping(value="/list/proid",method={RequestMethod.GET})
+		@ResponseBody
+		public List<GoodsPhotoModel> selectProidCondition() throws Exception{
+			return goodsPhotoService.selectProidCondition();
+		}
+		
 		//增加照片信息和上传照片
 		@RequestMapping(value="/add",method=RequestMethod.POST, produces = "text/html;charset=UTF-8")
 		public String  add(GoodsPhotoModel goodsPhoto,@RequestParam(required=false) MultipartFile loadPhoto) throws Exception{
