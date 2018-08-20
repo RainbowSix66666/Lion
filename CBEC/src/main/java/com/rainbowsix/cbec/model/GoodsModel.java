@@ -15,7 +15,8 @@ public class GoodsModel {
 	private String comid=null;//公司编号
 	private String title=null;//商品标题
 	private String state=null;//状态
-	private int type=0;//商品类型
+	private int typeno=0;//类型编号
+	private String type=null;//商品类型
 	private int stock=0;//库存
 	private double price=0;//价格
 	private double weight=0;//重量
@@ -60,10 +61,10 @@ public class GoodsModel {
 	public void setState(String state) {
 		this.state = state;
 	}
-	public int getType() {
+	public String getType() {
 		return type;
 	}
-	public void setType(int type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 	public int getStock() {
@@ -98,6 +99,12 @@ public class GoodsModel {
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	public int getTypeno() {
+		return typeno;
+	}
+	public void setTypeno(int typeno) {
+		this.typeno = typeno;
 	}
 	
 	

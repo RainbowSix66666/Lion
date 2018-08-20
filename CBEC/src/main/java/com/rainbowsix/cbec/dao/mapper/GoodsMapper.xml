@@ -13,14 +13,20 @@
 			<result property="gooddate" column="gooddate"/>
 			<result property="stock" column="stock"/>
 			<result property="gooddesc" column="gooddesc"/>
+			<result property="typeno" column="typeno"/>
 			<result property="type" column="type"/>
 			<result property="weight" column="weight"/>
 </resultMap>
 
+<resultMap type="typeall" id="typeall">
+	<result property="typeno" column="typeno"/>
+	<result property="type" column="type"/>
+</resultMap>
+
 
 <insert id="create" parameterType="GoodsModel">
-	insert into GOODS (PROID,COMID,TITLE,PRICE,GOODDATE,STOCK,GOODDESC,TYPE,WEIGHT,STATE)
-	values (PROID.nextval,#{comid},#{title},#{price},#{gooddate,jdbcType=DATE},#{stock},#{gooddesc,jdbcType=VARCHAR},#{type,jdbcType=VARCHAR},#{weight},#{state})
+	insert into GOODS (PROID,COMID,TITLE,PRICE,GOODDATE,STOCK,GOODDESC,TYPENO,TYPE,WEIGHT,STATE)
+	values (PROID.nextval,#{comid},#{title},#{price},#{gooddate,jdbcType=DATE},#{stock},#{gooddesc,jdbcType=VARCHAR},#{typeno},#{type,jdbcType=VARCHAR},#{weight},#{state})
 </insert>
 
 	<update id="update" parameterType="GoodsModel">
@@ -32,6 +38,7 @@
 		STATE = #{state},
 		STOCK = #{stock},
 		GOODDESC = #{gooddesc,jdbcType=VARCHAR},
+		TYPENO = #{typeno},
 		TYPE = #{type,jdbcType=VARCHAR},
 		WEIGHT = #{weight}
 		where PROID =#{proid}
@@ -51,5 +58,6 @@
 		select *
 		from GOODS
 	</select>
-
+	
+	
 </mapper>

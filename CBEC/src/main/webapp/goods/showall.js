@@ -9,7 +9,7 @@ $(document).ready(function(){
 				var option="<option value='0'>所有</option>";
 				$.each(all,function(index,good){
 					
-					option=option+"<option value='"+good.type+"'>"+good.type+"</option>"
+					option=option+"<option value='"+good.typeno+"'>"+good.type+"</option>"
 				});
 				$("select#type").html(option);
 			});
@@ -116,12 +116,13 @@ $("a#addgoods").on("click", function(){
 			var state = $("input[name = 'state']").val();
 			var gooddate = $("input[name = 'gooddate']").val();
 			var type = $("input[name = 'type']").val();
+			var typeno = $("input[name = 'typeno']").val();
 			var stock = $("input[name = 'stock']").val();
 			var weight = $("input[name = 'weight']").val();
 			var gooddesc = $("input[name = 'gooddesc']").val();
 
 			//alert(title);
-			$.post("goods/add.mvc", {title:title,comid:comid,price:price,gooddate:gooddate,state:state,type:type,stock:stock,weight:weight,gooddesc:gooddesc}, function(re){
+			$.post("goods/add.mvc", {title:title,comid:comid,price:price,gooddate:gooddate,state:state,type:type,typeno:typeno,stock:stock,weight:weight,gooddesc:gooddesc}, function(re){
 
 			$("div#main_body").load("goods/showall.html");
 			});
