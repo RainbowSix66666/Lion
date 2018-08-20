@@ -18,11 +18,21 @@ public class UserModel {
 	@DateTimeFormat(pattern = "yyy-MM-dd")
 	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
 	private Date createDate;
+	//头像信息
+	private byte[] avatar;
+	private String avatar_name;
+	private String avayar_type;
 	
 	private AreaModel area = null;
 	private ResellerModel reseller = null;
 	private List<RoleModel> roles = null;	
 	
+	public byte[] getAvatar() {
+		return avatar;
+	}
+	public void setAvatar(byte[] avatar) {
+		this.avatar = avatar;
+	}
 	public AreaModel getArea() {
 		return area;
 	}

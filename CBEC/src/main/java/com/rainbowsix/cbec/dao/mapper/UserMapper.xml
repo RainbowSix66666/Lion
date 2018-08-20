@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace = "com.rainbowsix.cbec.dao.IUserDao">
-
+	<!-- 基础信息 -->
 	<resultMap type="User" id="userResultMap">
 		<id property="no" column="userid"/>
 		<result property="name" column="username"/>
@@ -13,6 +13,12 @@
 		<result property="createDate" column="createDate"/>
 		<!-- <association property="role" column="ROLEID" select="com.rainbowsix.cbec.dao.IRoleDao.selectById"></association>
 		<association property="area" column="area_ID" select="com.rainbowsix.cbec.dao.IAreaDao.selectById"></association> -->
+	</resultMap>
+	<!-- 带有用户头像 -->
+	<resultMap type="User" id="userResultMapWithAvatar" extends="userResultMap">
+		<result property="avatar" column="user_avatar"/>
+		<result property="avatar_name" column="avatar_name"/>
+		<result property="avatar_type" column="avatar_type"/>
 	</resultMap>
 	<!-- 有角色关联的ResultMap -->
 	<resultMap type="User" id="userResultMapWithRole" extends="userResultMap">
@@ -36,10 +42,16 @@
 	<resultMap type="User" id="userResultMapWithAreaAndRole" extends="userResultMapWithRole">
 		<association property="area" column="area_ID" resultMap="com.rainbowsix.cbec.dao.IAreaDao.areaResultMap"></association>
 	</resultMap>
-
+	<!-- 插入数据 -->
+	<!-- 只有用户基本信息 -->
 	<insert id="create" parameterType="User">
 		insert into sys_user (userid, username, userpassword) values 
 		(USER_ID_SQ.nextval, #{name}, #{password})
+	</insert>
+	<!-- 含有图片 -->
+	<insert id="createWithPhoto" parameterType="User">
+		insert into sys_user (userid, username, userpassword, user_avatar, avatar_name, avatar_type) values 
+		(USER_ID_SQ.nextval, #{name}, #{password}, #{avatar}, #{avatar_name}, #{avatar_type})
 	</insert>
 	
 	<!-- 查询所有 -->
