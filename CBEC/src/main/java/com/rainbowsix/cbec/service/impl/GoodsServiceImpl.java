@@ -77,7 +77,6 @@ public class GoodsServiceImpl implements IGoodsService {
 //		
 //		session.commit();
 //		session.close();
-		System.out.println(goodsdao.byone(proid).getdate());
 		return goodsdao.byone(proid);
 	}
 	
@@ -97,6 +96,13 @@ public class GoodsServiceImpl implements IGoodsService {
 		return goodsdao.byall();
 	}
 
+	public List<GoodsModel> alltype() throws Exception{
+		return goodsdao.alltype();
+	}
 	
+	public List<GoodsModel> bytype(int typeno) throws Exception{
+		return goodsdao.bytype(typeno);
+	}
+
 
 }

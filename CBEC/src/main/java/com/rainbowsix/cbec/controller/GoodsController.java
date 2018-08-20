@@ -53,4 +53,19 @@ public class GoodsController {
 		
 		return goodservice.all();
 	}
+	
+	@RequestMapping(value="/select/alltype",method={RequestMethod.GET})
+	public List<GoodsModel> typeall() throws Exception{
+		
+		return goodservice.alltype();
+	}
+	
+	@RequestMapping(value="/select/bytype",method={RequestMethod.GET})
+	public List<GoodsModel> bytype(int typeno) throws Exception{
+		if(typeno != 0) {
+			return goodservice.bytype(typeno);
+		}
+		else
+			return goodservice.all();
+	}
 }

@@ -17,6 +17,12 @@ public interface IGoodsDao {
 	//分页取得所有商品列表
 	public List<GoodsModel> byall() throws Exception;
 	
+	//取得所有商品的类型
+	public List<GoodsModel> alltype() throws Exception;
+	
+	//取得类型对应的所有商品
+	public List<GoodsModel> bytype(int typeno) throws Exception;
+	
 	//取得指定的商品信息
 	public GoodsModel byone(int proid) throws Exception;
 	
