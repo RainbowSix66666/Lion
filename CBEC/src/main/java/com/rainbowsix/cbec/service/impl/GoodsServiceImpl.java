@@ -97,6 +97,12 @@ public class GoodsServiceImpl implements IGoodsService {
 		return goodsdao.byall();
 	}
 
+	@Override
+	public List<GoodsModel> typeall() throws Exception {
+		// TODO Auto-generated method stub
+		return goodsdao.typeall();
+	}
+
 	
 
 }

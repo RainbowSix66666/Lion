@@ -15,7 +15,7 @@ public class GoodsModel {
 	private String comid=null;//公司编号
 	private String title=null;//商品标题
 	private String state=null;//状态
-	private String type=null;//商品类型
+	private int type=0;//商品类型
 	private int stock=0;//库存
 	private double price=0;//价格
 	private double weight=0;//重量
@@ -60,10 +60,10 @@ public class GoodsModel {
 	public void setState(String state) {
 		this.state = state;
 	}
-	public String getType() {
+	public int getType() {
 		return type;
 	}
-	public void setType(String type) {
+	public void setType(int type) {
 		this.type = type;
 	}
 	public int getStock() {

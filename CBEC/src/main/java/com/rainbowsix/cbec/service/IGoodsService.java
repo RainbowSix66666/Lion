@@ -20,4 +20,7 @@ public interface IGoodsService {
 	
 	//显示全部商品
 	public List<GoodsModel> all() throws Exception;
+	
+	//显示所有商品类型
+	public List<GoodsModel> typeall() throws Exception;
 }

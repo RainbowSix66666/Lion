@@ -20,7 +20,7 @@
 
 <insert id="create" parameterType="GoodsModel">
 	insert into GOODS (PROID,COMID,TITLE,PRICE,GOODDATE,STOCK,GOODDESC,TYPE,WEIGHT,STATE)
-	values (PROID.nextval,#{comid},#{title},#{price},#{gooddate,jdbcType=DATE},#{stock},#{gooddesc,jdbcType=VARCHAR},#{type,jdbcType=VARCHAR},#{weight},#{state})
+	values (PROID.nextval,#{comid},#{title},#{price},#{gooddate,jdbcType=DATE},#{stock},#{gooddesc,jdbcType=VARCHAR},#{type},#{weight},#{state})
 </insert>
 
 	<update id="update" parameterType="GoodsModel">
@@ -32,7 +32,7 @@
 		STATE = #{state},
 		STOCK = #{stock},
 		GOODDESC = #{gooddesc,jdbcType=VARCHAR},
-		TYPE = #{type,jdbcType=VARCHAR},
+		TYPE = #{type},
 		WEIGHT = #{weight}
 		where PROID =#{proid}
 	</update>
@@ -50,6 +50,11 @@
 	<select id="byall" resultType="GoodsModel">
 		select *
 		from GOODS
+	</select>
+	
+	<select id="typeall" resultType="GoodsModel">
+		select *
+		from GOODSTYPE
 	</select>
 
 </mapper>
