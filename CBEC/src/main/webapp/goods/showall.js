@@ -3,6 +3,18 @@ $(document).ready(function(){
 	var proid=0;
 	//alert("成功加载");
 	
+	
+			//获取商品类型填充下拉列表
+			$.getJSON("goods/select/all.mvc",function(all){
+				var option="<option value='0'>所有</option>";
+				$.each(all,function(index,good){
+					
+					option=option+"<option value='"+good.typeno+"'>"+good.type+"</option>"
+				});
+				$("select#type").html(option);
+			});
+			
+	
 			$.getJSON("goods/select/all.mvc",function(all){
 				var title="";
 				for(var i=0;i<all.length;i++){
@@ -104,12 +116,13 @@ $("a#addgoods").on("click", function(){
 			var state = $("input[name = 'state']").val();
 			var gooddate = $("input[name = 'gooddate']").val();
 			var type = $("input[name = 'type']").val();
+			var typeno = $("input[name = 'typeno']").val();
 			var stock = $("input[name = 'stock']").val();
 			var weight = $("input[name = 'weight']").val();
 			var gooddesc = $("input[name = 'gooddesc']").val();
 
 			//alert(title);
-			$.post("goods/add.mvc", {title:title,comid:comid,price:price,gooddate:gooddate,state:state,type:type,stock:stock,weight:weight,gooddesc:gooddesc}, function(re){
+			$.post("goods/add.mvc", {title:title,comid:comid,price:price,gooddate:gooddate,state:state,type:type,typeno:typeno,stock:stock,weight:weight,gooddesc:gooddesc}, function(re){
 
 			$("div#main_body").load("goods/showall.html");
 			});

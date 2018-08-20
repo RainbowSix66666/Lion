@@ -1,28 +1,18 @@
 <script src="logistics/main.js"></script>
 
-	<div class="col-lg-12">
-
-	 		<!-- <div class="panel panel-green"> -->
-           <!--  <div class="panel-heading"> -->
-	            <!-- <div class="row">
-	            	<div class="col-lg-6"><h4>物流信息 </h4></div>
-	           		
-	            </div> -->
-           <!--  <div class="panel-title"><i class="fa fa-long-arrow-right"></i> 我的订单</div> -->
-        <!-- 	</div> -->
-            <div class="panel-body" id="OrderMainContent">
-                <!--<div class="flot-chart">
-                    <div class="flot-chart-content" id="flot-pie-chart"></div>
-                </div>-->
-                <table id="logisticsGrid"></table>
-                <div id="logisticsGridPager"></div>
-                 
-            </div>
-        <!-- </div> -->
+<div class="col-md-1 text-right">
+		地址
 	</div>
-	 
-	 
-	 
-	 		
+	<div class="col-md-2">
+		<select class="form-control" id="AddressSelection">
+			<option value="0">所有</option>
+		</select>
+	</div>
 	
-		
+<div class="col-lg-12">
+           <div class="panel-body" id="OrderMainContent">            
+               <table id="logisticsGrid"></table>
+               <div id="logisticsGridPager"></div>                 
+           </div>       
+</div>
+	

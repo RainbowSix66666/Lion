@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.rainbowsix.cbec.dao.ILogisticsDao">
-
+	<!-- 无关联-无分页的ResultMap -->
 	<resultMap id="LogisticsResultMap" type="Logistics">
 	  <id property="logisticsid" column="LOGISTICSID" />
 	  <result property="address" column="ADDRESS"/>
@@ -12,26 +12,130 @@
 	  <result property="phone" column="PHONE"/>
 	</resultMap>
 	
+	<resultMap type="logistics" id="LogisticsWithOrderResultMap" extends ="LogisticsResultMap">
+	  <!-- <id property="logisticsid" column="LOGISTICSID" />
+	  <result property="address" column="ADDRESS"/>
+	  <result property="expressnumber" column="EXPRESSNUMBER"/>
+	  <result property="consignee" column="CONSIGNEE"/>
+	  <result property="phone" column="PHONE"/>
+	   -->
+	   <!-- Nested ResultMap -->
+	 <association property="order" resultMap="com.rainbowsix.cbec.dao.IOrderDao.OrderResultMap"></association>
+	  <!-- Nested Select -->
+	<!--  <association property="order" column="orderid" select="com.rainbowsix.cbec.dao.IOrderDao.selectOrderListById" fetchType="eager"></association>  -->
+	</resultMap>
+	
+	
+	
+	<!-- 无关联订单的增加 -->
 	<insert id="create" parameterType="Logistics">
 	insert into LOGISTICS (LOGISTICSID,ADDRESS,EXPRESSNUMBER,CONSIGNEE,PHONE)
 	values (LOGISTICS_SEQUENCE.nextval,#{address},#{expressnumber},#{consignee},#{phone})
 	</insert>
-	
+	<!-- 关联订单的增加 -->
+	<insert id="createWithOrder" parameterType="Logistics">
+	insert into LOGISTICS (LOGISTICSID,ADDRESS,EXPRESSNUMBER,CONSIGNEE,PHONE,ORDERID)
+	values (LOGISTICS_SEQUENCE.nextval,#{address},#{expressnumber},#{consignee},#{phone},#{order.orderid})
+	</insert>
+	<!-- 无关联订单的修改 -->	
 	<update id="update" parameterType="Logistics">
 	update LOGISTICS set ADDRESS=#{address}, EXPRESSNUMBER=#{expressnumber}, CONSIGNEE=#{consignee}, PHONE=#{phone} where LOGISTICSID=#{logisticsid}
 	</update>
-	
+	<!-- 关联订单的修改 -->
+	<update id="updateWithOrder" parameterType="Logistics">
+	update LOGISTICS set ADDRESS=#{address}, EXPRESSNUMBER=#{expressnumber}, CONSIGNEE=#{consignee}, PHONE=#{phone},ORDERID=#{order.orderid} where LOGISTICSID=#{logisticsid}
+	</update>
+
 	<delete id="delete" parameterType="Logistics">
 	delete from LOGISTICS where LOGISTICSID=#{logisticsid}
 	</delete>
 	
 	<select id="selectLogisticsListByAll" resultMap="LogisticsResultMap">
 		select * from LOGISTICS
+	<!-- <trim prefix="WHERE" prefixOverrides="AND|OR ">
+	   <if test="logisticsid!=0">
+	     and LOGISTICSID=#{logisticsid}
+	   </if>
+	   <if test="address!=null and address!=''">
+	      and ADDRESS=#{address} 
+	   </if>
+	  <if test="expressnumber!=0">
+	     and EXPRESSNUMBER=#{expressnumber}
+	   </if>
+	   <if test="consignee!=null and consignee!=''">
+	      and CONSIGNEE=#{consignee} 
+	   </if>
+	    <if test="phone!=0">
+	     and PHONE=#{phone}
+	   </if>
+	 </trim> -->
 	</select>
 	
 	<select id="selectLogisticsListById" resultMap="LogisticsResultMap">
 	select * from LOGISTICS where LOGISTICSID=#{logisticsid}
 	</select>
-
-
+	
+	<select id="selectLogisticsListWithOrder" resultMap="LogisticsWithOrderResultMap">
+	select a.*, b.*  from LOGISTICS a left join ORDERS b on a.orderid=b.orderid 
+	</select>
+	
+	<!-- 按检索条件取得物流列表-无分页 -->
+	<select id="selectLogisticsListByCondition" resultMap="LogisticsResultMap">
+		select * from LOGISTICS 
+		<trim prefix="WHERE" prefixOverrides="AND|OR ">
+		<if test="address!=null and address!=''">
+	     and ADDRESS=#{address}
+	   </if>
+	    <if test="expressnumber!=0">
+	    and EXPRESSNUMBER=#{expressnumber}
+	   </if>
+	   <if test="consignee!=null and consignee!=''">
+	      and CONSIGNEE=#{consignee}
+	   </if>
+	    <if test="phone!=0">
+	     and PHONE=#{phone}
+	   </if>
+		</trim>
+	 </select>
+	 	
+	<!-- 按检索条件取得物流列表-有分页 -->
+	<select id="selectLogisticsListByConditionWithPage" resultMap="LogisticsResultMap">
+		SELECT * FROM  (SELECT X.*, ROWNUM RN  
+	FROM (
+		select * from LOGISTICS 
+		<trim prefix="WHERE" prefixOverrides="AND|OR ">
+		<if test="address!=null and address!=''">
+	     and ADDRESS=#{address}
+	   </if>
+	    <if test="expressnumber!=0">
+	    and EXPRESSNUMBER=#{expressnumber}
+	   </if>
+	   <if test="consignee!=null and consignee!=''">
+	      and CONSIGNEE=#{consignee}
+	   </if>
+	    <if test="phone!=0">
+	     and PHONE=#{phone}
+	   </if>
+		</trim>
+		)
+	 X WHERE ROWNUM &lt;=#{end})  WHERE RN &gt;=#{start}
+	 </select>
+	 <!-- 按检索条件取得物流条数 -->
+	 <select id="selectCountByCondition" resultType="int">
+	   select count(LOGISTICSID) from LOGISTICS
+	   <trim prefix="WHERE" prefixOverrides="AND|OR ">
+		<if test="address!=null and address!=''">
+	     and ADDRESS=#{address}
+	   </if>
+	    <if test="expressnumber!=0">
+	    and EXPRESSNUMBER=#{expressnumber}
+	   </if>
+	   <if test="consignee!=null and consignee!=''">
+	      and CONSIGNEE=#{consignee}
+	   </if>
+	    <if test="phone!=0">
+	     and PHONE=#{phone}
+	   </if>
+		</trim>
+	</select>
 </mapper>

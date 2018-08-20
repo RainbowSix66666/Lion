@@ -3,6 +3,7 @@
  */
 $(document).ready(function(){
 	var orderid=0;//选择的订单ID
+
 	
 	function showOrderList(){
 		$("div#OrderMainContent").load("order/list.html",function(){
@@ -10,7 +11,7 @@ $(document).ready(function(){
 			$.getJSON("order/list/all.mvc",function(orderList){
 				var lines="";
 				for(var i=0;i<orderList.length;i++){
-					lines=lines+"<tr data-no='"+orderList[i].orderid+"'><td>"+orderList[i].orderid+"</td><td>"+orderList[i].comid+"</td><td>"+orderList[i].orderstate+"</td><td>"+orderList[i].bsid+"</td><td>"+orderList[i].logisticsid+"</td></tr>"
+					lines=lines+"<tr data-no='"+orderList[i].orderid+"'><td>"+orderList[i].orderid+"</td><td>"+orderList[i].comid+"</td><td>"+orderList[i].orderstate+"</td><td>"+orderList[i].bsid+"</td></tr>"
 	 			}
 				$("table#orderListTable tbody").html(lines);
 				//点击TR事件处理
@@ -26,9 +27,7 @@ $(document).ready(function(){
 		
 		orderid=0;
 	}
-	
-
-
+		
 //点击增加按钮事件处理
 $("a#OrderAddLink").on("click", function(){
 	$("div#OrderMainContent").load("order/orderadd.html",function(){
@@ -36,9 +35,9 @@ $("a#OrderAddLink").on("click", function(){
 			var comid=$("input[name='comid']").val();
 			var orderstate=$("input[name='orderstate']").val();
 			var bsid=$("input[name='bsid']").val();
-			var logisticsid=$("input[name='logisticsid']").val();
 			
-			$.post("order/add.mvc",{comid:comid,orderstate:orderstate,bsid:bsid,logisticsid:logisticsid},function(){			
+			
+			$.post("order/add.mvc",{comid:comid,orderstate:orderstate,bsid:bsid},function(){			
 					alert("增加成功");
 					showOrderList();		
 			});
@@ -65,7 +64,7 @@ $("a#OrderModifyLink").on("click", function(){
 				$("input[name='comid']").val(resultData.comid);
 				$("input[name='orderstate']").val(resultData.orderstate);
 				$("input[name='bsid']").val(resultData.bsid);
-				$("input[name='logisticsid']").val(resultData.logisticsid);
+				
 			});
 			//点击修改提交按钮处理
 			$("button#orderModifyButton").on("click",function(){
@@ -73,9 +72,9 @@ $("a#OrderModifyLink").on("click", function(){
 				var comid = $("input[name='comid']").val();
 				var orderstate = $("input[name='orderstate']").val();
 				var bsid = $("input[name='bsid']").val();
-				var logisticsid = $("input[name='logisticsid']").val();
 				
-				$.post("order/modify.mvc",{orderid:orderid,comid:comid,orderstate:orderstate,bsid:bsid,logisticsid:logisticsid},function(resultData){
+				
+				$.post("order/modify.mvc",{orderid:orderid,comid:comid,orderstate:orderstate,bsid:bsid},function(resultData){
 					if(resultData!='ok'){
 						alert("修改成功");
 					}else{
@@ -107,7 +106,7 @@ $("a#OrderViewLink").on("click", function(){
 				$("span#orderComid").html(resultData.comid);
 				$("span#orderOrderstate").html(resultData.orderstate);
 				$("span#orderBsid").html(resultData.bsid);
-				$("span#orderLogisticsid").html(resultData.logisticsid);
+				
 			});
 			//点击返回按钮时间处理
 			$("button#orderViewCancelButton").on("click",function(){
@@ -142,15 +141,8 @@ $("a#OrderDeleteLink").on("click", function(){
 
 //点击查看物流按钮事件处理
 $("a#LogisticsViewLink").on("click", function(){
-	$("div#OrderMainContent").load("logistics/main.html");
-
-	
+	$("div#OrderMainContent").load("logistics/main.html");	
 });
+
 showOrderList();
-
-
-
 });
-
-
-

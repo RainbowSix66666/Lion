@@ -15,6 +15,7 @@ public class GoodsModel {
 	private String comid=null;//公司编号
 	private String title=null;//商品标题
 	private String state=null;//状态
+	private int typeno=0;//类型编号
 	private String type=null;//商品类型
 	private int stock=0;//库存
 	private double price=0;//价格
@@ -98,6 +99,12 @@ public class GoodsModel {
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	public int getTypeno() {
+		return typeno;
+	}
+	public void setTypeno(int typeno) {
+		this.typeno = typeno;
 	}
 	
 	

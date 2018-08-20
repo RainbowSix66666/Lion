@@ -9,17 +9,16 @@
 	  <result property="comid" column="COMID"/>
 	  <result property="orderstate" column="ORDERSTATE"/>
 	  <result property="bsid" column="BSID"/>
-	  <result property="logisticsid" column="LOGISTICSID"/>
-	  <association property="logistics" column="LOGISTICSID" select="com.rainbowsix.cbec.dao.ILogisticsDao.selectLogisticsListByAll" fetchType="eager"></association>
+	  <!-- <association property="logistics" column="LOGISTICSID" select="com.rainbowsix.cbec.dao.ILogisticsDao.selectLogisticsListByAll" fetchType="eager"></association> -->
 	</resultMap>
 	
 	<insert id="create" parameterType="Order">
-	insert into ORDERS (ORDERID,COMID,ORDERSTATE,BSID,LOGISTICSID)
-	values (ORDER_SEQUENCE.nextval,#{comid},#{orderstate},#{bsid},#{logisticsid})
+	insert into ORDERS (ORDERID,COMID,ORDERSTATE,BSID)
+	values (ORDER_SEQUENCE.nextval,#{comid},#{orderstate},#{bsid})
 	</insert>
 	
 	<update id="update" parameterType="Order">
-	update ORDERS set COMID=#{comid}, ORDERSTATE=#{orderstate}, BSID=#{bsid}, LOGISTICSID=#{logisticsid} where ORDERID=#{orderid}
+	update ORDERS set COMID=#{comid}, ORDERSTATE=#{orderstate}, BSID=#{bsid} where ORDERID=#{orderid}
 	</update>
 	
 	<delete id="delete" parameterType="Order">
