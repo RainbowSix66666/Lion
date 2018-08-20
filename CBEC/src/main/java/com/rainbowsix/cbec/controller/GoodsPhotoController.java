@@ -3,6 +3,8 @@ package com.rainbowsix.cbec.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -116,8 +118,9 @@ public class GoodsPhotoController {
 		 }
 		
 		//增加照片信息和上传照片
-		@RequestMapping(value="/add",method=RequestMethod.POST)
+		@RequestMapping(value="/add",method=RequestMethod.POST, produces = "text/html;charset=UTF-8")
 		public String  add(GoodsPhotoModel goodsPhoto,@RequestParam(required=false) MultipartFile loadPhoto) throws Exception{
+			
 			if(loadPhoto==null || loadPhoto.isEmpty()) {
 				//无图片提交
 				goodsPhotoService.addWithoutPhoto(goodsPhoto);

@@ -25,7 +25,6 @@ $(document).ready(function(){
 	//取得请求参数，并重新载入Grid数据并刷新
 	function getParamGrid(){
 		var datas={rank:rank, proid:photoGoodsId, photoId:matchPhotoId};
-		
 		//检查是否输入了照片上传起始日期
 		if(startDate!=null){
 			datas.startDate=startDate;
@@ -68,7 +67,6 @@ $(document).ready(function(){
 	//照片id更改事件处理
 	$("input#matchPhotoId").on("change",function(){
 		matchPhotoId=$("input#matchPhotoId").val();
-		alert(matchPhotoId);
 		getParamGrid();
 		
 	});
@@ -76,13 +74,14 @@ $(document).ready(function(){
 	//起始日期更改事件处理
 	$("input#photoStartDate").on("change",function(){
 		startDate=$("input#photoStartDate").val();
-		getParamAndReloadGrid();
+		alert(startDate);
+		getParamGrid();
 	});
 	
 	//结束日期更改事件处理
 	$("input#photoEndDate").on("change",function(){
 		endDate=$("input#photoEndDate").val();
-		getParamAndReloadGrid();
+		getParamGrid();
 	});
 	
 	/*显示员工列表表格*/
@@ -102,7 +101,7 @@ $(document).ready(function(){
 		 viewrecords: true,
 		 width: "100%",
          height: 400,
-         rowNum: 3,
+         rowNum: 6,
          rowList: [1,2,3,5,10,15],
          pager: "#goodsphotoGridPager",
 		jsonReader : {
@@ -135,8 +134,7 @@ $(document).ready(function(){
 			
 			//拦截员工增加表单提交
 			$("form#photoAddForm").ajaxForm(function(result){
-				alert("1");
-				getParamAndReloadGrid(); //重新载入员工列表，并刷新Grid显示。
+				getParamGrid(); //重新载入员工列表，并刷新Grid显示。
 				$("div#GoodsPhotoDialog").dialog("close"); //关闭弹出Dialog
 				
 			});
