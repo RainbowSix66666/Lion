@@ -5,13 +5,12 @@ $(document).ready(function(){
 	
 	
 			//获取商品类型填充下拉列表
-			$.getJSON("goods/select/type/all.mvc",function(typeall){
+			$.getJSON("goods/select/all.mvc",function(all){
 				var option="<option value='0'>所有</option>";
-				$.each(typeall,function(index,type){
-					alert(type.name);
-					option=option+"<option value='"+type.no+"'>"+type.name+"</option>"
+				$.each(all,function(index,good){
+					
+					option=option+"<option value='"+good.type+"'>"+good.type+"</option>"
 				});
-				alert("怎么会没东西")
 				$("select#type").html(option);
 			});
 			
