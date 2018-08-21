@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Alias("User")
 public class UserModel {
-	private long no;
+	private int no;
 	private String name;
 	private String password;
 	private long mvoid;
@@ -21,12 +21,24 @@ public class UserModel {
 	//头像信息
 	private byte[] avatar;
 	private String avatar_name;
-	private String avayar_type;
+	private String avatar_type;
 	
 	private AreaModel area = null;
 	private ResellerModel reseller = null;
 	private List<RoleModel> roles = null;	
 	
+	public String getAvatar_name() {
+		return avatar_name;
+	}
+	public void setAvatar_name(String avatar_name) {
+		this.avatar_name = avatar_name;
+	}
+	public String getAvatar_type() {
+		return avatar_type;
+	}
+	public void setAvatar_type(String avatar_type) {
+		this.avatar_type = avatar_type;
+	}
 	public byte[] getAvatar() {
 		return avatar;
 	}
@@ -64,10 +76,10 @@ public class UserModel {
 //		this.role = role;
 //	}
 	//	private String role;
-	public long getNo() {
+	public int getNo() {
 		return no;
 	}
-	public void setNo(long no) {
+	public void setNo(int no) {
 		this.no = no;
 	}
 	public String getName() {

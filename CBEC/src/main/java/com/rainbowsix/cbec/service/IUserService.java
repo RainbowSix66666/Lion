@@ -6,7 +6,7 @@ import java.util.List;
 import com.rainbowsix.cbec.model.UserModel;
 
 public interface IUserService {
-	public void add(UserModel user) throws Exception;
+	
 	public void delete(UserModel user) throws Exception;
 	public void update(UserModel user) throws Exception;
 	//查询所有
@@ -25,5 +25,9 @@ public interface IUserService {
 	
 	//查询单个用户
 	public UserModel getByName(String name) throws Exception;
+	
+	//添加用户
+	public void add(UserModel user) throws Exception;
+	public void addWithPoto(UserModel user) throws Exception;
 	
 } 

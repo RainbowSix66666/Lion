@@ -1,18 +1,11 @@
 package com.rainbowsix.cbec.service.impl;
 
-import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.datasource.UserCredentialsDataSourceAdapter;
 import org.springframework.stereotype.Service;
 
-import com.rainbowsix.cbec.dao.IRoleDao;
 import com.rainbowsix.cbec.dao.IUserDao;
 import com.rainbowsix.cbec.model.UserModel;
 import com.rainbowsix.cbec.service.IUserService;
@@ -91,6 +84,12 @@ public class UserService implements IUserService {
 	public UserModel getByName(String name) throws Exception {
 		// TODO Auto-generated method stub
 		return userDao.selectByName(name);
+	}
+
+	@Override
+	public void addWithPoto(UserModel user) throws Exception {
+		// TODO Auto-generated method stub
+		userDao.createWithPhoto(user);
 	}
 
 	

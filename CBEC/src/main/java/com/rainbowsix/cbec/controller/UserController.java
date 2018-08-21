@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.rainbowsix.cbec.model.UserModel;
 import com.rainbowsix.cbec.result.JqGridJson;
@@ -25,9 +26,20 @@ public class UserController {
 	}
 	
 	@RequestMapping("add")
-	public String add(UserModel user) throws Exception{
-		user.setCreateDate(new Date());
-		userService.add(user);
+	public String add(UserModel user, @RequestParam(required = false)MultipartFile userHead) throws Exception{
+		user.setCreateDate(new Date());		
+		
+		if(userHead != null && !userHead.isEmpty()) {			
+			System.out.println("get photo");
+			
+			user.setAvatar(userHead.getBytes());
+			user.setAvatar_name(userHead.getOriginalFilename());
+			user.setAvatar_type(userHead.getContentType());
+			userService.addWithPoto(user);
+		}else {			
+			userService.add(user);
+		}		
+		
 		
 		return "OK";
 	}

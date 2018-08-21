@@ -215,6 +215,9 @@ $(document).ready(function(){
 				    },
 					password_agin:{
 						equalTo:"input[name='password']"
+					},
+					userHead:{
+						accept: "image/*"
 					}
 				},
 				messages:{
@@ -229,6 +232,9 @@ $(document).ready(function(){
 					},
 					password_agin:{
 						equalTo:"两次密码不一致"
+					},
+					userHead:{
+						accept:"上传文件必须为图片"
 					}
 				}
 			});
