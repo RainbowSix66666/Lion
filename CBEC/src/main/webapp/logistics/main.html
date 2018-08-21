@@ -8,11 +8,70 @@
 			<option value="0">所有</option>
 		</select>
 	</div>
-	
-<div class="col-lg-12">
-           <div class="panel-body" id="OrderMainContent">            
+	<div class="row">
+	       
+	            <div class="col-md-1">
+	            	性别
+	            </div>
+	            <div class="col-md-3">
+		            <label class="radio-inline">
+				        <input type="radio"  name="empsex"  value="" checked>全部
+				    </label>
+				    <label class="radio-inline">
+				        <input type="radio" name="empsex" value="男" >男
+				    </label>
+				    <label class="radio-inline">
+				        <input type="radio" name="empsex" value="女" >女
+				    </label>
+	            </div>
+	            <div class="col-md-1">
+	            	收货人
+	            </div>
+	            <div class="col-md-3">
+	              <input type="text" class="form-control" id="consignee" />
+	            </div> 	
+            </div>
+            <div class="row">
+	            <div class="col-md-1">
+	            	起始
+	            </div>
+	            <div class="col-md-3">
+	              <input type="date" class="form-control" id="StartBirthdayDate" />
+	            </div>
+	            <div class="col-md-1">
+	            	截止
+	            </div>
+	            <div class="col-md-3">
+		            <input type="date" class="form-control" id="EndBirthdayDate" />
+	            </div>
+	            </div>
+	            <div class="row">
+	            <div class="col-md-1">
+	            	角色
+	            </div>
+	            <!-- 角色复选框显示区域 -->
+	            <div class="col-md-10" id="RolesCheckboxArea">
+	            </div> 	
+            </div>
+ 
+    
+	            <div class="row">
+             <div class="col-lg-6 text-right">	
+	           			<div class="btn-group">
+	           			<a href="#" id="LogisticsAddLink" class="btn btn-default">增加</a>
+					    <a href="#" id="LogisticsModifyLink" class="btn btn-default">修改</a>
+					    <a href="#" id="LogisticsViewLink" class="btn btn-default">查看</a>
+					    <a id="LogisticsDeleteLink" class="btn btn-default">删除</a>
+	           			</div>	
+			</div>
+            </div>	
+            
+			<div class="col-lg-12">
+        	   <div class="panel-body" id="OrderMainContent">            
                <table id="logisticsGrid"></table>
                <div id="logisticsGridPager"></div>                 
            </div>       
 </div>
+
+<div id="LogisticsDialog"></div>
 	
