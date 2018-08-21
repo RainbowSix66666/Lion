@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neusoft.oa.dao.IPhotoColorDao">
+	<resultMap id="ColorWithoutPhoto" type="PhotoColor">
+		<id property="id" column="COLORID" />
+		<result property="name" column="COLORNAME"/>
+	</resultMap>
+	
+	
+	<!-- 取得所有颜色列表，无关联的颜色列表 无分页 -->
+	<select id="getListWithoutPhotoByAll" resultMap="ColorWithoutPhoto">
+		select * from photocolor 
+	</select>
+	
+</mapper>
