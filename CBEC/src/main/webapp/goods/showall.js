@@ -195,8 +195,15 @@ $(document).ready(function(){
 				});
 			});	
 			
+			//
 			$("button#add").on("click",function(){
-				$("div#GoodsDialog").load("goods/add.html");
+				$("div#GoodsDialog").load("goods/add.html",function(){
+					$("form#add").ajaxForm(function(result){
+						alert(result);
+						$("div#main_body").load("goods/showall.html");
+					});
+					return false;
+				});
 
 				$("div#GoodsDialog").dialog({
 					title:"新增商品",

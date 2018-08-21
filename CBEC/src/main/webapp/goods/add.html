@@ -30,7 +30,7 @@
         </div>
     </div>
 
-<form role="form" action="goods/add.mvc" method="post">
+<form role="form" action="goods/add.mvc" method="post" id="add">
 
                             <div class="form-group">
                                 <label>商品标题</label>
@@ -64,13 +64,19 @@
 
                           	<div class="form-group">
                                 <label>商品类型</label>
-                               </br>
-                                <input class="form-control-4" name="type">
+                                <br/>
+                                <select class="form-control-4" name="type">
+                                    <option value="饮料">饮料</option>
+                                    <option value="零食">零食</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>类型编号</label>
-                               </br>
-                                <input class="form-control-4" name="typeno">
+                                <br/>
+                                <select class="form-control-4" name="typeno">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                </select>
                             </div>
 
 							<div class="form-group">
@@ -99,4 +105,3 @@
                        
 
 <script src="goods/showall.js"></script>
-<script src="js/jquery.js"></script>
