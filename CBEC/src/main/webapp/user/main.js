@@ -111,15 +111,11 @@ $(document).ready(function(){
 					getParamAndReloadGrid();
 				});
 				
-			});
-			
-			
+			});					
 			
 			//生成下拉框
 			$.getJSON("area/list/all.mvc", function(areaList){
 				$.each(areaList.rows,function(index,elemt){
-//					alert(elemt.id);
-//					alert(elemt.desc);
 					$("select#selectTest").append("<option value='"+elemt.id+"'>"+elemt.desc+"</option>");
 				});
 				//下拉框监听

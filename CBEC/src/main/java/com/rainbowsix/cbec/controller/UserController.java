@@ -132,7 +132,8 @@ public class UserController {
 		int start = rows * (page - 1) + 1;
 		int end = rows * page;		
 		result.setRows(userService.selectListByCondictionWithPage(name, before, after, roles, area, start, end));	
-		result.setTotal(records);
+		result.setTotal(total);
+		result.setRecords(records);
 		result.setPage(page);
 		
 		return result;
