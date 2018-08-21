@@ -179,6 +179,12 @@ $(document).ready(function(){
 					$("select#areaSelection").append("<option value='"+elemt.id+"'>"+elemt.desc+"</option>");
 				});
 			});
+			$.getJSON("role/all.mvc",function(roleList){
+				$.each(roleList,function(index,rm){
+					$("div#addRolesSelect").append("<label class='checkbox-inline'><input type='checkbox' name='roles' value='"+rm.id+"'>"+rm.detial+"</label>");
+					allRoles.push(rm.id);
+				});
+			});
 			
 			//表单验证
 			$("form#addUser").validate({
