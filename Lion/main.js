@@ -122,7 +122,6 @@ $(document).ready(function(){
          multiselect:false,
          onSelectRow:function(id){
         	 employeeId=id;
-        	 alert(employeeId);
          },
          ajaxGridOptions:{
         	 cache:false
@@ -150,7 +149,6 @@ $(document).ready(function(){
 				rules:{
 					id:{
 						required:true,
-						mobile:true,
 						remote:{
 							url:"employee/checkIDCanBeUsed.mvc",
 							type:"POST",
@@ -258,7 +256,143 @@ $(document).ready(function(){
 	
 	//修改员工按钮点击事件处理
 	$("a#EmployeeModifyLink").on("click",function(){
-		
+		if(employeeId==null){
+			BootstrapDialog.show({
+				title:"员工操作提示",
+				message:"<h4>请选择要修改的员工</h4>",
+				buttons: [{
+	                label: '关闭',
+	                action: function(dialog) {
+	                    	dialog.close();
+	                	}
+	            	}
+				]
+			});
+		}
+		else{
+			$("div#EmployeeDialog").load("employee/modify.html",function(){
+				//取得部门列表，填充部门下拉框
+				$.getJSON("department/list/all.mvc",function(departmentList){
+			        $.each(departmentList,function(index,dm){
+						$("select[name='department.no']").append("<option value='"+dm.no+"'>"+dm.name+"</option>");
+					});
+			        //取得角色列表生成角色复选框
+					$.getJSON("role/list/all/withoutemployees.mvc",function(roleList){
+						$.each(roleList,function(index,rm){
+							$("div#EmployeeAddRolesCheckBoxArea").append("<label class='checkbox-inline'><input type='checkbox' name='emproles' value='"+rm.no+"'>"+rm.name+"</label>");
+						});
+						//取得员工的信息，填充员工修改表单元素
+						$.getJSON("employee/get.mvc",{id:employeeId},function(em){
+							$("input[name='id']").val(em.id);
+							$("input[name='password']").val(em.password);
+							$("input[name='repassword']").val(em.password);
+							$("input[name='name']").val(em.name);
+							$("input[name='sex']").val(em.sex);
+							$("input[name='age']").val(em.age);
+							$("input[name='salary']").val(em.salary);
+							$("input[name='birthday']").val(em.birthday);
+							$("input[name='joinDate']").val(em.joinDate);
+							$("textarea[name='desc']").html(em.desc);
+							//选中员工的部门
+							$("select[name='department.no']").val(em.department.no);
+							//遍历员工的角色列表
+							if(em.roles!=null){
+								$.each(em.roles,function(index,role){
+									$("input[type='checkbox'][name='emproles'][value='"+role.no+"']").attr("checked","checked");
+								});
+							}
+						});
+						
+					});
+					
+				});
+				//使用jQuery validate对员工进行数据验证
+				$("form#EmployeeModifyForm").validate({
+					rules:{
+						password:{
+							required:true,
+							rangelength:[4,10]
+						},
+						repassword:{
+							equalTo:"input[name='password']"
+						},
+						name:{
+							required:true
+						},
+						age:{
+							required:true,
+							digits:true,
+							range:[18,60]
+						},
+						salary:{
+							required:true,
+							number:true,
+							min:1800
+						},
+						birthday:{
+							required:true
+						},
+						joinDate:{
+							required:true
+						},
+						empphoto:{
+							accept: "audio/*,image/*"
+						}
+						
+					},
+					messages:{
+						password:{
+							required:"密码为空",
+							rangelength:"密码长度必须在4到10位长度"
+						},
+						repassword:{
+							equalTo:"密码确认不符"
+						},
+						name:{
+							required:"姓名为空"
+						},
+						age:{
+							required:"年龄为空",
+							digits:"年龄必须为整数",
+							range:"年龄必须在18到60"
+						},
+						salary:{
+							required:"工资为空",
+							number:"工资必须为数值",
+							min:"最低工资为1800"
+						},
+						birthday:{
+							required:"生日为空"
+						},
+						joinDate:{
+							required:"加入公司日期为空"
+						},
+						empphoto:{
+							accept: "照片必须为图片或声音"
+						}
+					}
+				});
+				
+				//拦截员工增加表单提交
+				$("form#EmployeeModifyForm").ajaxForm(function(result){
+					alert(result.message);
+					getParamAndReloadGrid(); //重新载入员工列表，并刷新Grid显示。
+					$("div#EmployeeDialog").dialog("close"); //关闭弹出Dialog
+					
+				});
+				//定义取消连接点击事件处理
+				$("a#EmployeeModifyCancelLink").on("click",function(){
+					$("div#EmployeeDialog").dialog("close"); //关闭弹出Dialog
+				});
+				
+				//弹出修改页面
+				$("div#EmployeeDialog").dialog({
+					title:"修改员工",
+					width:900,
+					height:550
+				});
+			});
+		}
 		
 	});
 	//删除员工按钮点击事件处理
