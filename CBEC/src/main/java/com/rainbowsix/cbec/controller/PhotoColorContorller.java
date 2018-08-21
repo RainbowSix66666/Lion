@@ -24,7 +24,10 @@ public class PhotoColorContorller {
 	@RequestMapping(value="/list/all/withoutphoto",method={RequestMethod.GET})
 	@ResponseBody
 	public List<PhotoColorModel> getListWithoutEmployeesByAll() throws Exception {
+		List<PhotoColorModel>  pc =  photoColorService.getListWithoutPhotoByAll();
 		
+		System.out.println(pc.get(1).getName());
+	
 		return photoColorService.getListWithoutPhotoByAll();
 	}
 	

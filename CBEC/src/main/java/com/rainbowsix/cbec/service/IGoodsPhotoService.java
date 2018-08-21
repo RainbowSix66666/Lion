@@ -27,16 +27,16 @@ public interface IGoodsPhotoService {
 	
 	//根据条件取照片列表 分页
 	public List<GoodsPhotoModel> selectListByConditionWithPage(int photoId,int proid,  
-			String des, int rank, int rows, int page, Date startDate, Date endDate) throws Exception;
+			String des, int rank, int rows, int page, Date startDate, Date endDate, int[] colors) throws Exception;
 
 
 	//根据检索条件取得照片的个数
 	 public int getCountWithPhoto(int photoId,int proid,  
-				String des, int rank) throws Exception;
+				String des, int rank, int[] colors) throws Exception;
 	 
 	 //根据检索条件取得照片的页数
 	 public int getPageWithPhoto(int photoId,int proid,  
-				String des, int rank, int rows) throws Exception;
+				String des, int rank, int rows, int[] colors) throws Exception;
 	 
 	 //取得照片等级
 	 public List<GoodsPhotoModel> selectRankCondition() throws Exception;
@@ -50,5 +50,7 @@ public interface IGoodsPhotoService {
 	 //添加无照片的goodsphoto	 
 	 public void addWithoutPhoto(GoodsPhotoModel goodsPhoto) throws Exception;
 	 
+	 //添加授权照片颜色的方法
+	 public void grantColor() throws Exception;
 	
 }

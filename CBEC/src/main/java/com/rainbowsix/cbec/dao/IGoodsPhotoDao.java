@@ -48,17 +48,19 @@ public interface IGoodsPhotoDao {
 				 @Param("proid") int proid, @Param("des")  String des,
 				 @Param("rank")  int rank, @Param("start") int start, @Param("end") int end, 
 				 @Param("startDate")  Date startDate, 
-				 @Param("endDate") Date endDate) throws Exception;
+				 @Param("endDate") Date endDate,
+				 @Param("colors") int[] colors) throws Exception;
 		
 		 //根据检索条件取得照片的个数
 		 public int getCountWithPhoto(@Param("photoId") int photoId,
 				 @Param("proid") int proid, @Param("des")  String des,
-				 @Param("rank")  int rank) throws Exception;
+				 @Param("rank")  int rank,@Param("colors") int[] colors) throws Exception;
 		 
 		 //根据检索条件取得照片的页数
 		 public int getPageWithPhoto(@Param("photoId") int photoId,
 				 @Param("proid") int proid, @Param("des")  String des,
-				 @Param("rank")  int rank, @Param("rows")  int rows) throws Exception;
+				 @Param("rank")  int rank, @Param("rows")  int rows,
+				 @Param("colors") int[] colors) throws Exception;
 		 
 		 //取得照片等级
 		 public List<GoodsPhotoModel> selectRankCondition() throws Exception;

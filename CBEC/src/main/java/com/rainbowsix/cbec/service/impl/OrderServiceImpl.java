@@ -7,7 +7,9 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.rainbowsix.cbec.dao.IOrderDao;
 import com.rainbowsix.cbec.model.OrderModel;
@@ -15,8 +17,42 @@ import com.rainbowsix.cbec.service.IOrderService;
 
 //订单业务层的实现类
 @Service
+@Transactional
 public class OrderServiceImpl implements IOrderService {
+	
+	private IOrderDao orderDao=null;
+	
+	@Autowired
+	public void setOrderDao(IOrderDao orderDao) {
+		this.orderDao = orderDao;
+	}
+	
 	//增加订单
+	public void add(OrderModel order) throws Exception {	
+		orderDao.create(order);	
+	}
+	
+	//修改订单
+	public void modify(OrderModel order) throws Exception {		
+		orderDao.update(order);
+	}
+	//删除订单
+	public void delete(int orderid) throws Exception{
+		orderDao.delete(orderid);
+	}
+	//取得所有订单列表
+	public List<OrderModel> getOrderListByAll() throws Exception {
+		List<OrderModel> list=orderDao.selectOrderListByAll();
+		return list;
+	}
+	//取得单个订单
+	public OrderModel getOrderListById(int orderid) throws Exception {
+		OrderModel om=orderDao.selectOrderListById(orderid);
+		return om;
+	}
+
+	
+	/*	//增加订单
 	public void add(OrderModel order) throws Exception {
 		String resource = "ldj_config.xml";
 		InputStream inputStream = Resources.getResourceAsStream(resource);
@@ -77,6 +113,6 @@ public class OrderServiceImpl implements IOrderService {
 		session.close();
 		
 		return om;
-	}
+	}*/
 
 }

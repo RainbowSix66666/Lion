@@ -14,11 +14,32 @@ $(document).ready(function(){
 	var matchPhotoId=null;
 	var startDate=null;
 	var endDate=null;
+	var colors = null;   //选中的颜色
 	//取得照片等级列表，填充照片下拉框
 	$.getJSON("goodsphoto/list/photorank.mvc",function(photoList){
 		$.each(photoList,function(index, photo){
 			$("select#photoRank").append("<option value='"+photo.rank+"'>"+photo.rank+"</option>");
 		});
+	});
+	
+	//取得照片颜色的列表，生成复选框
+	$.getJSON("photocolor/list/all/withoutphoto.mvc",function(colorList){
+		$.each(colorList,function(index,cm){
+			$("div#ColorCheckboxArea").append("<label class='checkbox-inline'><input type='checkbox' name='photoColor' value='"+cm.id+"'>"+cm.name+"</label>");
+		});
+		//照片颜色复选框点击事件处理
+		$("input[type='checkbox'][name='photoColor']").on("change",function(){
+			//先创建保存选中照片颜色编号的数组
+			colors=new Array();
+			//取得选中的角色
+			$("input[type='checkbox'][name='photoColor']:checked").each(function(index,color){
+				//通过$(this) 或 $(role)取得选中的复选框
+				colors[index]=$(color).val();
+				//colors.push($(role).val());
+			});
+			getParamGrid();
+		});
+		
 	});
 	
 	
@@ -27,11 +48,14 @@ $(document).ready(function(){
 		var datas={rank:rank, proid:photoGoodsId, photoId:matchPhotoId};
 		//检查是否输入了照片上传起始日期
 		if(startDate!=null){
-			datas.startDate=startDate;
+			datas.startDate22=startDate;
 		}
 		//检查是否输入了照片上传截止日期
 		if(endDate!=null){
 			datas.endDate=endDate;
+		}
+		if(colors!=null&&colors.length>0){
+			datas.colors=colors;
 		}
 		 
 		//清除postData累积的参数
@@ -129,6 +153,12 @@ $(document).ready(function(){
 			$.getJSON("goodsphoto/list/photorank.mvc",function(photoList){
 				$.each(photoList,function(index, photo){
 					$("select#addRank").append("<option value='"+photo.rank+"'>"+photo.rank+"</option>");
+				});
+			});
+			//取得照片列表生成角色复选框
+			$.getJSON("photocolor/list/all/withoutphoto.mvc",function(roleList){
+				$.each(roleList,function(index,rm){
+					$("div#PhotoAddColorCheckBoxArea").append("<label class='checkbox-inline'><input type='checkbox' name='photoColor' value='"+rm.id+"'>"+rm.name+"</label>");
 				});
 			});
 			

@@ -111,15 +111,11 @@ $(document).ready(function(){
 					getParamAndReloadGrid();
 				});
 				
-			});
-			
-			
+			});					
 			
 			//生成下拉框
 			$.getJSON("area/list/all.mvc", function(areaList){
 				$.each(areaList.rows,function(index,elemt){
-//					alert(elemt.id);
-//					alert(elemt.desc);
 					$("select#selectTest").append("<option value='"+elemt.id+"'>"+elemt.desc+"</option>");
 				});
 				//下拉框监听
@@ -266,10 +262,19 @@ $(document).ready(function(){
 	//查看响应
 	$("a#toshowUser").on("click", function(){
 		if(userId == "0"){
-			alert("未选择用户");
+//			alert("未选择用户");
+			 BootstrapDialog.alert({
+				 title:"用户信息",
+				 message:"未选择用户!"
+			 });
 		}else{
+			$("div#userDialog").dialog({
+				title:"增加新用户",
+				width:450,
+				height:450
+			});
 //			alert(userId);
-			$("div#userContent").load("user/userInfo.html", function(){
+			$("div#userDialog").load("user/userInfo.html", function(){
 				$.post("user/getbyno.mvc", {no:userId}, function(userData){
 					var userName = "<h2><small>用户名: </small>" + userData.name + "</h2>";
 					var userRole = "<h2><small>用户角色: </small>" + userData.role + "</h2>";
@@ -283,27 +288,55 @@ $(document).ready(function(){
 	//删除响应
 	$("a#todelteUser").on("click", function(){
 		if(userId == "0"){
-			alert("未选择用户");
+			BootstrapDialog.alert({
+				 title:"用户信息",
+				 message:"未选择用户!"
+			 });
 		}else{
-			if(confirm("是否确定删除用户")){
-				$.post("user/delete.mvc", {no:userId},function(result){
-					if(result == "OK"){
-						alert("删除成功");
-					}else{
-						alert("删除失败");
-					}
-				});
-			}
-			showAllUserData();		
+			
+			BootstrapDialog.confirm({
+				title:"确定信息",
+				message:'是否确定删除用户'
+			}, function(result){
+	            if(result) {
+	            	$.post("user/delete.mvc", {no:userId},function(result){
+						if(result == "OK"){
+							alert("删除成功");
+						}else{
+							alert("删除失败");
+						}
+					});
+	            }
+	        });
+			
+//			if(confirm("是否确定删除用户")){
+//				$.post("user/delete.mvc", {no:userId},function(result){
+//					if(result == "OK"){
+//						alert("删除成功");
+//					}else{
+//						alert("删除失败");
+//					}
+//				});
+//				showAllUserData();	
+//			}
+//			showAllUserData();		
 		}	
 	});
 	//修改响应
 	$("a#tomodifyUser").on("click", function(){
 		if(userId == "0"){
-			alert("未选择用户");
+			BootstrapDialog.alert({
+				 title:"用户信息",
+				 message:"未选择用户!"
+			 });
 		}else{
+			$("div#userDialog").dialog({
+				title:"增加新用户",
+				width:450,
+				height:450
+			});
 //			alert(userId);
-			$("div#userContent").load("user/userModify.html", function(){
+			$("div#userDialog").load("user/userModify.html", function(){
 				$.post("user/getbyno.mvc", {no:userId}, function(userData){
 					var userName = userData.name;
 					var userPassword = userData.password;

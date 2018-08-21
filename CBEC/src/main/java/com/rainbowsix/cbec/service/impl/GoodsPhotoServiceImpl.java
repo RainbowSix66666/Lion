@@ -57,21 +57,21 @@ public class GoodsPhotoServiceImpl implements IGoodsPhotoService {
 //	<!-- 根据条件取照片列表 有分页 -->
 	@Override
 	public List<GoodsPhotoModel> selectListByConditionWithPage(int photoId, int proid, String des, int rank, int rows,
-			int page, Date startDate, Date endDate) throws Exception {
-		return goodsPhotoDao.selectListByConditionWithPage(photoId, proid, des, rank, rows*(page-1)+1, rows*page , startDate, endDate);
+			int page, Date startDate, Date endDate,int[] colors) throws Exception {
+		return goodsPhotoDao.selectListByConditionWithPage(photoId, proid, des, rank, rows*(page-1)+1, rows*page , startDate, endDate, colors);
 	}
 	
 	//根据检索条件取得照片的个数
 	@Override
-	public int getCountWithPhoto(int photoId, int proid, String des, int rank) throws Exception {
-		return goodsPhotoDao.getCountWithPhoto(photoId, proid, des, rank);
+	public int getCountWithPhoto(int photoId, int proid, String des, int rank, int[] colors) throws Exception {
+		return goodsPhotoDao.getCountWithPhoto(photoId, proid, des, rank, colors);
 	}
 	
 	//根据检索条件取得照片的页数
 	@Override
-	public int getPageWithPhoto(int photoId, int proid, String des, int rank, int rows) throws Exception {
+	public int getPageWithPhoto(int photoId, int proid, String des, int rank, int rows, int[] colors) throws Exception {
 		int pageCount = 0;
-		int count = this.getCountWithPhoto(photoId, proid, des, rank);
+		int count = this.getCountWithPhoto(photoId, proid, des, rank, colors);
 		if(count%rows ==0) {
 			pageCount = count/rows;
 		}else {
@@ -103,6 +103,11 @@ public class GoodsPhotoServiceImpl implements IGoodsPhotoService {
 	@Override
 	public void addWithoutPhoto(GoodsPhotoModel goodsPhoto) throws Exception {
 		goodsPhotoDao.createWithoutPhoto(goodsPhoto);
+	}
+	@Override
+	public void grantColor() throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

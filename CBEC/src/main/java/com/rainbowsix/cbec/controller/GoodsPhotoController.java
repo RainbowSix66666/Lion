@@ -87,15 +87,16 @@ public class GoodsPhotoController {
 				@RequestParam(required=false,defaultValue="10") int rows, 
 				@RequestParam(required=false,defaultValue="1") int page,
 				@RequestParam(required=false) @DateTimeFormat(pattern="yyyy-MM-dd") Date startDate, 
-				@RequestParam(required=false) @DateTimeFormat(pattern="yyyy-MM-dd") Date endDate ) throws Exception{
+				@RequestParam(required=false) @DateTimeFormat(pattern="yyyy-MM-dd") Date endDate,
+				@RequestParam(required=false) int[] colors) throws Exception{
 			
 			if(des!=null&&des.trim().length()>0) {
 				des="%"+des+"%";
 			}
 			JqGridJson<GoodsPhotoModel> result = new JqGridJson<GoodsPhotoModel>();
 			
-			result.setRecords(goodsPhotoService.getCountWithPhoto(photoId, proid, des, rank));
-			int pageCount = goodsPhotoService.getPageWithPhoto(photoId, proid, des, rank, rows);
+			result.setRecords(goodsPhotoService.getCountWithPhoto(photoId, proid, des, rank, colors));
+			int pageCount = goodsPhotoService.getPageWithPhoto(photoId, proid, des, rank, rows, colors);
 			if(page>pageCount) {
 				page = pageCount;
 			}
@@ -104,7 +105,7 @@ public class GoodsPhotoController {
 			}
 			
 			result.setTotal(pageCount);
-			result.setRows(goodsPhotoService.selectListByConditionWithPage(photoId, proid, des, rank, rows, page, startDate, endDate));
+			result.setRows(goodsPhotoService.selectListByConditionWithPage(photoId, proid, des, rank, rows, page, startDate, endDate, colors));
 			result.setPage(page);
 
 			return result;
@@ -126,7 +127,7 @@ public class GoodsPhotoController {
 		
 		//增加照片信息和上传照片
 		@RequestMapping(value="/add",method=RequestMethod.POST, produces = "text/html;charset=UTF-8")
-		public String  add(GoodsPhotoModel goodsPhoto,@RequestParam(required=false) MultipartFile loadPhoto) throws Exception{
+		public String  add(GoodsPhotoModel goodsPhoto,@RequestParam(required=false) MultipartFile loadPhoto,@RequestParam(required=false) int[] colors) throws Exception{
 			
 			if(loadPhoto==null || loadPhoto.isEmpty()) {
 				//无图片提交
