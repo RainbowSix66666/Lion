@@ -21,7 +21,7 @@
 
 <insert id="create" parameterType="GoodsModel">
 	insert into GOODS (PROID,COMID,TITLE,PRICE,GOODDATE,STOCK,GOODDESC,TYPENO,TYPE,WEIGHT,STATE)
-	values (PROID.nextval,#{comid},#{title},#{price},#{gooddate,jdbcType=DATE},#{stock},#{gooddesc,jdbcType=VARCHAR},#{typeno},#{type,jdbcType=VARCHAR},#{weight},#{state})
+	values (PROID.nextval,#{comid},#{title},#{price},#{gooddate,jdbcType=DATE},#{stock},#{gooddesc,jdbcType=VARCHAR},#{typeno,jdbcType=NUMERIC},#{type,jdbcType=VARCHAR},#{weight},#{state})
 </insert>
 
 	<update id="update" parameterType="GoodsModel">

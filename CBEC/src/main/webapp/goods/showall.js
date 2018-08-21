@@ -194,33 +194,27 @@ $(document).ready(function(){
 					event.preventDefault();
 				});
 			});	
+			
+			//
+			$("button#add").on("click",function(){
+				$("div#GoodsDialog").load("goods/add.html",function(){
+					$("form#add").ajaxForm(function(result){
+						alert(result);
+						$("div#main_body").load("goods/showall.html");
+					});
+					return false;
+				});
+
+				$("div#GoodsDialog").dialog({
+					title:"新增商品",
+					width:900,
+					height:350
+				});
+				
+			});
 });
 
-//添加响应
-$("a#addgoods").on("click", function(){
-	$("div#main_body").load("goods/add.html", function(){
-		//点击添加商品
-		$("button#addgoods").on("click", function(){
-			//alert("进入增加函数");
-			var title =$("input[name='title']").val();
-			var comid = $("input[name='comid']").val();
-			var price = $("input[name = 'price']").val();
-			var state = $("input[name = 'state']").val();
-			var gooddate = $("input[name = 'gooddate']").val();
-			var type = $("input[name = 'type']").val();
-			var typeno = $("input[name = 'typeno']").val();
-			var stock = $("input[name = 'stock']").val();
-			var weight = $("input[name = 'weight']").val();
-			var gooddesc = $("input[name = 'gooddesc']").val();
 
-			//alert(title);
-			$.post("goods/add.mvc", {title:title,comid:comid,price:price,gooddate:gooddate,state:state,type:type,typeno:typeno,stock:stock,weight:weight,gooddesc:gooddesc}, function(re){
-
-			$("div#main_body").load("goods/showall.html");
-			});
-		})
-	});
-})
 
 
 
