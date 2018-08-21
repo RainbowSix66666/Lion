@@ -92,7 +92,7 @@ $(document).ready(function(){
 			//选择角色
 			$.getJSON("role/all.mvc",function(roleList){
 				$.each(roleList,function(index,rm){
-					$("div#rolesSelect").append("<label class='checkbox-inline'><input type='checkbox' name='roles' value='"+rm.id+"'>"+rm.detial+"</label>");
+					$("div#rolesSelect").append("<label class='checkbox-inline'><input type='checkbox' name='rolesNos' value='"+rm.id+"'>"+rm.detial+"</label>");
 					allRoles.push(rm.id);
 				});
 //				alert(allRoles);
@@ -181,7 +181,7 @@ $(document).ready(function(){
 			});
 			$.getJSON("role/all.mvc",function(roleList){
 				$.each(roleList,function(index,rm){
-					$("div#addRolesSelect").append("<label class='checkbox-inline'><input type='checkbox' name='roles' value='"+rm.id+"'>"+rm.detial+"</label>");
+					$("div#addRolesSelect").append("<label class='checkbox-inline'><input type='checkbox' name='rolesNos' value='"+rm.id+"'>"+rm.detial+"</label>");
 					allRoles.push(rm.id);
 				});
 			});

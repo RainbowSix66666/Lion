@@ -30,4 +30,10 @@ public interface IUserService {
 	public void add(UserModel user) throws Exception;
 	public void addWithPoto(UserModel user) throws Exception;
 	
+	//角色相关
+	public void cleanRole(int id) throws Exception;
+	public void grantRole(int id, int role) throws Exception;
+	public void grantRoles(int id, int[] roles) throws Exception;
+	//地区管理
+	public void setArea(int id, int areaId) throws Exception;
 } 

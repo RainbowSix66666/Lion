@@ -52,4 +52,13 @@ public interface IUserDao {
 	//根据条件查询不带角色的用户个数
 	public int selectCountByCondictionWithoutRole(@Param("name")String name, @Param("before")Date before, 
 			@Param("after")Date after, @Param("area") int area) throws Exception;
+	/***************************角色管理相关********************************/
+	//清除授权
+	public void cleanRole(int id) throws Exception;
+	//授予一个角色
+	public void grantRole(@Param("id")int id, @Param("role")int role) 
+			throws Exception;
+	/***********************地区相关***********************************/
+	public void updateArea(@Param("id") int id, @Param("areaid") int areaid) 
+			throws Exception;
 }

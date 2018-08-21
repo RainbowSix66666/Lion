@@ -45,13 +45,19 @@
 	<!-- 插入数据 -->
 	<!-- 只有用户基本信息 -->
 	<insert id="create" parameterType="User">
-		insert into sys_user (userid, username, userpassword) values 
-		(USER_ID_SQ.nextval, #{name}, #{password})
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select USER_ID_SQ.nextval from dual
+		</selectKey>
+		insert into sys_user (userid, username, userpassword, area_id) values 
+		(#{no}, #{name}, #{password}, #{area.id})
 	</insert>
 	<!-- 含有图片 -->
 	<insert id="createWithPhoto" parameterType="User">
-		insert into sys_user (userid, username, userpassword, user_avatar, avatar_name, avatar_type) values 
-		(USER_ID_SQ.nextval, #{name}, #{password}, #{avatar}, #{avatar_name}, #{avatar_type})
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select USER_ID_SQ.nextval from dual
+		</selectKey>
+		insert into sys_user (userid, username, userpassword, user_avatar, avatar_name, avatar_type, area_id) values 
+		(#{no}, #{name}, #{password}, #{avatar}, #{avatar_name}, #{avatar_type}, #{area.id})
 	</insert>
 	
 	<!-- 查询所有 -->
@@ -196,4 +202,16 @@
 		</where> 
 	</select>
 	
+	<!-- 角色相关 -->
+	<delete id="cleanRole" parameterType="int">
+		delete from user_link_role where userid = #{id}
+	</delete>	
+	<insert id="grantRole">
+		insert into user_link_role (userid, roleid) values(#{id}, #{role})
+	</insert>
+	
+	<!-- 地区修改 -->
+	<update id="updateArea" >
+		update sys_user set area_id = #{areaid} where userid = #{id}
+	</update>
 </mapper>

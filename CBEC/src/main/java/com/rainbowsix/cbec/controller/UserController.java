@@ -26,9 +26,10 @@ public class UserController {
 	}
 	
 	@RequestMapping("add")
-	public String add(UserModel user, @RequestParam(required = false)MultipartFile userHead) throws Exception{
+	public String add(UserModel user, @RequestParam(required = false)MultipartFile userHead,
+			int[] rolesNos) throws Exception{
 		user.setCreateDate(new Date());		
-		
+		System.out.println(user.getArea().getId());
 		if(userHead != null && !userHead.isEmpty()) {			
 			System.out.println("get photo");
 			
@@ -40,6 +41,12 @@ public class UserController {
 			userService.add(user);
 		}		
 		
+//		for(int roleNo : rolesNos) {
+//			System.out.println(roleNo);
+//		}
+//		System.out.println("userid = " + user.getNo());
+		userService.grantRoles(user.getNo(), rolesNos);
+//		userService.setArea(user.getNo(), areaId);
 		
 		return "OK";
 	}

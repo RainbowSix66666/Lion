@@ -5,12 +5,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.rainbowsix.cbec.dao.IUserDao;
 import com.rainbowsix.cbec.model.UserModel;
 import com.rainbowsix.cbec.service.IUserService;
 
 @Service
+@Transactional
 public class UserService implements IUserService {
 	
 	private IUserDao userDao = null;
@@ -90,6 +92,33 @@ public class UserService implements IUserService {
 	public void addWithPoto(UserModel user) throws Exception {
 		// TODO Auto-generated method stub
 		userDao.createWithPhoto(user);
+	}
+
+	@Override
+	public void cleanRole(int id) throws Exception {
+		// TODO Auto-generated method stub
+		userDao.cleanRole(id);
+	}
+
+	@Override
+	public void grantRole(int id, int role) throws Exception {
+		// TODO Auto-generated method stub
+		userDao.grantRole(id, role);
+	}
+
+	@Override
+	public void grantRoles(int id, int[] roles) throws Exception {
+		// TODO Auto-generated method stub
+		userDao.cleanRole(id);
+		for(int role:roles) {
+			userDao.grantRole(id, role);
+		}
+	}
+
+	@Override
+	public void setArea(int id, int areaId) throws Exception {
+		// TODO Auto-generated method stub
+		userDao.updateArea(id, areaId);
 	}
 
 	
