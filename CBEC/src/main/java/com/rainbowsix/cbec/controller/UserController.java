@@ -13,21 +13,30 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.rainbowsix.cbec.model.ModuleModel;
 import com.rainbowsix.cbec.model.UserModel;
 import com.rainbowsix.cbec.result.ControllerResult;
 import com.rainbowsix.cbec.result.JqGridJson;
+import com.rainbowsix.cbec.service.IModuleService;
 import com.rainbowsix.cbec.service.IUserService;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
 	private IUserService userService = null;
+	private IModuleService moduleService = null;
 	
 	@Autowired
 	public void setUserService(IUserService userService) {
 		this.userService = userService;
 	}
 	
+	@Autowired
+	public void setModuleService(IModuleService moduleService) {
+		this.moduleService = moduleService;
+	}
+
+
 	@RequestMapping("add")
 	public String add(UserModel user, @RequestParam(required = false)MultipartFile userHead,
 			int[] rolesNos) throws Exception{
@@ -228,5 +237,11 @@ public class UserController {
 	public UserModel getLoginUserInfo(HttpSession session) throws Exception{
 		UserModel userInfo = (UserModel)session.getAttribute("userInfo");
 		return userInfo;
+	}
+	
+	/**************************功能模块**************************/
+	@RequestMapping(value="getModuleList", method= {RequestMethod.GET})
+	public List<ModuleModel> getModuleList(int userId) throws Exception{
+		return moduleService.getListByUserId(userId);
 	}
 }

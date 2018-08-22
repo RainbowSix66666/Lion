@@ -10,4 +10,5 @@ public interface IModuleDao {
 	public void update(ModuleModel modele) throws Exception;
 	
 	public List<ModuleModel> selectAll() throws Exception;
+	public List<ModuleModel> selectListByUserId(int userid) throws Exception;
 }
