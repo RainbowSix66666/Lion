@@ -51,6 +51,16 @@ public class OrderServiceImpl implements IOrderService {
 		return om;
 	}
 
+	@Override
+	public boolean validate(int orderid, int comid) throws Exception {
+		boolean result=false;
+		if(orderDao.selectCountByOrderidAndComid(orderid, comid)>0) {
+			result=true;
+		}
+		
+		return result;
+	}
+
 	
 	/*	//增加订单
 	public void add(OrderModel order) throws Exception {

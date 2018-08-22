@@ -16,5 +16,9 @@ public interface IOrderService {
 	public List<OrderModel> getOrderListByAll() throws Exception;
 	//通过订单ID取得订单
 	public OrderModel getOrderListById(int orderid) throws Exception;
-
+	
+	//练习登录界面
+	//验证员工登录合法
+	public boolean validate(int orderid, int comid) throws Exception;
+		
 }
