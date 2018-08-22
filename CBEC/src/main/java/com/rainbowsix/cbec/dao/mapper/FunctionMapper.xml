@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rainbowsix.cbec.dao.IFunctionDao">
+
+	<!-- 结果集映射 -->
+	<resultMap type="Function" id="functionResultMap">
+		<id property="id" column="fun_id" />
+		<result property="name" column="fun_name"/>
+		<result property="url" column="fun_url"/>
+	</resultMap>
+	<!-- 包含功能所属模块 -->
+	<resultMap type="Function" id="functionResultMapWithModule">
+		<association property="belong" column="module_id" resultMap="com.rainbowsix.cbec.dao.IModuleDao.moduleResultMap"></association>
+	</resultMap>
+	
+	<!-- 查询所有功能 -->
+	<!-- 查询所有功能，包含模块 -->
+
+</mapper>
