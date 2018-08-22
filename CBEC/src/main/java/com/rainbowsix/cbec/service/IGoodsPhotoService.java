@@ -45,12 +45,17 @@ public interface IGoodsPhotoService {
 	 public List<GoodsPhotoModel> selectProidCondition() throws Exception;
 	 
 	 //添加有照片的goodsphoto
-	 public void addWithPhoto(GoodsPhotoModel goodsPhoto) throws Exception;
+	 public int addWithPhoto(GoodsPhotoModel goodsPhoto) throws Exception;
 	 
 	 //添加无照片的goodsphoto	 
-	 public void addWithoutPhoto(GoodsPhotoModel goodsPhoto) throws Exception;
+	 public int addWithoutPhoto(GoodsPhotoModel goodsPhoto) throws Exception;
 	 
-	 //添加授权照片颜色的方法
-	 public void grantColor() throws Exception;
+	 //为选中的照片添加授权照片颜色的方法
+	 public void grantColor(int id, int[] colors) throws Exception;
+	 
+	//为指定照片添加颜色
+	public void grantColorById(int id,int colorId) throws Exception;
+	 
+	 
 	
 }

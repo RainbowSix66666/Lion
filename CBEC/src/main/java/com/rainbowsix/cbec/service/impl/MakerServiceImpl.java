@@ -103,4 +103,13 @@ public class MakerServiceImpl implements IMakerService{
 		return makerDao.selectByMakerId(makerId);
 	}
 
+	@Override
+	public boolean validate(String makerId, String makerPassword) throws Exception {
+		boolean result = false;
+		if(makerDao.selectCountByIdAndPassword(makerId, makerPassword)>0) {
+			result = true;
+		}
+		return result;
+	}
+
 }

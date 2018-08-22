@@ -158,7 +158,7 @@ $(document).ready(function(){
 			//取得照片列表生成角色复选框
 			$.getJSON("photocolor/list/all/withoutphoto.mvc",function(roleList){
 				$.each(roleList,function(index,rm){
-					$("div#PhotoAddColorCheckBoxArea").append("<label class='checkbox-inline'><input type='checkbox' name='photoColor' value='"+rm.id+"'>"+rm.name+"</label>");
+					$("div#PhotoAddColorCheckBoxArea").append("<label class='checkbox-inline'><input type='checkbox' name='colors' value='"+rm.id+"'>"+rm.name+"</label>");
 				});
 			});
 			

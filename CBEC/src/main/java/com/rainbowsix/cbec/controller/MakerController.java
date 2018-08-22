@@ -2,6 +2,8 @@ package com.rainbowsix.cbec.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -62,6 +64,16 @@ public class MakerController {
 		
 		return makerService.selectByMakerId(makerId);	
 		
+	}
+	
+	//制造商的登录验证方法
+	@RequestMapping(value="/validate",method=RequestMethod.POST)
+	public boolean validate(String makerId,String makerPassword) throws Exception{
+		boolean result = false;
+		if(makerService.validate(makerId, makerPassword)) {
+			result=true;
+		}
+		return result;
 	}
 	
 	

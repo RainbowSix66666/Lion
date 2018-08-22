@@ -41,8 +41,16 @@
 		
 		<!-- 添加有照片信息 -->
 		<insert id="createWithPhoto" parameterType="GoodsPhoto">
+		 	<selectKey keyProperty="photoId" keyColumn="PHOTO_ID" resultType="int" order="BEFORE">
+		 		select PHOTOID.nextval from dual
+		 	</selectKey>
 			insert into GoodsPhoto (PHOTO_ID, PROID, PHOTO, DES, RANK , LOADDATE, PhotoFileName,PhotoContentType)
-			values (PHOTOID.nextval,#{proid},#{photo},#{des},#{rank},#{loaddate},#{photoFileName},#{photoContentType})
+			values (#{photoId},#{proid},#{photo},#{des},#{rank},#{loaddate},#{photoFileName},#{photoContentType})
+		</insert>
+		
+		<!--添加照片授予的颜色  -->
+		<insert id="grantColorById" parameterType="int">
+			insert into photo_link_color(PHOTO_ID, COLORID) values (#{id}, #{colorId})
 		</insert>
 		
 		<!-- 添加无图片信息 -->
@@ -207,7 +215,10 @@
 			on a.proid=b.proid  order by b.proid
 		</select>
 		
-		
+		<!-- 清除授予的照片颜色 -->
+		<delete id="revokeAllColors" parameterType="int">
+			delete from photo_link_color where photo_id=#{id}
+		</delete>
 
 </mapper>
 
