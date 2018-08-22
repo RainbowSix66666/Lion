@@ -9,7 +9,6 @@
 			<id property="id" column="roleid"/>
 			<result property="name" column="rolename"/>
 			<result property="detial" column="detial"/>
-			<result property="menuid" column="menuid"/>
 		<!-- </association> -->
 	</resultMap>
 	
@@ -26,7 +25,7 @@
 	</insert>
 	
 	<update id="update" parameterType="Role">
-		update user_role set roleName = #{name}, menuid = #{menuid}, detial = #{detial}
+		update user_role set roleName = #{name}, detial = #{detial}
 		where roleid = #{id}
 	</update>
 	
@@ -44,7 +43,7 @@
 	</select>
 	
 	<select id="selectAllWithUsers" resultMap="roleResultMapWithUsers">
-		select u.*, r.roleid, r.rolename, r.detial, r.menuid from sys_user u 
+		select u.*, r.roleid, r.rolename, r.detial from sys_user u 
 		inner join user_link_role l on(u.userid = l.userid)
 		right outer join user_role r on(l.roleid = r.roleid)
 	</select>

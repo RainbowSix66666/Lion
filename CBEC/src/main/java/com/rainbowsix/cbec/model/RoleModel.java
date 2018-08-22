@@ -8,7 +8,6 @@ import org.apache.ibatis.type.Alias;
 public class RoleModel {
 	private int id;
 	private String name;
-	private int menuid;
 	private String detial;
 	
 	private List<UserModel> users = null;	
@@ -30,12 +29,6 @@ public class RoleModel {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public int getMenuid() {
-		return menuid;
-	}
-	public void setMenuid(int menuid) {
-		this.menuid = menuid;
 	}
 	public String getDetial() {
 		return detial;

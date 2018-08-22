@@ -212,5 +212,21 @@ public class UserController {
 		
 		return result;
 	}
-	
+	//注销
+	@RequestMapping(value="logout", method={RequestMethod.GET})
+	public ControllerResult logout(HttpSession session) throws Exception{
+		session.invalidate();
+		
+		ControllerResult result = new ControllerResult();
+		System.out.println("user logout");
+		result.setMessage("注销成功");
+		result.setStatus("T");
+		
+		return result;
+	}
+	@RequestMapping(value="getLoginUser", method= {RequestMethod.GET})
+	public UserModel getLoginUserInfo(HttpSession session) throws Exception{
+		UserModel userInfo = (UserModel)session.getAttribute("userInfo");
+		return userInfo;
+	}
 }
