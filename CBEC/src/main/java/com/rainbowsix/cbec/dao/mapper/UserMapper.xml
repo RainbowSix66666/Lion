@@ -202,6 +202,11 @@
 		</where> 
 	</select>
 	
+	<!-- 验证相关 -->
+	<select id="selectCountByNameAndPassword" resultType="int">
+		select count(userid) from sys_user where username = #{name} and userpassword = #{password}
+	</select>
+	
 	<!-- 角色相关 -->
 	<delete id="cleanRole" parameterType="int">
 		delete from user_link_role where userid = #{id}

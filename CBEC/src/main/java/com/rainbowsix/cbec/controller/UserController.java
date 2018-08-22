@@ -3,6 +3,8 @@ package com.rainbowsix.cbec.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.rainbowsix.cbec.model.UserModel;
+import com.rainbowsix.cbec.result.ControllerResult;
 import com.rainbowsix.cbec.result.JqGridJson;
 import com.rainbowsix.cbec.service.IUserService;
 
@@ -179,7 +182,35 @@ public class UserController {
 		
 		return true;
 	}
-	
-	
+	/*****************************用户登录验证**************************/
+	//登录
+	@RequestMapping(value="login", method={RequestMethod.POST})
+	public ControllerResult login(String name, String password, HttpSession session) throws Exception{
+		ControllerResult result = new ControllerResult();
+		
+		//验证用户名和密码
+		if(userService.validate(name, password)) {
+			result.setStatus("T");
+			session.setAttribute("userInfo", userService.getByName(name));
+		}else {
+			result.setStatus("F");
+			result.setError("用户名或密码错误");
+		}
+		
+		return result;
+	}
+	//验证是否已登录
+	@RequestMapping(value="checkLogin", method={RequestMethod.GET})
+	public ControllerResult checkLogin(HttpSession session) throws Exception{
+		ControllerResult result = new ControllerResult();
+		
+		if(session.getAttribute("userInfo") != null) {
+			result.setStatus("T");
+		}else {
+			result.setStatus("F");
+		}
+		
+		return result;
+	}
 	
 }
