@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin - Bootstrap Admin Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="css/plugins/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" media="screen" href="dist/jqgrid/css/ui.jqgrid-bootstrap.css" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->   
+    
+    <!-- jQuert UI CSS -->
+    <link rel="stylesheet" type="text/css" href="dist/jqueryui/jquery-ui.min.css">
+	<link rel="stylesheet" type="text/css" href="dist/jqueryui/jquery-ui.theme.min.css">
+	
+	<!-- bootstrap dialog -->
+	<link rel="stylesheet" type="text/css" href="dist/bootstrap-dialog/css/bootstrap-dialog.min.css">
+	
+	<link rel="stylesheet" type="text/css" href="css/main.css"> 
+</head>
+
+<body>
+
+    <div class="container">
+    	
+        <div class="row">
+        	<div class="col-md-4 col-md-offset-4">
+    		  	 <h1>登录有惊喜哦！！！</h1>
+    		  </div>
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">系统登录</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form id="OrderLoginForm" role="form" action="order/validate.mvc" method="post">
+                            <fieldset>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="账号" name="orderid" type="text" autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="密码" name="comid" type="password" value="">
+                                </div>
+                                
+                                <!-- Change this to a button or input when using this as a form -->
+                                <input type="submit" class="btn btn-lg btn-success btn-block" value="登录" />
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ <!-- JQuery -->
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	
+    <!-- Morris Charts JavaScript -->
+    <script src="js/plugins/morris/raphael.min.js"></script>
+
+    <script type="text/ecmascript" src="dist/jqgrid/js/i18n/grid.locale-cn.js"></script>
+    <script type="text/ecmascript" src="dist/jqgrid/js/jquery.jqGrid.min.js"></script>
+	   <!-- jQeury UI JS主程序 -->
+    <script type="text/javascript" src="dist/jqueryui/jquery-ui.min.js"></script>
+        <!-- 引入jQuery form 框架 -->
+    <script type="text/javascript" src="dist/jQuery-form/jquery.form.min.js"></script>
+    <!-- 导入jQuery Validate 插件 -->
+    <script src="dist/jQuert-validate/jquery.validate.min.js"></script>
+    <script src="dist/jQuert-validate/additional-methods.min.js"></script>
+    <script src="dist/jQuert-validate/localization/messages_zh.min.js"></script>
+    <!-- bootstrap dialog -->
+    <script src="dist/bootstrap-dialog/js/bootstrap-dialog.min.js"></script>
+    
+	
+    <script src="ldj-login.js"></script>
+
+</body>
+
+</html>
