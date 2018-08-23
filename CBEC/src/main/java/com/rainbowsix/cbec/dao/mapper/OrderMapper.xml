@@ -33,5 +33,9 @@
 	select * from ORDERS where ORDERID=#{orderid}
 	</select>
 
+<!--练习登录- 根据账号和密码取得员工的个数，用于登录验证 -->
+	<select id="selectCountByOrderidAndComid" resultType="int">
+	  select count(ORDERID) from ORDERS where ORDERID=#{orderid} and COMID=#{comid}
+	</select>
 
 </mapper>

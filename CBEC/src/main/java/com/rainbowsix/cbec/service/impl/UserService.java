@@ -121,6 +121,17 @@ public class UserService implements IUserService {
 		userDao.updateArea(id, areaId);
 	}
 
+	@Override
+	public boolean validate(String name, String password) throws Exception {
+		boolean result = false;
+		
+		if(userDao.selectCountByNameAndPassword(name, password) == 1) {
+			result = true;
+		}
+		
+		return result;
+	}
+
 	
 	
 

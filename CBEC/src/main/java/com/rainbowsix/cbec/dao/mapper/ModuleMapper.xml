@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rainbowsix.cbec.dao.IModuleDao">
+	
+	<resultMap type="Module" id="moduleResultMap">
+		<id property="id" column="module_id"/>
+		<result property="name" column="module_name"/>
+	</resultMap>
+	<!-- 包含功能对应的功能列表 -->
+	<resultMap type="Module" id="moduleResultMapWithFuncton" extends="moduleResultMap">
+		<collection property="functions" javaType="ArrayList" ofType="Function" resultMap="com.rainbowsix.cbec.dao.IFunctionDao.functionResultMap">
+		</collection>
+	</resultMap>
+	
+	<!-- 根据用户查询模块列表 -->
+	<select id="selectListByUserId" resultMap="moduleResultMapWithFuncton">	
+		select m.*, f.fun_name, f.fun_url, l.role_id, ulr.userid
+		from sys_module m
+		inner join sys_function f on (m.module_id = f.module_id)
+		inner join role_link_function l on (l.function_id = f.fun_id)
+		inner join user_link_role ulr on (ulr.roleid = l.role_id)
+		where ulr.userid = #{userid}
+	</select>
+	
+</mapper>

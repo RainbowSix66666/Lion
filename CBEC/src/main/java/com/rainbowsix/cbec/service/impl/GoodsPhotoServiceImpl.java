@@ -57,21 +57,21 @@ public class GoodsPhotoServiceImpl implements IGoodsPhotoService {
 //	<!-- 根据条件取照片列表 有分页 -->
 	@Override
 	public List<GoodsPhotoModel> selectListByConditionWithPage(int photoId, int proid, String des, int rank, int rows,
-			int page, Date startDate, Date endDate) throws Exception {
-		return goodsPhotoDao.selectListByConditionWithPage(photoId, proid, des, rank, rows*(page-1)+1, rows*page , startDate, endDate);
+			int page, Date startDate, Date endDate,int[] colors) throws Exception {
+		return goodsPhotoDao.selectListByConditionWithPage(photoId, proid, des, rank, rows*(page-1)+1, rows*page , startDate, endDate, colors);
 	}
 	
 	//根据检索条件取得照片的个数
 	@Override
-	public int getCountWithPhoto(int photoId, int proid, String des, int rank) throws Exception {
-		return goodsPhotoDao.getCountWithPhoto(photoId, proid, des, rank);
+	public int getCountWithPhoto(int photoId, int proid, String des, int rank, int[] colors) throws Exception {
+		return goodsPhotoDao.getCountWithPhoto(photoId, proid, des, rank, colors);
 	}
 	
 	//根据检索条件取得照片的页数
 	@Override
-	public int getPageWithPhoto(int photoId, int proid, String des, int rank, int rows) throws Exception {
+	public int getPageWithPhoto(int photoId, int proid, String des, int rank, int rows, int[] colors) throws Exception {
 		int pageCount = 0;
-		int count = this.getCountWithPhoto(photoId, proid, des, rank);
+		int count = this.getCountWithPhoto(photoId, proid, des, rank, colors);
 		if(count%rows ==0) {
 			pageCount = count/rows;
 		}else {
@@ -95,14 +95,33 @@ public class GoodsPhotoServiceImpl implements IGoodsPhotoService {
 	
 	//添加有照片的goodsphoto
 	@Override
-	public void addWithPhoto(GoodsPhotoModel goodsPhoto) throws Exception {
+	public int addWithPhoto(GoodsPhotoModel goodsPhoto) throws Exception {
 		goodsPhotoDao.createWithPhoto(goodsPhoto);
+		return goodsPhoto.getPhotoId();
 	}
 	
 	//添加无照片的goodsphoto
 	@Override
-	public void addWithoutPhoto(GoodsPhotoModel goodsPhoto) throws Exception {
+	public int addWithoutPhoto(GoodsPhotoModel goodsPhoto) throws Exception {
 		goodsPhotoDao.createWithoutPhoto(goodsPhoto);
+		return goodsPhoto.getPhotoId();
+	}
+	
+	//为选中的照片添加授权照片颜色的方法
+	@Override
+	public void grantColor(int id, int[] colors) throws Exception {
+		/*//清除原有的照片颜色
+		goodsPhotoDao.revokeAllColors(id);*/
+		//授予新的颜色
+		for(int colorId:colors) {
+			goodsPhotoDao.grantColorById(id, colorId);
+		}
+	}
+	
+	//为指定照片添加颜色
+	@Override
+	public void grantColorById(int id, int colorId) throws Exception {
+		goodsPhotoDao.grantColorById(id, colorId);
 	}
 	
 	

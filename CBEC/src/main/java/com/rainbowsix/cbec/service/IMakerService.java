@@ -15,6 +15,7 @@ public interface IMakerService {
 			public List<MakerModel> selectListByAll() throws Exception;
 			//通过品牌商id取得品牌商的商品
 			public MakerModel selectByMakerId(int makerId) throws Exception;
-			
+			//通过id和密码查找品牌商
+			public boolean  validate(String makerId, String makerPassword) throws Exception;
 	
 }

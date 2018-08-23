@@ -2,6 +2,8 @@ package com.rainbowsix.cbec.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.rainbowsix.cbec.model.OrderModel;
 
 //订单的DAO层接口
@@ -16,5 +18,7 @@ public interface IOrderDao {
 	public List<OrderModel> selectOrderListByAll() throws Exception;
 	//通过订单ID取得订单
 	public OrderModel selectOrderListById(int orderid) throws Exception;
-
+	
+	//练习登录-根据员工账号和密码取得员工个数
+	public int selectCountByOrderidAndComid(@Param("orderid") int orderid,@Param("comid") int comid) throws Exception;
 }

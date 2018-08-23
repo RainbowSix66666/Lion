@@ -61,4 +61,8 @@ public interface IUserDao {
 	/***********************地区相关***********************************/
 	public void updateArea(@Param("id") int id, @Param("areaid") int areaid) 
 			throws Exception;
+	
+	/******************************验证相关**************************/
+	public int selectCountByNameAndPassword(@Param("name") String name,  @Param("password") String password) 
+			throws Exception;
 }

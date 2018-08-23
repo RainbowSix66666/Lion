@@ -2,6 +2,8 @@ package com.rainbowsix.cbec.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.rainbowsix.cbec.model.MakerModel;
 
 
@@ -22,4 +24,15 @@ public interface IMakerDao {
 		//取得所有品牌商的个数
 		public int selectCoutByAll() throws Exception;
 		
+		public int selectCountByIdAndPassword( @Param("makerId") String makerId, 
+				@Param("makerPassword") String makerPassword) throws Exception;
 }
+
+
+
+
+
+
+
+
+

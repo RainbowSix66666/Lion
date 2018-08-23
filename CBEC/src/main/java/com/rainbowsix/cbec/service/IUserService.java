@@ -36,4 +36,7 @@ public interface IUserService {
 	public void grantRoles(int id, int[] roles) throws Exception;
 	//地区管理
 	public void setArea(int id, int areaId) throws Exception;
+	
+	//验证
+	public boolean validate(String name, String password) throws Exception;
 } 

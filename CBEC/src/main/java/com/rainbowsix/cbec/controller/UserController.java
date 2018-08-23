@@ -3,6 +3,8 @@ package com.rainbowsix.cbec.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,20 +13,30 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.rainbowsix.cbec.model.ModuleModel;
 import com.rainbowsix.cbec.model.UserModel;
+import com.rainbowsix.cbec.result.ControllerResult;
 import com.rainbowsix.cbec.result.JqGridJson;
+import com.rainbowsix.cbec.service.IModuleService;
 import com.rainbowsix.cbec.service.IUserService;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
 	private IUserService userService = null;
+	private IModuleService moduleService = null;
 	
 	@Autowired
 	public void setUserService(IUserService userService) {
 		this.userService = userService;
 	}
 	
+	@Autowired
+	public void setModuleService(IModuleService moduleService) {
+		this.moduleService = moduleService;
+	}
+
+
 	@RequestMapping("add")
 	public String add(UserModel user, @RequestParam(required = false)MultipartFile userHead,
 			int[] rolesNos) throws Exception{
@@ -132,7 +144,8 @@ public class UserController {
 		int start = rows * (page - 1) + 1;
 		int end = rows * page;		
 		result.setRows(userService.selectListByCondictionWithPage(name, before, after, roles, area, start, end));	
-		result.setTotal(records);
+		result.setTotal(total);
+		result.setRecords(records);
 		result.setPage(page);
 		
 		return result;
@@ -178,7 +191,57 @@ public class UserController {
 		
 		return true;
 	}
+	/*****************************用户登录验证**************************/
+	//登录
+	@RequestMapping(value="login", method={RequestMethod.POST})
+	public ControllerResult login(String name, String password, HttpSession session) throws Exception{
+		ControllerResult result = new ControllerResult();
+		
+		//验证用户名和密码
+		if(userService.validate(name, password)) {
+			result.setStatus("T");
+			session.setAttribute("userInfo", userService.getByName(name));
+		}else {
+			result.setStatus("F");
+			result.setError("用户名或密码错误");
+		}
+		
+		return result;
+	}
+	//验证是否已登录
+	@RequestMapping(value="checkLogin", method={RequestMethod.GET})
+	public ControllerResult checkLogin(HttpSession session) throws Exception{
+		ControllerResult result = new ControllerResult();
+		
+		if(session.getAttribute("userInfo") != null) {
+			result.setStatus("T");
+		}else {
+			result.setStatus("F");
+		}
+		
+		return result;
+	}
+	//注销
+	@RequestMapping(value="logout", method={RequestMethod.GET})
+	public ControllerResult logout(HttpSession session) throws Exception{
+		session.invalidate();
+		
+		ControllerResult result = new ControllerResult();
+		System.out.println("user logout");
+		result.setMessage("注销成功");
+		result.setStatus("T");
+		
+		return result;
+	}
+	@RequestMapping(value="getLoginUser", method= {RequestMethod.GET})
+	public UserModel getLoginUserInfo(HttpSession session) throws Exception{
+		UserModel userInfo = (UserModel)session.getAttribute("userInfo");
+		return userInfo;
+	}
 	
-	
-	
+	/**************************功能模块**************************/
+	@RequestMapping(value="getModuleList", method= {RequestMethod.GET})
+	public List<ModuleModel> getModuleList(int userId) throws Exception{
+		return moduleService.getListByUserId(userId);
+	}
 }

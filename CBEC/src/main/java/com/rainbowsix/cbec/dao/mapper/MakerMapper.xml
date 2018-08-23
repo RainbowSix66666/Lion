@@ -39,6 +39,9 @@
 	select *
 	from MAKER
 </select>
+<select id="selectCountByIdAndPassword" resultType="int"> 
+	select count(maker_id) from maker where maker_id=#{makerId} and maker_password=#{makerPassword}
+</select>
 
 <select id="selectByMakerId" parameterType="int" resultMap="MakerResultMap">
 	select *

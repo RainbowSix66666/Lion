@@ -1,6 +1,7 @@
 package com.rainbowsix.cbec.model;
 
 import java.util.Date;
+import java.util.List;
 
 import org.apache.ibatis.type.Alias;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -21,12 +22,20 @@ public class GoodsPhotoModel {
 	private String photoContentType=null; //照片文件类型
 	private String photoIsImage=null; //照片是否是图片
 	
+	
 	//关联属性-商品
 	private GoodsModel good=null;
+	//关联属性-照片颜色
+	private List<PhotoColorModel> photoColor = null;
 	
 	
 	
-	
+	public List<PhotoColorModel> getPhotoColor() {
+		return photoColor;
+	}
+	public void setPhotoColor(List<PhotoColorModel> photoColor) {
+		this.photoColor = photoColor;
+	}
 	public String getPhotoFileName() {
 		return photoFileName;
 	}

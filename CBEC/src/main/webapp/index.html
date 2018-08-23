@@ -33,6 +33,10 @@
     <!-- jQuert UI CSS -->
     <link rel="stylesheet" type="text/css" href="dist/jqueryui/jquery-ui.min.css">
 	<link rel="stylesheet" type="text/css" href="dist/jqueryui/jquery-ui.theme.min.css">
+	
+	<!-- bootstrap dialog -->
+	<link rel="stylesheet" type="text/css" href="dist/bootstrap-dialog/css/bootstrap-dialog.min.css">
+	
 	<link rel="stylesheet" type="text/css" href="css/main.css"> 
 </head>
 
@@ -41,7 +45,7 @@
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-inverse" role="navigation">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <a class="navbar-brand" href="index.html">GMDropship</a>
@@ -49,14 +53,14 @@
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>用户名 <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" id="userName">用户名</i> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#用户信息界面"><i class="fa fa-fw fa-user"></i>账号管理</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#登陆界面"><i class="fa fa-fw fa-power-off"></i> 退出</a>
+                            <a href="#" id="logout"><i class="fa fa-fw fa-power-off"></i> 退出</a>
                         </li>
                     </ul>
                 </li>
@@ -277,6 +281,8 @@
     <script src="dist/jQuert-validate/jquery.validate.min.js"></script>
     <script src="dist/jQuert-validate/additional-methods.min.js"></script>
     <script src="dist/jQuert-validate/localization/messages_zh.min.js"></script>
+    <!-- bootstrap dialog -->
+    <script src="dist/bootstrap-dialog/js/bootstrap-dialog.min.js"></script>
     
 	<script src="index.js"></script>
 

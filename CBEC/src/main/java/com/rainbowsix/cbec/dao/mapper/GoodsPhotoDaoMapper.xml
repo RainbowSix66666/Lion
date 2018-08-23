@@ -5,12 +5,12 @@
 
 			<!-- 有信息无图片、无商品  无关联选择单个goodsphoto信息 -->
 		<resultMap id="GoodsPhotoResultMap" type="GoodsPhoto">
-		  <id property="photoId" column="PHOTO_ID"/>
-		  <result property="goodId" column="GOODID" />
-		  <result property="des" column="DES"/>
-		  <result property="rank" column="RANK"/>
-		  <result property="loaddate" column="LOADDATE"/>
-		  	</resultMap>
+			  <id property="photoId" column="PHOTO_ID"/>
+			  <result property="goodId" column="GOODID" />
+			  <result property="des" column="DES"/>
+			  <result property="rank" column="RANK"/>
+			  <result property="loaddate" column="LOADDATE"/>
+		</resultMap>
 		  	
 		  	<!-- 取得照片等级的modelresultmapper -->
 		  	<resultMap id="GoodsPhotoRankResultMap" type="GoodsPhoto">
@@ -41,8 +41,16 @@
 		
 		<!-- 添加有照片信息 -->
 		<insert id="createWithPhoto" parameterType="GoodsPhoto">
+		 	<selectKey keyProperty="photoId" keyColumn="PHOTO_ID" resultType="int" order="BEFORE">
+		 		select PHOTOID.nextval from dual
+		 	</selectKey>
 			insert into GoodsPhoto (PHOTO_ID, PROID, PHOTO, DES, RANK , LOADDATE, PhotoFileName,PhotoContentType)
-			values (PHOTOID.nextval,#{proid},#{photo},#{des},#{rank},#{loaddate},#{photoFileName},#{photoContentType})
+			values (#{photoId},#{proid},#{photo},#{des},#{rank},#{loaddate},#{photoFileName},#{photoContentType})
+		</insert>
+		
+		<!--添加照片授予的颜色  -->
+		<insert id="grantColorById" parameterType="int">
+			insert into photo_link_color(PHOTO_ID, COLORID) values (#{id}, #{colorId})
 		</insert>
 		
 		<!-- 添加无图片信息 -->
@@ -150,6 +158,20 @@
 				<if test="des!=null and des!=''">
 					and a.des like #{des}
 				</if>
+				<!-- <if test="colors!=null">
+					and a.photo_id in(select photo_id from PHOTO_LINK_COLOR where colorid in
+					<foreach item=id collection="colors" open="(" separator="," close=")">
+				         #{id}
+				    </foreach>
+				    )
+				</if> -->
+				<if test="colors!=null">
+			      	and a.photo_id in (  select photo_id from PHOTO_LINK_COLOR where colorid in
+			     <foreach item="id" collection="colors" open="(" separator="," close=")">
+			         #{id}
+			     </foreach>
+	      )
+	   </if>
 			</where>)
 			 X WHERE ROWNUM &lt;=#{end})  WHERE RN &gt;=#{start}
 		</select>
@@ -171,6 +193,13 @@
 				<if test="des!=null and des!=''">
 					and a.des like #{des}
 				</if>
+				<if test="colors!=null">
+			      	and a.photo_id in (  select photo_id from PHOTO_LINK_COLOR where colorid in
+			     <foreach item="id" collection="colors" open="(" separator="," close=")">
+			         #{id}
+			     </foreach>
+			      )
+			   </if>
 			</where>
 		</select>
 		
@@ -186,7 +215,10 @@
 			on a.proid=b.proid  order by b.proid
 		</select>
 		
-		
+		<!-- 清除授予的照片颜色 -->
+		<delete id="revokeAllColors" parameterType="int">
+			delete from photo_link_color where photo_id=#{id}
+		</delete>
 
 </mapper>
 

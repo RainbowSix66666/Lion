@@ -48,17 +48,19 @@ public interface IGoodsPhotoDao {
 				 @Param("proid") int proid, @Param("des")  String des,
 				 @Param("rank")  int rank, @Param("start") int start, @Param("end") int end, 
 				 @Param("startDate")  Date startDate, 
-				 @Param("endDate") Date endDate) throws Exception;
+				 @Param("endDate") Date endDate,
+				 @Param("colors") int[] colors) throws Exception;
 		
 		 //根据检索条件取得照片的个数
 		 public int getCountWithPhoto(@Param("photoId") int photoId,
 				 @Param("proid") int proid, @Param("des")  String des,
-				 @Param("rank")  int rank) throws Exception;
+				 @Param("rank")  int rank,@Param("colors") int[] colors) throws Exception;
 		 
 		 //根据检索条件取得照片的页数
 		 public int getPageWithPhoto(@Param("photoId") int photoId,
 				 @Param("proid") int proid, @Param("des")  String des,
-				 @Param("rank")  int rank, @Param("rows")  int rows) throws Exception;
+				 @Param("rank")  int rank, @Param("rows")  int rows,
+				 @Param("colors") int[] colors) throws Exception;
 		 
 		 //取得照片等级
 		 public List<GoodsPhotoModel> selectRankCondition() throws Exception;
@@ -72,6 +74,14 @@ public interface IGoodsPhotoDao {
 		 //添加无照片的goodsphoto	 
 		 public void createWithoutPhoto(GoodsPhotoModel goodsPhoto) throws Exception;
 		 
+		//为选中的照片添加授权照片颜色的方法
+		 public void grantColor(@Param("id")int id,@Param("colors") int[] colors) throws Exception;
+		 
+		//为指定照片添加颜色
+		public void grantColorById(@Param("id")int id,@Param("colorId") int colorId) throws Exception;
+		
+		//清除指定照片的颜色
+		public void revokeAllColors(@Param("id")int id);
 		 //取得所有商品总数
 		 //public int Count() throws Exception;
 		
