@@ -29,9 +29,10 @@ $(document).ready(function(){
 		
 		
 		//点击菜单
-		$("ul#main_menu li ul a").on("click", function(event){
-			var href = $(this).attr("href");
-			$("div#main_body").load(href);		
+		$("ul#main_menu li ul li a").on("click", function(event){
+			alert("click");
+//			var href = $(this).attr("href");
+//			$("div#main_body").load(href);		
 			event.preventDefault();
 		});
 		$("div#goods a").on("click", function(event){

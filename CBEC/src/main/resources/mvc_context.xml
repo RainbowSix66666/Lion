@@ -35,6 +35,13 @@ http://www.springframework.org/schema/jee/spring-jee.xsd">
 	<bean id="multipartResolver"
 		class = "org.springframework.web.multipart.support.StandardServletMultipartResolver">
 	</bean>
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.rainbowsix.cbec.interceptor.CheckLoginInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 
   
   <!-- 
