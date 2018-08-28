@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rainbowsix.cbec.dao.ITakeoutDao">
+
+	<resultMap type="Takeout" id="takeoutResultMapper">
+		<id property="id" column="id"/>
+		<result property="quantity" column="quantity"/>
+		<result property="outdate" column="outdate"/>
+		<result property="Handler" column="Handler"/>
+	</resultMap>
+	
+	<resultMap type="Takeout" id="takeoutResultMapWithProduct" extends="takeoutResultMapper">
+		<association property="product" column="PRODUCTID" resultMap="com.neusoft.warehouse.dao.IProductDao.productResultMap">
+		</association>
+	</resultMap>
+	
+	<insert id="add" parameterType="Takeout">
+		insert into takeout (id, quantity, outdate, Handler, productid)
+		values(TAKEOUT_ID_SQ.nextval, #{quantity}, #{outdate}, #{Handler}, #{product.id})
+	</insert>
+	
+	<update id="setProduct">
+		update takeout set productId = #{productId} where id = #{id}
+	</update>
+	
+</mapper>

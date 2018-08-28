@@ -91,14 +91,13 @@ $(document).ready(function(){
 			
 			//选择角色
 			$.getJSON("role/all.mvc",function(roleList){
+				
 				$.each(roleList,function(index,rm){
-					$("div#rolesSelect").append("<label class='checkbox-inline'><input type='checkbox' name='rolesNos' value='"+rm.id+"'>"+rm.detial+"</label>");
-					allRoles.push(rm.id);
+					$("div#rolesSelect").append("<label class='checkbox-inline'><input type='checkbox' name='roles' value='"+rm.id+"'>"+rm.detial+"</label>");			
 				});
-//				alert(allRoles);
 				$("input[type='checkbox'][name='roles']").on("click",function(){
 					//先创建保存选中角色编号的数组
-					var roles=new Array();
+					var roles = new Array();
 					//取得选中的角色
 					flage = false;
 					$("input[type='checkbox'][name='roles']:checked").each(function(index,role){
@@ -107,7 +106,7 @@ $(document).ready(function(){
 						flage = true;
 					});
 					groballRoles = roles;
-					
+//					alert(groballRoles);
 					getParamAndReloadGrid();
 				});
 				

@@ -20,9 +20,9 @@ http://www.springframework.org/schema/tx
 http://www.springframework.org/schema/tx/spring-tx.xsd
 http://www.springframework.org/schema/jee/spring-jee.xsd">
    
-  <context:component-scan base-package="com.rainbowsix.cbec"/>
-  <aop:aspectj-autoproxy/>
-  <mvc:annotation-driven/>
+  	<context:component-scan base-package="com.rainbowsix.cbec"/>
+  	<aop:aspectj-autoproxy/>
+  	<mvc:annotation-driven/>
   
   
   	<bean id="viewResolver" class=
@@ -35,6 +35,7 @@ http://www.springframework.org/schema/jee/spring-jee.xsd">
 	<bean id="multipartResolver"
 		class = "org.springframework.web.multipart.support.StandardServletMultipartResolver">
 	</bean>
+<<<<<<< HEAD
 	
 	<mvc:interceptors>
 		<mvc:interceptor>
@@ -43,6 +44,19 @@ http://www.springframework.org/schema/jee/spring-jee.xsd">
 		</mvc:interceptor>
 	</mvc:interceptors>
 
+=======
+	<mvc:cors>
+		<mvc:mapping path="/**"/>
+	</mvc:cors>
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/ldj-login.html"/>
+			<mvc:exclude-mapping path="/ldj-login.js"/>
+			<bean class="com.rainbowsix.cbec.interceptor.UserLoginCheckedInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+>>>>>>> branch 'master' of https://github.com/RainbowSix66666/Lion.git
   
   <!-- 
   <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/neusoft"/>

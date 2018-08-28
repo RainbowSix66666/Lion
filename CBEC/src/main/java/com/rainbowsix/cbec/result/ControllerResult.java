@@ -3,9 +3,7 @@ package com.rainbowsix.cbec.result;
 public class ControllerResult {
 	private String status;
 	private String error;
-	private String message;
-	
-	
+	private String message;	
 	
 	public String getStatus() {
 		return status;
