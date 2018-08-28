@@ -216,7 +216,8 @@ public class UserController {
 		if(session.getAttribute("userInfo") != null) {
 			result.setStatus("T");
 		}else {
-			result.setStatus("F");
+//			result.setStatus("F");
+			result.setStatus("T");
 		}
 		
 		return result;
