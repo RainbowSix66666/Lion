@@ -1,0 +1,52 @@
+<meta charset="utf-8">
+
+<form id="logisticsAddForm" role="form" class="form-horizontal" action="logistics/add.mvc"  method="post"> 
+<div class="form-group">
+	
+		<div class="row">	
+			<div class="col-lg-1 text-right">
+	         	<label>地址</label>
+	        </div>             
+	        <div class="col-lg-4">
+	          <input class="form-control" type="text" name="address">
+	        </div>
+		</div>
+		<br/>
+	
+		<div class="row">
+			<div class="col-lg-1 text-right">
+	        	<label>快递单号</label>
+	        </div>             
+	        <div class="col-lg-4">
+	          <input class="form-control" type="text" name="expressnumber">
+	        </div>
+		</div>
+	    <br/>
+	    
+	    <div class="row">
+	    	<div class="col-lg-1 text-right">
+	        	<label>收货人</label>
+	        </div>             
+	        <div class="col-lg-4">
+	          <input class="form-control" type="text" name="consignee">
+	        </div>
+		</div>
+		
+		<div class="row">
+	    	<div class="col-lg-1 text-right">
+	        	<label>手机号</label>
+	        </div>             
+	        <div class="col-lg-4">
+	          <input class="form-control" type="text" name="phone">
+	        </div>
+		</div>
+
+	<div class="row">        
+		<div class="col-lg-2 col-lg-offset-1">				
+		<button id="LogisticsAddButton" type="submit" class="btn btn-primary">提交</button>
+        <!--  <input type="submit" class="form-control" value="提交" />          -->
+		<button id="LogisticsReturnButton" type="button" class="btn btn-warning">返回</button>
+		</div>
+	</div>
+</div>    
+</form>
