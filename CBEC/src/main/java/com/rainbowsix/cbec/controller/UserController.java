@@ -193,7 +193,7 @@ public class UserController {
 	}
 	/*****************************用户登录验证**************************/
 	//登录
-	@RequestMapping(value="login", method={RequestMethod.POST})
+	@RequestMapping(value="login")
 	public ControllerResult login(String name, String password, HttpSession session) throws Exception{
 		ControllerResult result = new ControllerResult();
 		
@@ -216,8 +216,8 @@ public class UserController {
 		if(session.getAttribute("userInfo") != null) {
 			result.setStatus("T");
 		}else {
-//			result.setStatus("F");
-			result.setStatus("T");
+			result.setStatus("F");
+//			result.setStatus("T");
 		}
 		
 		return result;
