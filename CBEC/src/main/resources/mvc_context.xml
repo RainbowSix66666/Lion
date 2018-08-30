@@ -34,6 +34,7 @@ http://www.springframework.org/schema/jee/spring-jee.xsd">
 	
 	<bean id="multipartResolver"
 		class = "org.springframework.web.multipart.support.StandardServletMultipartResolver">
+<<<<<<< HEAD
 	</bean>
 	
 	<mvc:interceptors>
@@ -42,6 +43,9 @@ http://www.springframework.org/schema/jee/spring-jee.xsd">
 			<bean class="com.rainbowsix.cbec.interceptor.CheckLoginInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
+=======
+	</bean>
+>>>>>>> branch 'master' of https://github.com/RainbowSix66666/Lion.git
 
 	<mvc:cors>
 		<mvc:mapping path="/**"/>
@@ -49,8 +53,8 @@ http://www.springframework.org/schema/jee/spring-jee.xsd">
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
-			<mvc:exclude-mapping path="/ldj-login.html"/>
-			<mvc:exclude-mapping path="/ldj-login.js"/>
+			<mvc:exclude-mapping path="/user/login.mvc"/>
+			<mvc:exclude-mapping path="/user/checkLogin.mvc"/>
 			<bean class="com.rainbowsix.cbec.interceptor.UserLoginCheckedInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>

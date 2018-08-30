@@ -34,7 +34,8 @@
 		http://mybatis.org/schema/mybatis-spring 
 		http://mybatis.org/schema/mybatis-spring.xsd">
    
-  <context:component-scan base-package="com.rainbowsix.cbec"/>  
+  <context:component-scan base-package="com.rainbowsix.cbec"/>
+  
   <aop:aspectj-autoproxy/>
   
   <mybatis:scan base-package="com.rainbowsix.cbec.dao"/>
@@ -45,11 +46,11 @@
   	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
 		
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@10.1.53.30:1521:neuedu"/>
-		<!-- <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:neuedu"/> -->
+		<!-- <property name="jdbcUrl" value="jdbc:oracle:thin:@10.1.53.30:1521:neuedu"/> -->
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:neuedu"/>
 		<!-- <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:neuedu"/> -->
 
-		<property name="user" value="RainbowSix6"/>
+		<property name="user" value="rainbowSix"/>
 		<property name="password" value="123456"/>		
 		<property name="initialPoolSize" value="3"></property>  
 	   	<property name="maxPoolSize" value="5"></property>  
