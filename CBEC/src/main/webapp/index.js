@@ -13,7 +13,25 @@ $(document).ready(function(){
 				userInfo = userData;
 //				alert(userInfo.name);
 				$("i#userName").html(userInfo.name);
+//				alert(userInfo.no);
+				$.getJSON("user/getModuleList.mvc", {userId:userInfo.no}, function(moduleList){
+					$.each(moduleList, function(index, module){
+						pre = "<li><a href='javascript:;' data-toggle='collapse' data-target=#" +
+							module.target + ">";
+						mid = "<i class='fa fa-fw fa-shopping-cart'></i>" + 
+							module.name + "<i class='fa fa-fw fa-caret-down'></i></a>";
+						mid = mid + "<ul id="+ module.target + " class='collapse'>";
+//						mid = mid + "<li><a href='xxx.html'>asd</a></li>";
+						$.each(module.functions, function(index, fun){							
+							mid = mid + "<li><a href=" + fun.url +">"+ fun.name +"</a></li>";							
+						});	
+						mid = mid + "</ul>";
+						suf = "</li>";
+						$("ul#main_menu").append(pre + mid + suf);
+					});
+				});
 			});
+			
 		}	
 		
 		//退出
@@ -35,6 +53,7 @@ $(document).ready(function(){
 			$("div#main_body").load(href);		
 			event.preventDefault();
 		});
+		
 		$("div#goods a").on("click", function(event){
 			var href = $(this).attr("href");
 			$("div#main_body").load(href);		
