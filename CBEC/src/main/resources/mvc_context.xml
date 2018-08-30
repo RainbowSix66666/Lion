@@ -35,7 +35,6 @@ http://www.springframework.org/schema/jee/spring-jee.xsd">
 	<bean id="multipartResolver"
 		class = "org.springframework.web.multipart.support.StandardServletMultipartResolver">
 	</bean>
-<<<<<<< HEAD
 	
 	<mvc:interceptors>
 		<mvc:interceptor>
@@ -44,7 +43,6 @@ http://www.springframework.org/schema/jee/spring-jee.xsd">
 		</mvc:interceptor>
 	</mvc:interceptors>
 
-=======
 	<mvc:cors>
 		<mvc:mapping path="/**"/>
 	</mvc:cors>
@@ -56,7 +54,6 @@ http://www.springframework.org/schema/jee/spring-jee.xsd">
 			<bean class="com.rainbowsix.cbec.interceptor.UserLoginCheckedInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
->>>>>>> branch 'master' of https://github.com/RainbowSix66666/Lion.git
   
   <!-- 
   <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/neusoft"/>
