@@ -34,18 +34,7 @@ http://www.springframework.org/schema/jee/spring-jee.xsd">
 	
 	<bean id="multipartResolver"
 		class = "org.springframework.web.multipart.support.StandardServletMultipartResolver">
-<<<<<<< HEAD
 	</bean>
-	
-	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/**" />
-			<bean class="com.rainbowsix.cbec.interceptor.CheckLoginInterceptor"></bean>
-		</mvc:interceptor>
-	</mvc:interceptors>
-=======
-	</bean>
->>>>>>> branch 'master' of https://github.com/RainbowSix66666/Lion.git
 
 	<mvc:cors>
 		<mvc:mapping path="/**"/>
