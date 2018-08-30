@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rainbowsix.cbec.model.ModuleModel;
+import com.rainbowsix.cbec.result.JqGridJson;
 import com.rainbowsix.cbec.service.IModuleService;
 
 @RestController
@@ -21,7 +22,14 @@ public class ModuleController {
 	}
 	
 	@RequestMapping("all")
-	public List<ModuleModel> all() throws Exception{
-		return moduleService.getListByAll();
+	public JqGridJson<ModuleModel> all() throws Exception{
+		JqGridJson<ModuleModel> result = new JqGridJson<ModuleModel>();
+		
+		result.setRows(moduleService.getListByAll());
+		result.setPage(1);
+		result.setRecords(result.getRows().size());
+		result.setTotal(1);
+		
+		return result;
 	}
 }

@@ -29,6 +29,15 @@ $(document).ready(function(){
 						suf = "</li>";
 						$("ul#main_menu").append(pre + mid + suf);
 					});
+					
+					//点击菜单
+					$("ul#main_menu li ul li a").on("click", function(event){
+						
+						var href = $(this).attr("href");
+						$("div#main_body").load(href);		
+						event.preventDefault();
+					});
+					
 				});
 			});
 			
@@ -46,13 +55,7 @@ $(document).ready(function(){
 		
 		
 		
-		//点击菜单
-		$("ul#main_menu li ul li a").on("click", function(event){
-			
-			var href = $(this).attr("href");
-			$("div#main_body").load(href);		
-			event.preventDefault();
-		});
+		
 		
 		$("div#goods a").on("click", function(event){
 			var href = $(this).attr("href");
