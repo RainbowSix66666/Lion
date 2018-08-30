@@ -69,10 +69,10 @@ public interface IGoodsPhotoDao {
 		 public List<GoodsPhotoModel> selectProidCondition() throws Exception;
 		 
 		 //添加有照片的goodsphoto
-		 public void createWithPhoto(GoodsPhotoModel goodsPhoto) throws Exception;
+		 public int createWithPhoto(GoodsPhotoModel goodsPhoto) throws Exception;
 		 
 		 //添加无照片的goodsphoto	 
-		 public void createWithoutPhoto(GoodsPhotoModel goodsPhoto) throws Exception;
+		 public int createWithoutPhoto(GoodsPhotoModel goodsPhoto) throws Exception;
 		 
 		//为选中的照片添加授权照片颜色的方法
 		 public void grantColor(@Param("id")int id,@Param("colors") int[] colors) throws Exception;
@@ -84,6 +84,12 @@ public interface IGoodsPhotoDao {
 		public void revokeAllColors(@Param("id")int id);
 		 //取得所有商品总数
 		 //public int Count() throws Exception;
+		
+		 //修改照片信息(无图片)
+		public void modifyWithoutPhoto(GoodsPhotoModel goodsPhoto) throws Exception; 
+
+		//修改照片信息(无图片)
+		public void modifyWithPhoto(GoodsPhotoModel goodsPhoto) throws Exception; 
 		
 }
 
