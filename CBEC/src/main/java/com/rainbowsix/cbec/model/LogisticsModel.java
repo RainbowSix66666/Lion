@@ -9,7 +9,7 @@ public class LogisticsModel {
 	private String address=null; //收货地址
 	private int expressnumber=0; //快递单号
 	private String consignee=null; //收货人
-	private int phone=0; //手机号
+	private String phone=null; //手机号
 	//与订单关联-对一
 	private OrderModel order=null;
 	
@@ -37,10 +37,10 @@ public class LogisticsModel {
 	public void setConsignee(String consignee) {
 		this.consignee = consignee;
 	}
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	//与订单关联的getter and setter方法
