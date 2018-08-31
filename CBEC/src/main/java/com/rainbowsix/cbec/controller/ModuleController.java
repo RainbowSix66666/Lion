@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rainbowsix.cbec.model.ModuleModel;
@@ -29,6 +30,20 @@ public class ModuleController {
 		result.setPage(1);
 		result.setRecords(result.getRows().size());
 		result.setTotal(1);
+		
+		return result;
+	}
+	@RequestMapping(value="add", method={RequestMethod.POST})
+	public void addModule(ModuleModel module) throws Exception{
+		moduleService.add(module);
+	}
+	@RequestMapping(value="checkname", method={RequestMethod.GET})
+	public boolean checkName(String name) throws Exception{
+		boolean result = false;
+		
+		if(moduleService.getByName(name) == null) {
+			return true;
+		}
 		
 		return result;
 	}

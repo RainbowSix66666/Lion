@@ -38,4 +38,11 @@ public class ModuleServiceImpl implements IModuleService {
 		return moduleDao.selectAll();
 	}
 
+	@Override
+	public ModuleModel getByName(String name) throws Exception {
+		return moduleDao.selectByName(name);
+	}
+	
+	
+
 }

@@ -29,10 +29,14 @@
 		inner join user_link_role ulr on (ulr.roleid = l.role_id)
 		where ulr.userid = #{userid}
 	</select>
+	<!-- 根据模块名查询 -->
+	<select id="selectByName" parameterType="string" resultMap="moduleResultMap">
+		select * from sys_module where module_name = #{name}
+	</select>
 	
 	<!-- 添加模块 -->
 	<insert id="add" parameterType="Module">
-		insert into sys_module values(MODULEIDSQ.nextval, #{name})
+		insert into sys_module values(MODULEIDSQ.nextval, #{name}, #{target})
 	</insert>
 	
 </mapper>
