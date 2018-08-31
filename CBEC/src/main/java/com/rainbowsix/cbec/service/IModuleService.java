@@ -12,4 +12,6 @@ public interface IModuleService {
 	
 	public void add(ModuleModel Module) throws Exception;
 	public void delete(ModuleModel module) throws Exception;
+	
+	
 }

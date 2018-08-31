@@ -17,6 +17,10 @@
 	
 	<!-- 查询所有功能 -->
 	<!-- 查询所有功能，包含模块 -->
-	<!-- 任务：完成从Controller查询所有功能的接口，使用postman测试完成，并实现页面效果 -->
+	<select id="selectAllWithModule" resultMap="functionResultMapWithModule">
+		select f.*, m.module_name, module_target 
+		from sys_function f 
+		left outer join sys_module m on f.module_id = m.module_id
+	</select>
 
 </mapper>
