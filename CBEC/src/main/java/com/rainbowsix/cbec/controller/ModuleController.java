@@ -47,8 +47,9 @@ public class ModuleController {
 		
 		return result;
 	}
-	@RequestMapping(value="checkname")
-	public void delete(ModuleModel module) throws Exception{
+	@RequestMapping(value="delete", method={RequestMethod.POST})
+	public String delete(ModuleModel module) throws Exception{
 		moduleService.delete(module);
+		return "OK";
 	}
 }

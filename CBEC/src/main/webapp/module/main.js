@@ -1,8 +1,9 @@
 
 
 $(document).ready(function(){
-	
+	var userId = "0";
 	function showData(){
+		$("div#moduleContent").load("module/allmodule.html", function(){
 		$('table#moduleGrid').jqGrid({
 			//获取数据
 			url: 'module/all.mvc',
@@ -29,8 +30,7 @@ $(document).ready(function(){
 	             page: "page",
 	             total: "total",
 	             records: "records",
-	             repeatitems: true,
-	             id: "no"
+	             repeatitems: true
 	         },
 	         //选择单条数据
 	         multiselect:false,
@@ -39,11 +39,10 @@ $(document).ready(function(){
 //	        	 alert(id);
 	         }
 		});
+	});
 	}
 	
-	$("div#moduleContent").load("module/allmodule.html", function(){
-		showData();
-	});
+	showData()
 	
 	$("a#toAddModule").on("click", function(){
 		//显示弹窗
@@ -100,6 +99,27 @@ $(document).ready(function(){
 			});
 		});
 		
-	})
+	});
+	
+	$("a#todelteModule").on("click", function(){
+		if(userId == "0"){
+			BootstrapDialog.alert({
+				 title:"删除警告",
+				 message:"未选择用户!"
+			 });
+		}else{
+			if(confirm("是否确定删除用户")){
+				$.post("module/delete.mvc", {id:userId},function(result){
+					if(result == "OK"){
+						alert("删除成功");
+						showData();
+					}else{
+						alert("删除失败");
+					}
+				});
+				
+			}
+		}	
+	});
 	
 });
