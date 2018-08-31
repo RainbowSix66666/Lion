@@ -77,7 +77,7 @@ public class GoodsController {
 	}
 	
 	@RequestMapping(value="/select/bycomid",method={RequestMethod.GET})
-	public List<GoodsModel> bycomid(int comid) throws Exception{
+	public List<GoodsModel> bycomid(String comid) throws Exception{
 		
 		return goodservice.bycomid(comid);
 	}

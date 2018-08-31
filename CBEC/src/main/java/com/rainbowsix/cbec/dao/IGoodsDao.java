@@ -30,7 +30,7 @@ public interface IGoodsDao {
 	public int Count() throws Exception;
 	
 	//取得指定品牌商的所有商品
-	public List<GoodsModel> bycomid(int comid) throws Exception;
+	public List<GoodsModel> bycomid(String comid) throws Exception;
 
 	//购买商品
 	public void buygood(int proid, int count);

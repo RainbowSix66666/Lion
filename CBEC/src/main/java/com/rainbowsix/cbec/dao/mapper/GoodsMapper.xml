@@ -66,10 +66,10 @@
 		where typeno = #{typeno,jdbcType=NUMERIC}
 	</select>
 	
-	<select id="bycomid" parameterType="int" resultType="GoodsModel">
+	<select id="bycomid" parameterType="string" resultType="GoodsModel">
 		select *
 		from GOODS
-		where comid = #{comid,jdbcType=NUMERIC}
+		where comid = #{comid}
 	</select>
 	
 	<update id="buygood" parameterType="int">

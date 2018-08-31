@@ -31,5 +31,5 @@ public interface IGoodsService {
 	public List<GoodsModel> bytype(int typeno) throws Exception;
 	
 	//显示某品牌商的商品
-	public List<GoodsModel> bycomid(int comid) throws Exception;
+	public List<GoodsModel> bycomid(String comid) throws Exception;
 }

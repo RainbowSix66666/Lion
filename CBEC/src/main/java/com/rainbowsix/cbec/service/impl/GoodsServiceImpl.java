@@ -105,7 +105,7 @@ public class GoodsServiceImpl implements IGoodsService {
 	}
 
 	@Override
-	public List<GoodsModel> bycomid(int comid) throws Exception {
+	public List<GoodsModel> bycomid(String comid) throws Exception {
 		return goodsdao.bycomid(comid);
 	}
 
