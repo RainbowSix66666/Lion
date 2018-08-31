@@ -24,8 +24,7 @@ $(document).ready(function(){
 					window.location.href="login.html";
 				}
 			});
-		});
-		
+		});		
 		
 		
 		//点击菜单
