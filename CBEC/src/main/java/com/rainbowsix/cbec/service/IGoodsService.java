@@ -15,6 +15,9 @@ public interface IGoodsService {
 	//删除商品
 	public void del(int proid) throws Exception;
 	
+	//购买商品
+	public void buygood(int proid,int count) throws Exception;
+	
 	//显示单个商品
 	public GoodsModel one(int proid) throws Exception;
 	
@@ -26,4 +29,7 @@ public interface IGoodsService {
 	
 	//显示类型所有的商品
 	public List<GoodsModel> bytype(int typeno) throws Exception;
+	
+	//显示某品牌商的商品
+	public List<GoodsModel> bycomid(int comid) throws Exception;
 }

@@ -190,6 +190,13 @@ $(document).ready(function(){
 							alert("删除成功");
 							$("div#main_body").load("goods/showall.html");
 						});
+						
+						//购买响应
+						$("button#buy").on("click",function(){
+							$.post("goods/buygood.mvc",{proid:proid,count:count});
+							alert("下单成功");
+							$("div#main_body").load("xxx.html");
+						});
 					});	
 					event.preventDefault();
 				});
