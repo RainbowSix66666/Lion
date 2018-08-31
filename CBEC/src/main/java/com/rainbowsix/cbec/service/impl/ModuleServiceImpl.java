@@ -26,4 +26,28 @@ public class ModuleServiceImpl implements IModuleService {
 		return moduleDao.selectListByUserId(userId);
 	}
 
+	@Override
+	public void add(ModuleModel module) throws Exception {
+		// TODO Auto-generated method stub
+		moduleDao.add(module);
+	}
+
+	@Override
+	public List<ModuleModel> getListByAll() throws Exception {
+		// TODO Auto-generated method stub
+		return moduleDao.selectAll();
+	}
+
+	@Override
+	public ModuleModel getByName(String name) throws Exception {
+		return moduleDao.selectByName(name);
+	}
+
+	@Override
+	public void delete(ModuleModel module) throws Exception {
+		moduleDao.delete(module);
+	}
+	
+	
+
 }

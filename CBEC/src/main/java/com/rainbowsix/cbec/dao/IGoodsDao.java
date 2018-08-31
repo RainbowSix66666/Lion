@@ -29,5 +29,11 @@ public interface IGoodsDao {
 	//取得所有商品总数
 	public int Count() throws Exception;
 	
+	//取得指定品牌商的所有商品
+	public List<GoodsModel> bycomid(String comid) throws Exception;
+
+	//购买商品
+	public void buygood(int proid, int count);
+	
 	
 }

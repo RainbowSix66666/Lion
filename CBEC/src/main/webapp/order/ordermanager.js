@@ -8,10 +8,10 @@ $(document).ready(function(){
 	function showOrderList(){
 		$("div#OrderMainContent").load("order/list.html",function(){
 			//请求取得订单列表的Rest API
-			$.getJSON("order/list/all.mvc",function(orderList){
+			$.getJSON("order/listwithgoods/all.mvc",function(orderList){
 				var lines="";
 				for(var i=0;i<orderList.length;i++){
-					lines=lines+"<tr data-no='"+orderList[i].orderid+"'><td>"+orderList[i].orderid+"</td><td>"+orderList[i].comid+"</td><td>"+orderList[i].orderstate+"</td><td>"+orderList[i].bsid+"</td></tr>"
+					lines=lines+"<tr data-no='"+orderList[i].orderid+"'><td>"+orderList[i].orderid+"</td><td>"+orderList[i].title+"</td><td>"+orderList[i].stock+"</td><td>"+orderList[i].price+"</td><td>"+orderList[i].comid+"</td><td>"+orderList[i].orderstate+"</td><td>"+orderList[i].bsid+"</td></tr>"
 	 			}
 				$("table#orderListTable tbody").html(lines);
 				//点击TR事件处理

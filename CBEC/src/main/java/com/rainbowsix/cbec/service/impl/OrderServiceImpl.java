@@ -51,14 +51,17 @@ public class OrderServiceImpl implements IOrderService {
 		return om;
 	}
 
+	//取得所有关联商品的订单列表 ——品牌商
 	@Override
-	public boolean validate(int orderid, int comid) throws Exception {
-		boolean result=false;
-		if(orderDao.selectCountByOrderidAndComid(orderid, comid)>0) {
-			result=true;
-		}
-		
-		return result;
+	public List<OrderModel> getOrderListWithGoodsByAll() throws Exception {
+		List<OrderModel> list=orderDao.selectOrderListWithGoodsByAll();
+		return list;
+	}
+	//取得单一的关联商品的订单——品牌商
+	@Override
+	public OrderModel getOrderListWithGoodsById(int orderid) throws Exception {
+		OrderModel om=orderDao.selectOrderListWithGoodsById(orderid);
+		return om;
 	}
 
 	

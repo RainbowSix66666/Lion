@@ -13,7 +13,6 @@ public class UserModel {
 	private int no;
 	private String name;
 	private String password;
-	private long mvoid;
 	private long paypackageid;
 	@DateTimeFormat(pattern = "yyy-MM-dd")
 	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
@@ -26,7 +25,15 @@ public class UserModel {
 	private AreaModel area = null;
 	private ResellerModel reseller = null;
 	private List<RoleModel> roles = null;	
+	private MakerModel maker = null;
 	
+	
+	public MakerModel getMaker() {
+		return maker;
+	}
+	public void setMaker(MakerModel maker) {
+		this.maker = maker;
+	}
 	public String getAvatar_name() {
 		return avatar_name;
 	}
@@ -93,12 +100,6 @@ public class UserModel {
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	public long getMvoid() {
-		return mvoid;
-	}
-	public void setMvoid(long mvoid) {
-		this.mvoid = mvoid;
 	}
 	public long getPaypackageid() {
 		return paypackageid;

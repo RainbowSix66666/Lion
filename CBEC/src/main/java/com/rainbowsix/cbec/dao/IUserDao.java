@@ -19,6 +19,7 @@ public interface IUserDao {
 	/*********************获取单个用户*************************************/
 	//根据用户id查询用户
 	public UserModel selectById(long no) throws Exception;
+	public UserModel selectByIdWithMaker(long id) throws Exception;
 	//根据用户名查找用户
 	public UserModel selectByName(String name) throws Exception;
 	/*******************获取所有用户的不同信息**************************/

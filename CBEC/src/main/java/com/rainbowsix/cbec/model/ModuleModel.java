@@ -8,8 +8,17 @@ import org.apache.ibatis.type.Alias;
 public class ModuleModel {
 	private int id;
 	private String name;
+	private String target;
 	
 	private List<FunctionModel> functions = null;
+	
+	public String getTarget() {
+		return target;
+	}
+
+	public void setTarget(String target) {
+		this.target = target;
+	}
 
 	public int getId() {
 		return id;
