@@ -5,15 +5,15 @@
 <mapper namespace = "com.rainbowsix.cbec.dao.IResellerDao">
 
 	<resultMap type="Reseller" id = "ResellerResultMap">
-		<id property = "id" column = "Reseller_ID" />
-		<result property = "area" column = "Reseller_Area"/>
+		<id property = "resellerId" column = "Reseller_ID" />
+		<id property = "resellerName" column = "RESELLER_NAME" />
 		<result property = "location" column = "Reseller_location"/>
 		<result property = "mail" column = "Reseller_mail"/>
 		<result property = "phone_pre" column = "Reseller_phone_pre"/>
 		<result property = "phont_suf" column = "Reseller__phone_suf"/>
 	</resultMap>
 	
-	<select id = "selectById" resultMap = "ResellerResultMap" parameterType="int">
+	<select id = "selectResellerById" resultMap = "ResellerResultMap" parameterType="int">
 		select * from reseller where reseller_ID = #{id}
 	</select>
 

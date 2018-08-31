@@ -4,7 +4,8 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("Reseller")
 public class ResellerModel {
-	private int id;
+	private int resellerId;
+	private String resellerName;
 	//借卖商所属地区
 	private String area;
 	//借卖商具体地点
@@ -16,11 +17,18 @@ public class ResellerModel {
 	//电话号码后缀
 	private String phone_suf;	
 	
-	public int getId() {
-		return id;
+	
+	public String getResellerName() {
+		return resellerName;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setResellerName(String resellerName) {
+		this.resellerName = resellerName;
+	}
+	public int getResellerId() {
+		return resellerId;
+	}
+	public void setResellerId(int resellerId) {
+		this.resellerId = resellerId;
 	}
 	public String getArea() {
 		return area;

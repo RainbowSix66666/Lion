@@ -107,7 +107,7 @@ $(document).ready(function(){
 				});
 			})
 			
-			$.getJSON("goods/select/all.mvc",function(all){
+			$.getJSON("goods/select/bycomid.mvc",{comid:comid},function(all){
 				var title="";
 				for(var i=0;i<all.length;i++){
 					
@@ -189,13 +189,6 @@ $(document).ready(function(){
 							$.post("goods/del.mvc",{proid:proid});
 							alert("删除成功");
 							$("div#main_body").load("goods/showall.html");
-						});
-						
-						//购买响应
-						$("button#buy").on("click",function(){
-							$.post("goods/buygood.mvc",{proid:proid,count:count});
-							alert("下单成功");
-							$("div#main_body").load("xxx.html");
 						});
 					});	
 					event.preventDefault();

@@ -42,6 +42,13 @@ public class GoodsController {
 		return "modify complete";
 	}
 	
+	@RequestMapping(value="/bygood",method={RequestMethod.POST})
+	public String bygood(int proid,int count) throws Exception{
+		goodservice.buygood(proid, count);	
+		
+		return "buy complete";
+	}
+	
 	@RequestMapping(value="/select/one",method={RequestMethod.GET})
 	public GoodsModel one(int proid) throws Exception{
 		
@@ -67,5 +74,11 @@ public class GoodsController {
 		}
 		else
 			return goodservice.all();
+	}
+	
+	@RequestMapping(value="/select/bycomid",method={RequestMethod.GET})
+	public List<GoodsModel> bycomid(String comid) throws Exception{
+		
+		return goodservice.bycomid(comid);
 	}
 }

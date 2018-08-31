@@ -66,5 +66,18 @@
 		where typeno = #{typeno,jdbcType=NUMERIC}
 	</select>
 	
+	<select id="bycomid" parameterType="string" resultType="GoodsModel">
+		select *
+		from GOODS
+		where comid = #{comid}
+	</select>
+	
+	<update id="buygood" parameterType="int">
+		update GOODS set 
+		
+		STOCK = stock-#{count}
+		
+		where PROID =#{proid}
+	</update>
 	
 </mapper>

@@ -104,5 +104,16 @@ public class GoodsServiceImpl implements IGoodsService {
 		return goodsdao.bytype(typeno);
 	}
 
+	@Override
+	public List<GoodsModel> bycomid(String comid) throws Exception {
+		return goodsdao.bycomid(comid);
+	}
+
+	@Override
+	public void buygood(int proid, int count) throws Exception {
+		goodsdao.buygood(proid,count);
+		
+	}
+
 
 }

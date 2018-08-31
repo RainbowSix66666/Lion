@@ -39,14 +39,14 @@ http://www.springframework.org/schema/jee/spring-jee.xsd">
 	<mvc:cors>
 		<mvc:mapping path="/**"/>
 	</mvc:cors>
-	<mvc:interceptors>
+	<!-- <mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
 			<mvc:exclude-mapping path="/user/login.mvc"/>
 			<mvc:exclude-mapping path="/user/checkLogin.mvc"/>
 			<bean class="com.rainbowsix.cbec.interceptor.UserLoginCheckedInterceptor"/>
 		</mvc:interceptor>
-	</mvc:interceptors>
+	</mvc:interceptors> -->
   
   <!-- 
   <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/neusoft"/>
