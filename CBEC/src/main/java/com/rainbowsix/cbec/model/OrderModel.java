@@ -7,7 +7,7 @@ import org.apache.ibatis.type.Alias;
 @Alias("Order")//括号内没指定，默认的是第一个字母小写
 public class OrderModel {
 	private int orderid=0; //订单ID
-	private int comid=0; //公司ID
+	private String comid=null; //公司ID
 	private String orderstate=null; //订单状态
 	private int bsid=0; //借卖方ID
 	
@@ -23,10 +23,10 @@ public class OrderModel {
 	public void setOrderid(int orderid) {
 		this.orderid = orderid;
 	}
-	public int getComid() {
+	public String getComid() {
 		return comid;
 	}
-	public void setComid(int comid) {
+	public void setComid(String comid) {
 		this.comid = comid;
 	}
 	public String getOrderstate() {
