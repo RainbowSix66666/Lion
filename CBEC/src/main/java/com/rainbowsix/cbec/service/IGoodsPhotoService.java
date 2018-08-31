@@ -56,6 +56,10 @@ public interface IGoodsPhotoService {
 	//为指定照片添加颜色
 	public void grantColorById(int id,int colorId) throws Exception;
 	 
-	 
+	 //修改照片信息(无图片)
+	public void modifyWithoutPhoto(GoodsPhotoModel goodsPhoto) throws Exception; 
+
+	//修改照片信息(无图片)
+	public void modifyWithPhoto(GoodsPhotoModel goodsPhoto) throws Exception; 
 	
 }

@@ -96,22 +96,21 @@ public class GoodsPhotoServiceImpl implements IGoodsPhotoService {
 	//添加有照片的goodsphoto
 	@Override
 	public int addWithPhoto(GoodsPhotoModel goodsPhoto) throws Exception {
-		goodsPhotoDao.createWithPhoto(goodsPhoto);
-		return goodsPhoto.getPhotoId();
+		return goodsPhotoDao.createWithPhoto(goodsPhoto);
 	}
 	
 	//添加无照片的goodsphoto
 	@Override
 	public int addWithoutPhoto(GoodsPhotoModel goodsPhoto) throws Exception {
-		goodsPhotoDao.createWithoutPhoto(goodsPhoto);
-		return goodsPhoto.getPhotoId();
+		;
+		return goodsPhotoDao.createWithoutPhoto(goodsPhoto);
 	}
 	
 	//为选中的照片添加授权照片颜色的方法
 	@Override
 	public void grantColor(int id, int[] colors) throws Exception {
-		/*//清除原有的照片颜色
-		goodsPhotoDao.revokeAllColors(id);*/
+		//清除原有的照片颜色
+		goodsPhotoDao.revokeAllColors(id);
 		//授予新的颜色
 		for(int colorId:colors) {
 			goodsPhotoDao.grantColorById(id, colorId);
@@ -122,6 +121,15 @@ public class GoodsPhotoServiceImpl implements IGoodsPhotoService {
 	@Override
 	public void grantColorById(int id, int colorId) throws Exception {
 		goodsPhotoDao.grantColorById(id, colorId);
+	}
+	@Override
+	public void modifyWithoutPhoto(GoodsPhotoModel goodsPhoto) throws Exception {
+		 goodsPhotoDao.modifyWithoutPhoto(goodsPhoto);
+		
+	}
+	@Override
+	public void modifyWithPhoto(GoodsPhotoModel goodsPhoto) throws Exception {
+		 goodsPhotoDao.modifyWithPhoto(goodsPhoto);	
 	}
 	
 	

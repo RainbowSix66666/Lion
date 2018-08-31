@@ -7,6 +7,8 @@ $(document).ready(function(){
 	var logisticsid=0;
 	var consignee=null;
 	var address=null;
+	var expressnumber=0;
+	var phone=0;
 	
 	//取得请求参数，并重新载入Grid数据并刷新
 	function getParamAndReloadGrid(){
@@ -26,6 +28,7 @@ $(document).ready(function(){
 		$.each(logisticsList,function(index,lg){
 			$("select#AddressSelection").append ("<option value='"+lg.address+"'>"+lg.address+"</option>");
 		});
+		
 	});
 	
 	//地址下拉框更改事件处理
@@ -71,23 +74,35 @@ $(document).ready(function(){
 		multiselect:false,
 		onSelectRow:function(id){
 			logisticsid=id;
-			//alert(logisticsid);
+			
 		},		
 	});
 	
 	//增加物流按钮点击事件处理
 	$("a#LogisticsAddLink").on("click",function(){
+		//alert("增加物流");
 		$("div#LogisticsDialog").load("logistics/LogisticsAdd.html",function(){
-			//取得地址列表，填充地址下拉框
+		/*	//取得地址列表，填充地址下拉框
 			$.getJSON("logistics/list/address.mvc",function(logisticsList){
 				$.each(logisticsList,function(index,lg){
 					$("select#AddressSelection").append ("<option value='"+lg.address+"'>"+lg.address+"</option>");
 				});
-			});
+			});*/
 			//点击增加按钮事件处理
 			$("button#LogisticsAddButton").on("click",function(){
+				var address=$("input[name='address']").val();
+				var expressnumber=$("input[name='expressnumber']").val();
+				var consignee=$("input[name='consignee']").val();
+				var phone=$("input[name='phone']").val();
+				
+				
+			/*	$.post("logistics/add.mvc",{address:address,expressnumber:expressnumber,consignee:consignee,phone:phone},function(){			
+						alert("增加成功");
+						
+				});*/
 				
 				$("div#LogisticsDialog").dialog("close"); //关闭弹出Dialog
+				getParamAndReloadGrid();
 			});
 			
 			//使用JQuery validate对员工进行数据验证
@@ -135,7 +150,7 @@ $(document).ready(function(){
 			$("form#logisticsAddForm").ajaxForm(function(result){
 				//alert(result.message);
 				//alert(JSON.stringify(result));
-				getParamAndReloadGrid(); //重新载入物流列表，并刷新Grid显示。
+				//getParamAndReloadGrid(); //重新载入物流列表，并刷新Grid显示。
 				alert("添加物流信息成功")
 				$("div#LogisticsDialog").dialog("close"); //关闭弹出Dialog
 			});
@@ -154,48 +169,112 @@ $(document).ready(function(){
 	
 	//修改物流按钮点击事件处理
 	$("a#LogisticsModifyLink").on("click",function(){
-		$("div#LogisticsDialog").load("logistics/LogisticsModify.html",function(){
-			//定义提交按钮点击事件处理
-			$("button#logisticsModifyButton").on("click",function(){
+		
+		if(logisticsid==0){
+			alert("请选择要修改的物流！");
+		}else{
+			$("div#LogisticsDialog").load("logistics/LogisticsModify.html",function(){
+				//取得选择物流的信息
+				$.getJSON("logistics/get.mvc",{logisticsid:logisticsid},function(resultData){
+					$("input[name='address']").val(resultData.address);
+					$("input[name='expressnumber']").val(resultData.expressnumber);
+					$("input[name='consignee']").val(resultData.consignee);
+					$("input[name='phone']").val(resultData.phone);
+				});
+				//定义提交按钮点击事件处理
+				$("button#logisticsModifyButton").on("click",function(){
+					
+					var address = $("input[name='address']").val();
+					var expressnumber = $("input[name='expressnumber']").val();
+					var consignee = $("input[name='consignee']").val();
+					var phone = $("input[name='phone']").val();
+					
+					$.post("logistics/modify.mvc",{address:address,expressnumber:expressnumber,consignee:consignee,phone:phone,logisticsid:logisticsid},function(resultData){
+						if(resultData!='ok'){
+							alert("修改成功");
+							getParamAndReloadGrid();
+						}else{
+							alert("修改失败");
+							getParamAndReloadGrid();
+						}
+						$("div#LogisticsDialog").dialog("close"); //关闭弹出Dialog
+					});
+				});
+					
+					
+					//$("div#LogisticsDialog").dialog("close"); //关闭弹出Dialog
+			
 				
-				$("div#LogisticsDialog").dialog("close"); //关闭弹出Dialog
+				/*//拦截物流增加表单提交
+				$("form#orderAddForm").ajaxForm(function(result){
+					alert(result.message);
+					getParamAndReloadGrid(); //重新载入物流列表，并刷新Grid显示。
+					$("div#LogisticsDialog").dialog("close"); //关闭弹出Dialog
+				});*/
+				//定义取消连接点击事件处理
+				$("button#logisticsModifyCancelButton").on("click",function(){
+					$("div#LogisticsDialog").dialog("close"); //关闭弹出Dialog
+				});
+				$("div#LogisticsDialog").dialog({
+					title:"修改物流",
+					width:900,
+					height:550
+				});
+				
 			});
-			
-			/*//拦截物流增加表单提交
-			$("form#orderAddForm").ajaxForm(function(result){
-				alert(result.message);
-				getParamAndReloadGrid(); //重新载入物流列表，并刷新Grid显示。
-				$("div#LogisticsDialog").dialog("close"); //关闭弹出Dialog
-			});*/
-			//定义取消连接点击事件处理
-			$("button#logisticsModifyCancelButton").on("click",function(){
-				$("div#LogisticsDialog").dialog("close"); //关闭弹出Dialog
-			});
-			$("div#LogisticsDialog").dialog({
-				title:"修改物流",
-				width:900,
-				height:550
-			});
-			
-		});
+		}
+		
 	});
 	
 	//查看物流按钮点击事件处理
 	$("a#LogisticsViewLink").on("click",function(){
-		$("div#LogisticsDialog").load("logistics/LogisticsView.html",function(){
-			
-			
-			//定义取消连接点击事件处理
-			$("button#LogisticsViewCancelButton").on("click",function(){
-				$("div#LogisticsDialog").dialog("close"); //关闭弹出Dialog
+		if(logisticsid==0){
+			alert("请选择要查看的物流");
+		}else{
+			$("div#LogisticsDialog").load("logistics/LogisticsView.html",function(){
+					$.getJSON("logistics/get.mvc",{logisticsid:logisticsid},function(resultdata){
+					$("span#address").html(resultdata.address);
+					$("span#expressnumber").html(resultdata.expressnumber);
+					$("span#consignee").html(resultdata.consignee);
+					$("span#phone").html(resultdata.phone);
+					
+				});
+				
+				//定义取消连接点击事件处理
+				$("button#LogisticsViewCancelButton").on("click",function(){
+					$("div#LogisticsDialog").dialog("close"); //关闭弹出Dialog
+				});
+				$("div#LogisticsDialog").dialog({
+					title:"修改物流",
+					width:900,
+					height:550
+				});
+				
 			});
-			$("div#LogisticsDialog").dialog({
-				title:"修改物流",
-				width:900,
-				height:550
+		}
+
+	});
+	
+	//删除物流
+	$("a#LogisticsDeleteLink").on("click", function(){
+		if(logisticsid==0){
+			alert("请选择要删除的物流");
+		} else {
+			var confirmResult=confirm("确认要删除选择的物流吗？");
+			if(confirmResult){
+				$.post("logistics/delete.mvc",{logisticsid:logisticsid},function(resultData){
+					if(resultData!="ok"){
+						alert("删除物流成功");
+						getParamAndReloadGrid();
+					}else{
+						alert("删除物流失败");
+						getParamAndReloadGrid();
+					}
+					
 			});
-			
-		});
+		}
+		}
+		
 	});
 	
 });

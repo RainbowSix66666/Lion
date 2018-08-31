@@ -146,8 +146,26 @@ public class GoodsPhotoController {
 			return "添加照片成功";
 		}
 		
-		//验证品牌制造商的密码与账户
-		
+		//修改照片信息和上传照片
+		@RequestMapping(value="/modify",method=RequestMethod.POST, produces = "text/html;charset=UTF-8")
+		public String  modify(GoodsPhotoModel goodsPhoto,@RequestParam(required=false) MultipartFile loadPhoto,@RequestParam(required=false) int[] colors) throws Exception{
+			if(loadPhoto==null || loadPhoto.isEmpty()) {
+				//无图片提交
+				goodsPhotoService.modifyWithoutPhoto(goodsPhoto);
+			}
+			else {
+				//有图片提交
+				goodsPhoto.setPhoto(loadPhoto.getBytes());
+				goodsPhoto.setPhotoContentType(loadPhoto.getOriginalFilename());
+				goodsPhoto.setPhotoFileName(loadPhoto.getOriginalFilename());
+				goodsPhotoService.modifyWithPhoto(goodsPhoto);
+			}
+			if(colors!=null) {
+				goodsPhotoService.grantColor(goodsPhoto.getPhotoId(), colors);
+			}
+			return "修改照片成功";
+		}
+
 		
 }
 

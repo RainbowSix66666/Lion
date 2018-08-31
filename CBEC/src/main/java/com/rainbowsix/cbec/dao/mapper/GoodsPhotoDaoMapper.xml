@@ -40,7 +40,7 @@
 		</resultMap>
 		
 		<!-- 添加有照片信息 -->
-		<insert id="createWithPhoto" parameterType="GoodsPhoto">
+		<insert id="createWithPhoto" parameterType="GoodsPhoto" >
 		 	<selectKey keyProperty="photoId" keyColumn="PHOTO_ID" resultType="int" order="BEFORE">
 		 		select PHOTOID.nextval from dual
 		 	</selectKey>
@@ -49,14 +49,17 @@
 		</insert>
 		
 		<!--添加照片授予的颜色  -->
-		<insert id="grantColorById" parameterType="int">
+		<insert id="grantColorById" parameterType="int" >
 			insert into photo_link_color(PHOTO_ID, COLORID) values (#{id}, #{colorId})
 		</insert>
 		
 		<!-- 添加无图片信息 -->
 		<insert id="createWithoutPhoto" parameterType="GoodsPhoto">
+			<selectKey keyProperty="photoId" keyColumn="PHOTO_ID" resultType="int" order="BEFORE">
+		 		select PHOTOID.nextval from dual
+		 	</selectKey>
 			insert into GoodsPhoto (PHOTO_ID, PROID, DES, RANK , LOADDATE)
-			values (PHOTOID.nextval,#{proid},#{des},#{rank},#{loaddate})
+			values (#{photoId},#{proid},#{des},#{rank},#{loaddate})
 		</insert>
 		
 		
@@ -69,6 +72,29 @@
 			EMAIL = #{email, jdbcType=VARCHAR},
 			PHONE_NUMBER = #{phoneNumber, jdbcType=VARCHAR}
 			where MAKER_ID= #{makerId, jdbcType=NUMERIC}
+		</update>
+		
+		 <!-- 修改照片信息(无图片) -->
+		<update id="modifyWithoutPhoto" parameterType="GoodsPhoto" >
+			update GoodsPhoto set 
+			PROID = #{proid},
+			DES = #{des},
+			RANK = #{rank},
+			LOADDATE = #{loaddate}
+			where PHOTO_ID= #{photoId}
+		</update>
+		
+		 <!-- 修改照片信息(有图片) -->
+		<update id="modifyWithPhoto" parameterType="GoodsPhoto">
+			update GoodsPhoto set 
+			PROID = #{proid},
+			DES = #{des},
+			RANK = #{rank},
+			LOADDATE = #{loaddate}
+			PHOTO = #{photo}
+			PhotoFileName = #{photoFileName}
+			PhotoContentType = #{photoContentType}
+			where PHOTO_ID= #{photoId}
 		</update>
 		
 		<delete id="delete" parameterType="int">
