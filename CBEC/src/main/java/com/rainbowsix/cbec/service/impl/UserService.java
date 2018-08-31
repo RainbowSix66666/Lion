@@ -132,6 +132,12 @@ public class UserService implements IUserService {
 		return result;
 	}
 
+	@Override
+	public UserModel getByIdWithMaker(long id) throws Exception {
+		// TODO Auto-generated method stub
+		return userDao.selectByIdWithMaker(id);
+	}
+
 	
 	
 

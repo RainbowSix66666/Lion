@@ -14,6 +14,7 @@ public interface IUserService {
 	public List<UserModel> selectAllWithArea() throws Exception;
 	
 	public UserModel selectById(long id) throws Exception;
+	public UserModel getByIdWithMaker(long id) throws Exception;
 	//条件查询
 	public List<UserModel> selectListByCondiction(String name, Date before, Date after, int[] roles, int area) 
 			throws Exception;

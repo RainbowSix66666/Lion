@@ -11,5 +11,5 @@ public interface IModuleService {
 	public ModuleModel getByName(String name) throws Exception;
 	
 	public void add(ModuleModel Module) throws Exception;
-	
+	public void delete(ModuleModel module) throws Exception;
 }

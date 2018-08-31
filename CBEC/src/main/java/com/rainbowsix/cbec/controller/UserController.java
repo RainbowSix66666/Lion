@@ -106,6 +106,10 @@ public class UserController {
 //		return null;
 		return userService.selectById(no);
 	}
+	@RequestMapping("getbyno/maker")
+	public UserModel getByNoWithMaker(long no) throws Exception{
+		return userService.getByIdWithMaker(no);
+	}
 	@RequestMapping("list/condiction")
 	public List<UserModel> listByCondiction(@RequestParam(required=false)String name, @RequestParam(required=false)Date before, 
 			@RequestParam(required=false)Date after, @RequestParam(required=false)int[] roles,

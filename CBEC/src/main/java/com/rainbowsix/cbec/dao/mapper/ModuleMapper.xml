@@ -39,4 +39,9 @@
 		insert into sys_module values(MODULEIDSQ.nextval, #{name}, #{target})
 	</insert>
 	
+	<!-- 删除模块 -->
+	<delete id="delete" parameterType="Module">
+		delete from sys_module where module_id = #{id}
+	</delete>
+	
 </mapper>

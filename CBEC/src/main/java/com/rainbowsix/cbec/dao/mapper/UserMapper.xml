@@ -30,9 +30,13 @@
 			<result property="menuid" column="menuid"/>
 		</collection>
 	</resultMap>
-	<!-- 有供应商关联的ResultMap -->
+	<!-- 有借卖商关联的ResultMap -->
 	<resultMap type="User" id="userResultMapWithReseller" extends="userResultMap">
 		<association property="reseller" column="reseller_ID" select="com.rainbowsix.cbec.dao.IResellerDao.selectById"></association>
+	</resultMap>
+	<!-- 带品牌商关联的ResultMap -->
+	<resultMap type="User" id="userResultMapWithMaker" extends="userResultMap">
+		<association property="maker" column="maker_ID" resultMap="com.rainbowsix.cbec.dao.IMakerDao.MakerResultMap"></association>
 	</resultMap>
 	<!-- 有带地区管理 -->
 	<resultMap type="User" id="userResultMapWithArea" extends="userResultMap">
@@ -83,6 +87,9 @@
 	<!-- 查询单个用户 -->
 	<select id="selectById" parameterType="long" resultMap="userResultMap">
 		select * from sys_user where userid = #{no}
+	</select>
+	<select id="selectByIdWithMaker" parameterType="long" resultMap="userResultMapWithMaker">
+		select u.* from sys_user u natural join maker where userid = #{id} 
 	</select>
 	<!-- 根据用户名查找 -->
 	<select id="selectByName" parameterType="string" resultMap="userResultMap">
