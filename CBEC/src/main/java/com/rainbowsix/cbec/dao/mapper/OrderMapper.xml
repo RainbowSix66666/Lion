@@ -38,11 +38,6 @@
 	select * from ORDERS where ORDERID=#{orderid}
 	</select>
 
-	<!--练习登录- 根据账号和密码取得员工的个数，用于登录验证 -->
-	<select id="selectCountByOrderidAndComid" resultType="int">
-	  select count(ORDERID) from ORDERS where ORDERID=#{orderid} and COMID=#{comid}
-	</select>
-	
 	<!-- 取得所有关联商品的订单列表 ——品牌商-->
 	<select id="selectOrderListWithGoodsByAll" resultMap="OrderWithGoodsResultMap">
 	select a.*,b.title,b.stock,b.price from ORDERS a inner join GOODS b on a.comid=b.comid;

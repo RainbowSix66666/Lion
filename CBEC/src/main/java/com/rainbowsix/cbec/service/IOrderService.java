@@ -17,10 +17,6 @@ public interface IOrderService {
 	//通过订单ID取得订单
 	public OrderModel getOrderListById(int orderid) throws Exception;
 	
-	//练习登录界面
-	//验证员工登录合法
-	public boolean validate(int orderid, int comid) throws Exception;
-	
 	//取得所有关联商品的订单列表——品牌商
 	public List<OrderModel> getOrderListWithGoodsByAll() throws Exception; 
 	//取得单一的关联商品的订单——品牌商
