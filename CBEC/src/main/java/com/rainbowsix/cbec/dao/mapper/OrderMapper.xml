@@ -12,6 +12,11 @@
 	  <!-- <association property="logistics" column="LOGISTICSID" select="com.rainbowsix.cbec.dao.ILogisticsDao.selectLogisticsListByAll" fetchType="eager"></association> -->
 	</resultMap>
 	
+	<!--关联商品的映射  -->
+	  <resultMap id="OrderWithGoodsResultMap" type="Order" extends="OrderResultMap">
+	  <collection property="GoodsModel" column="PROID" select="com.rainbowsix.cbec.dao.IGoodsDao.byall" fetchType="eager"></collection>
+	</resultMap>
+	
 	<insert id="create" parameterType="Order">
 	insert into ORDERS (ORDERID,COMID,ORDERSTATE,BSID)
 	values (ORDER_SEQUENCE.nextval,#{comid},#{orderstate},#{bsid})
@@ -33,9 +38,21 @@
 	select * from ORDERS where ORDERID=#{orderid}
 	</select>
 
-<!--练习登录- 根据账号和密码取得员工的个数，用于登录验证 -->
+	<!--练习登录- 根据账号和密码取得员工的个数，用于登录验证 -->
 	<select id="selectCountByOrderidAndComid" resultType="int">
 	  select count(ORDERID) from ORDERS where ORDERID=#{orderid} and COMID=#{comid}
 	</select>
-
+	
+	<!-- 取得所有关联商品的订单列表 ——品牌商-->
+	<select id="selectOrderListWithGoodsByAll" resultMap="OrderWithGoodsResultMap">
+	select a.*,b.title,b.stock,b.price from ORDERS a inner join GOODS b on a.comid=b.comid;
+	</select>
+	<!-- 取得单一关联商品的订单 ——品牌商-->
+	<select id="selectOrderListWithGoodsById" resultMap="OrderWithGoodsResultMap">
+	select a.*,b.title,b.stock,b.price from ORDERS a inner join GOODS b on a.comid=b.comid where ORDERID=#{orderid} and a.comid=b.comid;
+	</select>
+	<!-- 取得所有关联商品的订单列表 ——借卖方-->
+	
+	<!-- 取得单一关联商品的订单 ——借卖方-->
+	
 </mapper>

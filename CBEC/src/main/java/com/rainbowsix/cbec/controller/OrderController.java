@@ -53,6 +53,16 @@ public class OrderController {
 	public OrderModel getOrderListById(int orderid) throws Exception{
 		return orderService.getOrderListById(orderid);
 	}
+	
+	@RequestMapping(value="/listwithgoods/all",method= {RequestMethod.GET})
+	public List<OrderModel> getOrderListWithGoodsByAll() throws Exception{
+		return orderService.getOrderListWithGoodsByAll();
+	}
+	
+	@RequestMapping(value="/getwithgoods",method= {RequestMethod.GET})
+	public OrderModel getOrderListWithGoodsById(int orderid) throws Exception{
+		return orderService.getOrderListWithGoodsById(orderid);
+	}
 
 	//员工的登录验证方法
 		@RequestMapping(value="/validate",method=RequestMethod.POST)

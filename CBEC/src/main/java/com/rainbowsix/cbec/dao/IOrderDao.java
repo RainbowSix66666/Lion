@@ -21,4 +21,9 @@ public interface IOrderDao {
 	
 	//练习登录-根据员工账号和密码取得员工个数
 	public int selectCountByOrderidAndComid(@Param("orderid") int orderid,@Param("comid") int comid) throws Exception;
+	
+	//取得所有关联商品的订单列表
+	public List<OrderModel> selectOrderListWithGoodsByAll() throws Exception;
+	//取得一条关联商品的订单
+	public OrderModel selectOrderListWithGoodsById(int orderid) throws Exception;
 }

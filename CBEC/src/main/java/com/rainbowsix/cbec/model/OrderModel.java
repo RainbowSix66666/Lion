@@ -11,8 +11,11 @@ public class OrderModel {
 	private String orderstate=null; //订单状态
 	private int bsid=0; //借卖方ID
 	
-	//关联属性-对一-物流
+	//关联物流属性-对一
 	private List<LogisticsModel> logistics = null;
+	
+	//关联商品属性-一对多
+	private List<GoodsModel> goods = null;
 	
 	public int getOrderid() {
 		return orderid;
@@ -43,6 +46,12 @@ public class OrderModel {
 	}
 	public void setLogistics(List<LogisticsModel> logistics) {
 		this.logistics = logistics;
+	}
+	public List<GoodsModel> getGoods() {
+		return goods;
+	}
+	public void setGoods(List<GoodsModel> goods) {
+		this.goods = goods;
 	}
 
 }
