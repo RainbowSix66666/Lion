@@ -11,7 +11,7 @@
 		<result property="url" column="fun_url"/>
 	</resultMap>
 	<!-- 包含功能所属模块 -->
-	<resultMap type="Function" id="functionResultMapWithModule">
+	<resultMap type="Function" id="functionResultMapWithModule" extends="functionResultMap">
 		<association property="belong" column="module_id" resultMap="com.rainbowsix.cbec.dao.IModuleDao.moduleResultMap"></association>
 	</resultMap>
 	
